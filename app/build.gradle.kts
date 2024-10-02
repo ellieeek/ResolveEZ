@@ -48,10 +48,8 @@ dependencies {
 	implementation(libs.material)
 	implementation(libs.androidx.constraintlayout)
 
-	implementation(libs.androidx.ui)
 	implementation(libs.androidx.material3)
 	implementation(libs.androidx.ui.tooling.preview)
-	implementation(libs.androidx.lifecycle.runtime.compose)
 
 	// Navigation
 	implementation(libs.androidx.navigation.fragment.ktx)
@@ -64,10 +62,6 @@ dependencies {
 	testImplementation(libs.junit)
 	androidTestImplementation(libs.androidx.junit)
 	androidTestImplementation(libs.androidx.espresso.core)
-
-	// Compose Debugging
-	debugImplementation(libs.androidx.ui.tooling)
-	androidTestImplementation(libs.androidx.ui.test.junit4)
 
 	implementation(libs.androidx.annotation)
 	implementation(libs.androidx.databinding.runtime)
