@@ -2,8 +2,8 @@ plugins {
 	alias(libs.plugins.android.application)
 	alias(libs.plugins.kotlin.android)
 	id("kotlin-kapt")
+	id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
 }
-
 android {
 	namespace = "com.mobile.reconnect"
 	compileSdk = 34
@@ -71,4 +71,10 @@ dependencies {
 
 	implementation(libs.androidx.annotation)
 	implementation(libs.androidx.databinding.runtime)
+
+	implementation(libs.play.services.maps)
+	implementation(libs.play.services.location)
+	implementation(libs.material.v140alpha02)
+
+
 }

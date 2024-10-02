@@ -15,21 +15,10 @@ class MainActivity: BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
 
-		val navView: BottomNavigationView = binding.navView
-
 		val navHostFragment =
 			supportFragmentManager.findFragmentById(R.id.nav_host_fragment_activity_main) as NavHostFragment
 		val navController = navHostFragment.navController
 
-		val appBarConfiguration = AppBarConfiguration(
-			setOf(
-				R.id.navigation_home,
-				R.id.navigation_report,
-				R.id.navigation_search,
-				R.id.navigation_mypage
-			)
-		)
-//		setupActionBarWithNavController(navController, appBarConfiguration)
-		navView.setupWithNavController(navController)
+		binding.navView.setupWithNavController(navController)
 	}
 }
