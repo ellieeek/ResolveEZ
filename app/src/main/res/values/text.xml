@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="FontCommon">
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <style name="RegularFontKr" parent="FontCommon">
+        <item name="fontFamily">@font/noto_sans_kr_regular</item>
+    </style>
+    <!-- Font Definition -->
+    <style name="MediumFontKr" parent="FontCommon">
+        <item name="fontFamily">@font/noto_sans_kr_medium</item>
+    </style>
+
+    <style name="BoldFontKr" parent="FontCommon">
+        <item name="fontFamily">@font/noto_sans_kr_bold</item>
+    </style>
+
+    <style name="BoldFont" parent="FontCommon">
+        <item name="fontFamily">@font/noto_sans_bold</item>
+    </style>
+
+    <!-- Bold Style -->
+    <style name="BoldFontKr.24" parent="BoldFontKr">
+        <item name="android:textSize">24sp</item>
+    </style>
+
+    <style name="BoldFontKr.22" parent="BoldFontKr">
+        <item name="android:textSize">22sp</item>
+    </style>
+
+    <style name="BoldFontKr.20" parent="BoldFontKr">
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="BoldFontKr.18" parent="BoldFontKr">
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="BoldFontKr.16" parent="BoldFontKr">
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="BoldFontKr.14" parent="BoldFontKr">
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="BoldFontKr.12" parent="BoldFontKr">
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="BoldFontKr.10" parent="BoldFontKr">
+        <item name="android:textSize">10sp</item>
+    </style>
+
+
+
+    <!-- Medium Style -->
+    <style name="MediumFontKr.22" parent="MediumFontKr">
+        <item name="android:textSize">22sp</item>
+    </style>
+
+    <style name="MediumFontKr.20" parent="MediumFontKr">
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="MediumFontKr.18" parent="MediumFontKr">
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="MediumFontKr.16" parent="MediumFontKr">
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="MediumFontKr.14" parent="MediumFontKr">
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="MediumFontKr.12" parent="MediumFontKr">
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="MediumFontKr.10" parent="MediumFontKr">
+        <item name="android:textSize">10sp</item>
+    </style>
+
+    <!-- Regula Style -->
+    <style name="RegularFontKr.22" parent="RegularFontKr">
+        <item name="android:textSize">22sp</item>
+    </style>
+
+    <style name="RegularFontKr.20" parent="RegularFontKr">
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="RegularFontKr.18" parent="RegularFontKr">
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="RegularFontKr.16" parent="RegularFontKr">
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="RegularFontKr.14" parent="RegularFontKr">
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="RegularFontKr.12" parent="RegularFontKr">
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="RegularFontKr.10" parent="RegularFontKr">
+        <item name="android:textSize">10sp</item>
+    </style>
+
+    <style name="RegularFontKr.9" parent="RegularFontKr">
+        <item name="android:textSize">9sp</item>
+    </style>
+
+</resources>
