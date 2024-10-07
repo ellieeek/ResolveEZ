@@ -40,6 +40,7 @@ android {
 	buildFeatures {
 		viewBinding = true
 		dataBinding = true
+		buildConfig = true
 	}
 }
 dependencies {
@@ -70,5 +71,7 @@ dependencies {
 	implementation(libs.play.services.location)
 	implementation(libs.material.v140alpha02)
 
+	implementation(libs.google.material)
+	implementation(libs.material.v190)
 
 }

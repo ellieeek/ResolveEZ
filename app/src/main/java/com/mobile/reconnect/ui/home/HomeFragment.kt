@@ -2,12 +2,9 @@ package com.mobile.reconnect.ui.home
 
 import android.Manifest
 import android.content.pm.PackageManager
-import android.location.Address
-import android.os.Build
 import android.os.Bundle
 import android.view.View
 import androidx.core.app.ActivityCompat
-import androidx.core.content.ContextCompat.checkSelfPermission
 import androidx.fragment.app.viewModels
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
@@ -73,4 +70,6 @@ class HomeFragment: BaseFragment<FragmentHomeBinding>(R.layout.fragment_home), O
 	companion object {
 		private const val LOCATION_PERMISSION_REQUEST_CODE = 1001
 	}
+
+
 }

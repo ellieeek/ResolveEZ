@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <LinearLayout
         android:id="@+id/bottom_sheet_layout"
@@ -8,44 +10,45 @@
         android:layout_height="wrap_content"
         android:background="@drawable/background_home_bottom_sheet"
         app:behavior_hideable="true"
-        app:behavior_peekHeight="50dp"
+        app:behavior_peekHeight="71dp"
         android:orientation="vertical"
         android:padding="10dp"
         android:clickable="true"
         android:focusable="true"
         app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textColor="@color/black"
-        style="@style/RegularFontKr.16"
-        android:text="반경 0km 이내 실종자 0명"
-        android:layout_margin="10dp"
-        android:textSize="20sp" />
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="match_parent"
+            android:gravity="center"
+            android:layout_height="match_parent">
+            <View
+                android:id="@+id/line_bottom_sheet"
+                android:layout_width="60dp"
+                android:layout_height="4dp"
+                android:layout_gravity="center"
+                android:background="@color/gray"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"/>
+        </androidx.appcompat.widget.LinearLayoutCompat>
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/expand_persistent_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:text="확장하기"
-        android:textSize="15sp" />
+        <TextView
+            android:id="@+id/tv_title"
+            style="@style/RegularFontKr.16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:text="반경 0km 이내 실종자 0명"
+            android:layout_marginStart="20dp"
+            android:textSize="20sp" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/hide_persistent_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:text="숨기기"
-        android:textSize="15sp"  />
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_missing_persons_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="vertical"
+            android:layout_marginTop="20dp"
+            tools:listitem="@layout/item_missing_person"
+            android:clipToPadding="false"/>
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/show_modal_button"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        android:text="Modal BottomSheet 열기"
-        android:textSize="15sp"  />
     </LinearLayout>
 </layout>
