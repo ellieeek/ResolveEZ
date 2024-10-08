@@ -27,20 +27,14 @@ import com.mobile.reconnect.ui.home.viewmodel.HomeBottomViewModel
 import com.mobile.reconnect.ui.home.viewmodel.HomeViewModel
 import com.software.somding.presentation.common.BaseFragment
 
-class HomeBottomFragment: BaseFragment<FragmentHomeBottomBinding>(R.layout.fragment_home_bottom) {
+class HomeBottomFragment : BaseFragment<FragmentHomeBottomBinding>(R.layout.fragment_home_bottom) {
 
-	// bottomSheetBehavior
 	private lateinit var bottomSheetBehavior: BottomSheetBehavior<LinearLayout>
 	private lateinit var adapter: MissingPersonsAdapter
 	private lateinit var persons: List<MissingPerson>
 
 	override fun onCreate(savedInstanceState: Bundle?) {
 		super.onCreate(savedInstanceState)
-
-	}
-
-	override fun onResume() {
-		super.onResume()
 	}
 
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

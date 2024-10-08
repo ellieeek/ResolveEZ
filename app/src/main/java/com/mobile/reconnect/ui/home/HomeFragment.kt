@@ -2,7 +2,10 @@ package com.mobile.reconnect.ui.home
 
 import android.Manifest
 import android.content.pm.PackageManager
+import android.os.Build
 import android.os.Bundle
+import android.util.Base64
+import android.util.Log
 import android.view.View
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.viewModels
@@ -10,7 +13,6 @@ import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
-import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
@@ -19,21 +21,26 @@ import com.mobile.reconnect.databinding.FragmentHomeBinding
 import com.mobile.reconnect.ui.home.viewmodel.HomeViewModel
 import com.software.somding.presentation.common.BaseFragment
 
-class HomeFragment: BaseFragment<FragmentHomeBinding>(R.layout.fragment_home), OnMapReadyCallback {
+class HomeFragment: BaseFragment<FragmentHomeBinding>(R.layout.fragment_home) {
 	private val viewModel: HomeViewModel by viewModels()
 	private lateinit var map: GoogleMap
 	private lateinit var fusedLocationClient: FusedLocationProviderClient
+	private lateinit var bottomSheetFragment: HomeBottomFragment
 
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 		super.onViewCreated(view, savedInstanceState)
 
 		fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
 
-		val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
-		mapFragment.getMapAsync(this)
+//		val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
+//		mapFragment.getMapAsync(this)
+
+		// 바텀 시트 초기화
+//		bottomSheetFragment = HomeBottomFragment()
+//		getKeyHash()
 	}
 
-	override fun onMapReady(googleMap: GoogleMap) {
+	fun onMapReady(googleMap: GoogleMap) {
 		map = googleMap
 
 		if (ActivityCompat.checkSelfPermission(
@@ -70,6 +77,5 @@ class HomeFragment: BaseFragment<FragmentHomeBinding>(R.layout.fragment_home), O
 	companion object {
 		private const val LOCATION_PERMISSION_REQUEST_CODE = 1001
 	}
-
 
 }

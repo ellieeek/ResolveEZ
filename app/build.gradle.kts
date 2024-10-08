@@ -1,9 +1,16 @@
+import java.io.FileInputStream
+import java.util.Properties
+
 plugins {
 	alias(libs.plugins.android.application)
 	alias(libs.plugins.kotlin.android)
 	id("kotlin-kapt")
 	id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
 }
+val properties = Properties().apply {
+	load(FileInputStream(rootProject.file("local.properties")))
+}
+
 android {
 	namespace = "com.mobile.reconnect"
 	compileSdk = 34
@@ -19,6 +26,8 @@ android {
 		vectorDrawables {
 			useSupportLibrary = true
 		}
+
+		buildConfigField("String", "MAPS_API_KEY", properties.getProperty("MAPS_API_KEY"))
 	}
 
 	buildTypes {
@@ -44,34 +53,38 @@ android {
 	}
 }
 dependencies {
+	// Core
 	implementation(libs.androidx.core.ktx)
 	implementation(libs.androidx.appcompat)
-	implementation(libs.material)
 	implementation(libs.androidx.constraintlayout)
+	implementation(libs.androidx.annotation)
 
-	implementation(libs.androidx.material3)
-	implementation(libs.androidx.ui.tooling.preview)
+	// Material Components
+	implementation(libs.material)
+	// implementation(libs.androidx.material3) // Material 3.x가 필요하면 사용 (libs.material과 함께 사용 시 충돌 가능)
 
 	// Navigation
 	implementation(libs.androidx.navigation.fragment.ktx)
 	implementation(libs.androidx.navigation.ui.ktx)
 
+	// Lifecycle
 	implementation(libs.androidx.lifecycle.livedata.ktx)
 	implementation(libs.androidx.lifecycle.viewmodel.ktx)
 
-	// Test
+	// Google Map and Location Services
+	implementation(libs.play.services.maps)
+	implementation(libs.play.services.location)
+	implementation(libs.google.material)
+
+	// UI Tooling (Android Studio Preview)
+	implementation(libs.androidx.ui.tooling.preview)
+
+	// DataBinding
+	implementation(libs.androidx.databinding.runtime)
+
+	// Testing
 	testImplementation(libs.junit)
 	androidTestImplementation(libs.androidx.junit)
 	androidTestImplementation(libs.androidx.espresso.core)
-
-	implementation(libs.androidx.annotation)
-	implementation(libs.androidx.databinding.runtime)
-
-	implementation(libs.play.services.maps)
-	implementation(libs.play.services.location)
-	implementation(libs.material.v140alpha02)
-
-	implementation(libs.google.material)
-	implementation(libs.material.v190)
-
 }
+
