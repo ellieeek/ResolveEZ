@@ -8,6 +8,7 @@
     <style name="RegularFontKr" parent="FontCommon">
         <item name="fontFamily">@font/pretendard_regular</item>
     </style>
+
     <!-- Font Definition -->
     <style name="MediumFontKr" parent="FontCommon">
         <item name="fontFamily">@font/pretendard_medium</item>
@@ -15,6 +16,10 @@
 
     <style name="BoldFontKr" parent="FontCommon">
         <item name="fontFamily">@font/pretendard_bold</item>
+    </style>
+
+    <style name="SemiBoldFontKr" parent="FontCommon">
+        <item name="fontFamily">@font/pretendard_semibold</item>
     </style>
 
     <style name="BoldFont" parent="FontCommon">
@@ -54,7 +59,38 @@
         <item name="android:textSize">10sp</item>
     </style>
 
+    <!-- Bold Style -->
+    <style name="SemiBoldFontKr.24" parent="SemiBoldFontKr">
+        <item name="android:textSize">24sp</item>
+    </style>
 
+    <style name="SemiBoldFontKr.22" parent="SemiBoldFontKr">
+        <item name="android:textSize">22sp</item>
+    </style>
+
+    <style name="SemiBoldFontKr.20" parent="SemiBoldFontKr">
+        <item name="android:textSize">20sp</item>
+    </style>
+
+    <style name="SemiBoldFontKr.18" parent="SemiBoldFontKr">
+        <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="SemiBoldFontKr.16" parent="SemiBoldFontKr">
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="SemiBoldFontKr.14" parent="SemiBoldFontKr">
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="SemiBoldFontKr.12" parent="SemiBoldFontKr">
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="SemiBoldFontKr.10" parent="SemiBoldFontKr">
+        <item name="android:textSize">10sp</item>
+    </style>
 
     <!-- Medium Style -->
     <style name="MediumFontKr.22" parent="MediumFontKr">
