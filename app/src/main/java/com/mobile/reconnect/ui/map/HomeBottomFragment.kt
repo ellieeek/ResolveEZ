@@ -22,6 +22,8 @@ class HomeBottomFragment : BottomSheetDialogFragment() {
 		savedInstanceState: Bundle?
 	): View {
 		binding = FragmentHomeBottomBinding.inflate(inflater, container, false)
+		setupRecyclerView()
+
 		return binding.root
 	}
 
@@ -33,6 +35,9 @@ class HomeBottomFragment : BottomSheetDialogFragment() {
 
 	private fun setupRecyclerView() {
 		persons = listOf(
+			MissingPerson("홍길동", "75세, 168cm, 70kg", "치매"),
+			MissingPerson("김철수", "80세, 175cm, 80kg", "치매"),
+			MissingPerson("김철수", "80세, 175cm, 80kg", "치매"),
 			MissingPerson("홍길동", "75세, 168cm, 70kg", "치매"),
 			MissingPerson("김철수", "80세, 175cm, 80kg", "치매"),
 			MissingPerson("이영희", "70세, 160cm, 60kg", "치매")
