@@ -6,19 +6,19 @@
     </style>
 
     <style name="RegularFontKr" parent="FontCommon">
-        <item name="fontFamily">@font/noto_sans_kr_regular</item>
+        <item name="fontFamily">@font/pretendard_regular</item>
     </style>
     <!-- Font Definition -->
     <style name="MediumFontKr" parent="FontCommon">
-        <item name="fontFamily">@font/noto_sans_kr_medium</item>
+        <item name="fontFamily">@font/pretendard_medium</item>
     </style>
 
     <style name="BoldFontKr" parent="FontCommon">
-        <item name="fontFamily">@font/noto_sans_kr_bold</item>
+        <item name="fontFamily">@font/pretendard_bold</item>
     </style>
 
     <style name="BoldFont" parent="FontCommon">
-        <item name="fontFamily">@font/noto_sans_bold</item>
+        <item name="fontFamily">@font/pretendard_bold</item>
     </style>
 
     <!-- Bold Style -->
