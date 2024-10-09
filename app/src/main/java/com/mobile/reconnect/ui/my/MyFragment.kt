@@ -16,9 +16,7 @@ class MyFragment: BaseFragment<FragmentMyBinding>(R.layout.fragment_my) {
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 		super.onViewCreated(view, savedInstanceState)
 
-		viewModel.text.observe(viewLifecycleOwner) {
-			binding.textMy.text = it
-		}
+
 	}
 
 }
