@@ -1,4 +1,4 @@
-package com.mobile.reconnect.ui.home.adapter
+package com.mobile.reconnect.ui.map.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

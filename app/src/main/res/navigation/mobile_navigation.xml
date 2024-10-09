@@ -7,8 +7,8 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.mobile.reconnect.ui.home.HomeFragment"
-        android:label="@string/title_home"
+        android:name="com.mobile.reconnect.ui.map.MapFragment"
+        android:label="@string/title_map"
         tools:layout="@layout/fragment_home" />
 
     <fragment

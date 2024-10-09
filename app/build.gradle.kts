@@ -1,5 +1,6 @@
 import java.io.FileInputStream
 import java.util.Properties
+import java.util.regex.Pattern.compile
 
 plugins {
 	alias(libs.plugins.android.application)
@@ -7,6 +8,7 @@ plugins {
 	id("kotlin-kapt")
 	id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
 }
+
 val properties = Properties().apply {
 	load(FileInputStream(rootProject.file("local.properties")))
 }
@@ -74,7 +76,12 @@ dependencies {
 	// Google Map and Location Services
 	implementation(libs.play.services.maps)
 	implementation(libs.play.services.location)
+	implementation(libs.play.services.maps.v1802)
 	implementation(libs.google.material)
+	implementation(libs.maps.ktx)
+	implementation(libs.maps.utils.ktx)
+	implementation(libs.androidx.lifecycle.runtime.ktx)
+
 
 	// UI Tooling (Android Studio Preview)
 	implementation(libs.androidx.ui.tooling.preview)
