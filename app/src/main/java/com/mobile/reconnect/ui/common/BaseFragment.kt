@@ -1,4 +1,4 @@
-package com.software.somding.presentation.common
+package com.mobile.reconnect.ui.common
 
 import android.os.Bundle
 import android.view.LayoutInflater
