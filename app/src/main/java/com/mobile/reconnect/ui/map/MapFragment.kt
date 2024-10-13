@@ -8,7 +8,9 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.core.app.ActivityCompat
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.Observer
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -24,9 +26,10 @@ import com.mobile.reconnect.R
 import com.mobile.reconnect.databinding.FragmentMapBinding
 import com.mobile.reconnect.ui.map.viewmodel.MapViewModel
 import com.mobile.reconnect.ui.common.BaseFragment
+import com.mobile.reconnect.ui.map.viewmodel.HomeBottomViewModel
 
 class MapFragment: BaseFragment<FragmentMapBinding>(R.layout.fragment_map), OnMapReadyCallback {
-	private val viewModel: MapViewModel by viewModels()
+	private val viewModel: HomeBottomViewModel by activityViewModels()
 
 	private lateinit var map: GoogleMap
 	private lateinit var fusedLocationClient: FusedLocationProviderClient
@@ -45,24 +48,30 @@ class MapFragment: BaseFragment<FragmentMapBinding>(R.layout.fragment_map), OnMa
 
 		setBottomSheet()
 
+		// Chip 클릭 리스너 설정
 		binding.radius1km.setOnClickListener {
 			drawCircle(1000.0, Color.parseColor("#F89035"))
+			viewModel.updateRadius(1)
 		}
 
 		binding.radius2km.setOnClickListener {
 			drawCircle(2000.0, Color.parseColor("#7EB9FD"))
+			viewModel.updateRadius(2)
 		}
 
 		binding.radius3km.setOnClickListener {
 			drawCircle(3000.0, Color.parseColor("#89D38B"))
+			viewModel.updateRadius(3)
 		}
 
 		binding.radius4km.setOnClickListener {
 			drawCircle(4000.0, Color.parseColor("#E4BDFF"))
+			viewModel.updateRadius(4)
 		}
 
 		binding.radius5km.setOnClickListener {
 			drawCircle(5000.0, Color.parseColor("#FDF77B"))
+			viewModel.updateRadius(5)
 		}
 
 	}

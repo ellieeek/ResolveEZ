@@ -71,7 +71,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/white"
-                    android:layout_marginStart="6dp"
+                    android:layout_marginEnd="16dp"
                     android:elevation="4dp"
                     android:text="반경 5km" />
             </com.google.android.material.chip.ChipGroup>

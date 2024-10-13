@@ -1,46 +1,55 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
+<layout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <LinearLayout
-        android:id="@+id/bottom_sheet"
+    <data>
+        <variable
+            name="viewModel"
+            type="com.mobile.reconnect.ui.map.viewmodel.HomeBottomViewModel" />
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/background_home_bottom_sheet"
-        android:orientation="vertical"
-        app:behavior_fitToContents="false"
-        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+        xmlns:tools="http://schemas.android.com/tools">
 
-        <View
-            android:layout_width="60dp"
-            android:layout_height="4dp"
-            android:layout_gravity="center"
-            android:background="@color/gray"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="20dp"/>
-
-        <TextView
-            android:id="@+id/tv_title"
-            style="@style/RegularFontKr.16"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:text="반경 0km 이내 실종자 0명"
-            android:layout_marginBottom="20dp"
-            android:layout_marginStart="20dp" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_missing_persons_list"
+        <LinearLayout
+            android:id="@+id/bottom_sheet"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:scrollbars="vertical"
-            tools:listitem="@layout/item_missing_person"
-            android:clipToPadding="false"/>
+            android:layout_height="match_parent"
+            android:background="@drawable/background_home_bottom_sheet"
+            android:orientation="vertical"
+            app:behavior_fitToContents="false"
+            app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
 
-    </LinearLayout>
+            <View
+                android:layout_width="60dp"
+                android:layout_height="4dp"
+                android:layout_gravity="center"
+                android:background="@color/gray"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"/>
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+            <TextView
+                android:id="@+id/tv_title"
+                style="@style/RegularFontKr.16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
+                android:text="@{`반경 ` + viewModel.radius + `km 이내 실종자 0명`}"
+                android:layout_marginBottom="20dp"
+                android:layout_marginStart="20dp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_missing_persons_list"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="vertical"
+                tools:listitem="@layout/item_missing_person"
+                android:clipToPadding="false"/>
+
+        </LinearLayout>
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+</layout>
