@@ -24,6 +24,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
+                app:singleSelection="true"
                 android:orientation="horizontal">
 
                 <com.google.android.material.chip.Chip
@@ -33,10 +35,8 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="6dp"
                     android:backgroundTint="@color/white"
-                    android:textColor="@drawable/chip_selected_red_or_black"
-                    app:chipStrokeColor="@drawable/chip_selected_red_or_black"
                     android:elevation="4dp"
-                    android:text="반경 1km"/>
+                    android:text="반경 1km" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/radius_2km"
@@ -44,8 +44,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/white"
-                    android:textColor="@drawable/chip_selected_red_or_black"
-                    app:chipStrokeColor="@drawable/chip_selected_red_or_black"
                     android:elevation="4dp"
                     android:text="반경 2km" />
 
@@ -55,8 +53,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/white"
-                    android:textColor="@drawable/chip_selected_red_or_black"
-                    app:chipStrokeColor="@drawable/chip_selected_red_or_black"
                     android:elevation="4dp"
                     android:text="반경 3km" />
 
@@ -66,8 +62,6 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/white"
-                    android:textColor="@drawable/chip_selected_red_or_black"
-                    app:chipStrokeColor="@drawable/chip_selected_red_or_black"
                     android:elevation="4dp"
                     android:text="반경 4km" />
 
@@ -77,8 +71,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/white"
-                    android:textColor="@drawable/chip_selected_red_or_black"
-                    app:chipStrokeColor="@drawable/chip_selected_red_or_black"
+                    android:layout_marginStart="6dp"
                     android:elevation="4dp"
                     android:text="반경 5km" />
             </com.google.android.material.chip.ChipGroup>

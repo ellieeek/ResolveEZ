@@ -19,6 +19,7 @@ import com.google.android.gms.maps.model.Circle
 import com.google.android.gms.maps.model.CircleOptions
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.chip.Chip
 import com.mobile.reconnect.R
 import com.mobile.reconnect.databinding.FragmentMapBinding
 import com.mobile.reconnect.ui.map.viewmodel.MapViewModel
