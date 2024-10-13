@@ -22,7 +22,6 @@ class HomeBottomFragment : BottomSheetDialogFragment() {
 		savedInstanceState: Bundle?
 	): View {
 		binding = FragmentHomeBottomBinding.inflate(inflater, container, false)
-		setupRecyclerView()
 
 		return binding.root
 	}
