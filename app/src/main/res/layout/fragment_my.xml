@@ -34,6 +34,7 @@
 
             <!-- 실종자 사전 등록하기 카드 -->
             <androidx.cardview.widget.CardView
+                android:id="@+id/card_register"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -88,6 +89,7 @@
 
             <!-- 실종 신고하기 카드 -->
             <androidx.cardview.widget.CardView
+                android:id="@+id/card_report"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"

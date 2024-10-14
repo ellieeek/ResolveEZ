@@ -39,6 +39,9 @@
         <action
             android:id="@+id/action_navigation_mypage_to_navigation_my_noti"
             app:destination="@id/navigation_my_noti" />
+        <action
+            android:id="@+id/action_navigation_mypage_to_navigation_my_info"
+            app:destination="@id/navigation_my_info" />
 
     </fragment>
 
@@ -53,4 +56,11 @@
         android:name="com.mobile.reconnect.ui.my.MyNotificationFragment"
         android:label="@string/title_my_notification"
         tools:layout="@layout/fragment_my_notification" />
+
+    <fragment
+        android:id="@+id/navigation_my_info"
+        android:name="com.mobile.reconnect.ui.my.MyInfoFragment"
+        android:label="@string/title_my_info"
+        tools:layout="@layout/fragment_my_info" />
+
 </navigation>

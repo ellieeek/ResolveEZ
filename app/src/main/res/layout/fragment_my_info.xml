@@ -30,23 +30,12 @@
             android:layout_gravity="top|start"
             android:layout_margin="16dp"
             android:layout_marginTop="10dp"
-            android:text="나의 제보 내역"
+            android:text="실종자 사전 등록"
             android:textColor="@color/black"
+            android:textSize="20sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginTop="10dp"
-            android:clipToPadding="false"
-            android:scrollbars="vertical"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/title"
-            tools:listitem="@layout/item_my_report_list" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
