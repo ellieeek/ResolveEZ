@@ -113,8 +113,16 @@
         <item name="android:textSize">14sp</item>
     </style>
 
+    <style name="MediumFontKr.13" parent="MediumFontKr">
+        <item name="android:textSize">13sp</item>
+    </style>
+
     <style name="MediumFontKr.12" parent="MediumFontKr">
         <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="MediumFontKr.11" parent="MediumFontKr">
+        <item name="android:textSize">11sp</item>
     </style>
 
     <style name="MediumFontKr.10" parent="MediumFontKr">

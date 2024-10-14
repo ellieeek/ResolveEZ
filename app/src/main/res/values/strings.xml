@@ -1,10 +1,21 @@
 <resources>
     <!-- 바텀 네비게이션 -->
     <string name="app_name">Re-connect</string>
+
+    <!-- 지도 -->
     <string name="title_map">지도</string>
+
+
+    <!-- 제보 -->
     <string name="title_report">제보</string>
+
+
+    <!-- 검색 -->
     <string name="title_search">검색</string>
+
+
+    <!-- 마이 -->
     <string name="title_mypage">마이</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_my_report">나의 제보 내역</string>
+    <string name="title_my_notification">알림 관리</string>
 </resources>

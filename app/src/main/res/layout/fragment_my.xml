@@ -24,7 +24,7 @@
             android:id="@+id/card_buttons"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_marginTop="23dp"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             android:orientation="horizontal"
@@ -141,80 +141,81 @@
 
         <!-- 나의 제보 내역 리스트 -->
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/tv_my_report"
             style="@style/MediumFontKr.16"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="16dp"
             android:layout_marginTop="27dp"
+            android:padding="16dp"
             android:text="나의 제보 내역"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/card_buttons"
+            app:layout_constraintStart_toStartOf="@+id/card_buttons"
             app:layout_constraintTop_toBottomOf="@id/card_buttons" />
 
         <View
-            android:id="@+id/view"
+            android:id="@+id/gray_line"
             android:layout_width="match_parent"
             android:layout_height="1dp"
-            android:layout_marginTop="12dp"
             android:background="@color/gray_200"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
             app:layout_constraintEnd_toEndOf="@+id/card_buttons"
-            app:layout_constraintStart_toStartOf="@+id/textView"
-            app:layout_constraintTop_toBottomOf="@+id/textView" />
+            app:layout_constraintStart_toStartOf="@+id/tv_my_report"
+            app:layout_constraintTop_toBottomOf="@+id/tv_my_report" />
 
         <TextView
-            android:id="@+id/textView2"
+            android:id="@+id/tv_my_notification"
             style="@style/MediumFontKr.16"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:padding="16dp"
             android:text="알림 관리"
-            app:layout_constraintStart_toStartOf="@+id/textView"
-            app:layout_constraintTop_toBottomOf="@+id/view" />
+            app:layout_constraintEnd_toEndOf="@+id/card_buttons"
+            app:layout_constraintStart_toStartOf="@+id/card_buttons"
+            app:layout_constraintTop_toBottomOf="@+id/gray_line" />
 
         <View
-            android:id="@+id/view2"
+            android:id="@+id/gray_line_2"
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
-            android:layout_marginTop="12dp"
             android:background="@color/gray_200"
             app:layout_constraintEnd_toEndOf="@+id/card_buttons"
-            app:layout_constraintStart_toStartOf="@+id/textView"
-            app:layout_constraintTop_toBottomOf="@+id/textView2" />
+            app:layout_constraintStart_toStartOf="@+id/tv_my_report"
+            app:layout_constraintTop_toBottomOf="@+id/tv_my_notification" />
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/tv_my_info_update"
             style="@style/MediumFontKr.16"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:padding="16dp"
             android:text="회원정보 수정"
-            app:layout_constraintStart_toStartOf="@+id/textView"
-            app:layout_constraintTop_toBottomOf="@+id/view2" />
+            app:layout_constraintEnd_toEndOf="@+id/card_buttons"
+            app:layout_constraintStart_toStartOf="@+id/tv_my_report"
+            app:layout_constraintTop_toBottomOf="@+id/gray_line_2" />
 
         <View
-            android:id="@+id/view3"
+            android:id="@+id/gray_line_3"
             android:layout_width="match_parent"
             android:layout_height="1dp"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
-            android:layout_marginTop="12dp"
             android:background="@color/gray_200"
             app:layout_constraintEnd_toEndOf="@+id/card_buttons"
-            app:layout_constraintStart_toStartOf="@+id/textView"
-            app:layout_constraintTop_toBottomOf="@+id/textView3" />
+            app:layout_constraintStart_toStartOf="@+id/tv_my_report"
+            app:layout_constraintTop_toBottomOf="@+id/tv_my_info_update" />
 
         <TextView
             android:id="@+id/tv_logout"
             style="@style/MediumFontKr.16"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
+            android:padding="16dp"
             android:text="로그아웃"
-            app:layout_constraintStart_toStartOf="@+id/textView"
-            app:layout_constraintTop_toBottomOf="@+id/view3" />
+            app:layout_constraintEnd_toEndOf="@+id/card_buttons"
+            app:layout_constraintStart_toStartOf="@+id/tv_my_report"
+            app:layout_constraintTop_toBottomOf="@+id/gray_line_3" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
