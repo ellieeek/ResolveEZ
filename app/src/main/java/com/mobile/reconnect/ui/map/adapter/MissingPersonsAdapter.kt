@@ -26,9 +26,8 @@ class MissingPersonsAdapter(private val persons: List<MissingPerson>, private va
 
 	class MissingPersonViewHolder(private val binding: ItemMissingPersonBinding) : RecyclerView.ViewHolder(binding.root) {
 		fun bind(person: MissingPerson) {
-			binding.tvPersonName.text = person.name
-			binding.tvPersonInfo.text = person.info
-			binding.tvPersonDetail.text = person.detail
+			binding.missingPerson = person
+			binding.executePendingBindings() // DataBinding 업데이트
 		}
 	}
 }

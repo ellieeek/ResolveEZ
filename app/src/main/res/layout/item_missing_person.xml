@@ -1,46 +1,61 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <variable
+            name="missingPerson"
+            type="com.mobile.reconnect.data.model.MissingPerson" />
+    </data>
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        app:cardElevation="0dp">
+        app:cardElevation="4dp"
+        app:cardCornerRadius="8dp">
 
-        <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp">
-
-        <TextView
-            android:id="@+id/tv_person_name"
-            android:layout_width="wrap_content"
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="이름"
-            android:textSize="18sp"
-            android:textColor="@color/black"
-            android:textStyle="bold" />
+            android:padding="16dp">
 
-        <TextView
-            android:id="@+id/tv_person_info"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="정보 (예: 나이, 키, 체중 등)"
-            android:textSize="14sp"
-            android:textColor="@color/gray"
-            android:layout_marginTop="4dp" />
+            <!-- 왼쪽에 이미지 배치 (정사각형) -->
+            <ImageView
+                android:id="@+id/imageViewPerson"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:src="@drawable/ic_baseline_my_24"
+                app:imageUrl="@{missingPerson.imageURL}"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
 
-        <TextView
-            android:id="@+id/tv_person_detail"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="정보 (예: 나이, 키, 체중 등)"
-            android:textSize="14sp"
-            android:textColor="@color/gray"
-            android:layout_marginTop="4dp" />
+            <!-- 첫 번째 줄 (이름, 성별, 나이, 키, 몸무게, 특이사항) -->
+            <TextView
+                android:id="@+id/tvPersonInfo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text='@{missingPerson.name + " (" + missingPerson.gender.label + ", " + missingPerson.age + "세, " + missingPerson.height + "cm, " + missingPerson.weight + "kg, " + missingPerson.specialFeature.label + ")"}'
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/imageViewPerson"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toTopOf="@+id/tvPersonClothing" />
 
-    </LinearLayout>
+            <!-- 두 번째 줄 (상의, 하의, 신발, 악세사리, 헤어) -->
+            <TextView
+                android:id="@+id/tvPersonClothing"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text='@{missingPerson.tops + ", " + missingPerson.bottoms + ", " + missingPerson.shoes + ", " + missingPerson.accessories + ", " + missingPerson.hair}'
+                android:textColor="@color/gray"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/imageViewPerson"
+                app:layout_constraintTop_toBottomOf="@+id/tvPersonInfo" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 </layout>
