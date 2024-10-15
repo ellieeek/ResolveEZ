@@ -88,10 +88,13 @@ dependencies {
 
 	// DataBinding
 	implementation(libs.androidx.databinding.runtime)
+	implementation(libs.androidx.activity)
 
 	// Testing
 	testImplementation(libs.junit)
 	androidTestImplementation(libs.androidx.junit)
 	androidTestImplementation(libs.androidx.espresso.core)
+
+	implementation ("com.kakao.sdk:v2-user:2.15.0")
 }
 
