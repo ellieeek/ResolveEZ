@@ -1,4 +1,3 @@
-/*
 package com.mobile.reconnect
 
 import android.content.Intent
@@ -6,6 +5,13 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Toast
+import com.kakao.sdk.auth.AuthApiClient
+import com.kakao.sdk.auth.model.OAuthToken
+import com.kakao.sdk.common.KakaoSdk
+import com.kakao.sdk.common.model.ClientError
+import com.kakao.sdk.common.model.ClientErrorCause
+import com.kakao.sdk.common.util.Utility
+import com.kakao.sdk.user.UserApiClient
 import com.mobile.reconnect.databinding.ActivityLoginBinding
 import com.mobile.reconnect.utils.Constants
 import com.software.somding.presentation.common.BaseActivity
@@ -23,7 +29,7 @@ class LoginActivity: BaseActivity<ActivityLoginBinding>(R.layout.activity_login)
 
 	override fun onClick(v: View?) {
 		when (v?.id) {
-			binding.btnLogin.id -> {
+			binding.btnKakaoLogin.id -> {
 				if (UserApiClient.instance.isKakaoTalkLoginAvailable(this)) {
 					UserApiClient.instance.loginWithKakaoTalk(this) { token, error ->
 						if (error != null) {
@@ -31,7 +37,10 @@ class LoginActivity: BaseActivity<ActivityLoginBinding>(R.layout.activity_login)
 							if (error is ClientError && error.reason == ClientErrorCause.Cancelled) {
 								return@loginWithKakaoTalk
 							} else {
-								UserApiClient.instance.loginWithKakaoAccount(this, callback = mCallback)
+								UserApiClient.instance.loginWithKakaoAccount(
+									this,
+									callback = mCallback
+								)
 							}
 						} else if (token != null) {
 							Log.d(Constants.TAG, "로그인 성공 ${token.accessToken}")
@@ -69,4 +78,4 @@ class LoginActivity: BaseActivity<ActivityLoginBinding>(R.layout.activity_login)
 		startActivity(Intent(this, MainActivity::class.java))
 		finish()
 	}
-}*/
+}
