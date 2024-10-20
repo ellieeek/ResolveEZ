@@ -1,4 +1,4 @@
-package com.mobile.reconnect
+package com.mobile.reconnect.ui.login
 
 import android.content.Intent
 import android.os.Bundle
@@ -12,6 +12,9 @@ import com.kakao.sdk.common.model.ClientError
 import com.kakao.sdk.common.model.ClientErrorCause
 import com.kakao.sdk.common.util.Utility
 import com.kakao.sdk.user.UserApiClient
+import com.mobile.reconnect.BuildConfig
+import com.mobile.reconnect.MainActivity
+import com.mobile.reconnect.R
 import com.mobile.reconnect.databinding.ActivityLoginBinding
 import com.mobile.reconnect.utils.Constants
 import com.software.somding.presentation.common.BaseActivity
@@ -23,7 +26,8 @@ class LoginActivity: BaseActivity<ActivityLoginBinding>(R.layout.activity_login)
 			Log.e(Constants.TAG, "로그인 실패 $error")
 		} else if (token != null) {
 			Log.d(Constants.TAG, "로그인 성공 ${token.accessToken}")
-			nextMainActivity()
+
+			nextActivity()
 		}
 	}
 
@@ -45,7 +49,7 @@ class LoginActivity: BaseActivity<ActivityLoginBinding>(R.layout.activity_login)
 						} else if (token != null) {
 							Log.d(Constants.TAG, "로그인 성공 ${token.accessToken}")
 							Toast.makeText(this, "로그인 성공!", Toast.LENGTH_SHORT).show()
-							nextMainActivity()
+							nextActivity()
 						}
 					}
 				} else {
@@ -60,22 +64,23 @@ class LoginActivity: BaseActivity<ActivityLoginBinding>(R.layout.activity_login)
 
 		Log.d(Constants.TAG, "keyhash : ${Utility.getKeyHash(this)}")
 
-		KakaoSdk.init(this, Constants.APP_KEY)
+		KakaoSdk.init(this, BuildConfig.KAKAO_LOGIN_KEY)
 		if (AuthApiClient.instance.hasToken()) {
 			UserApiClient.instance.accessTokenInfo { _, error ->
 				if (error == null) {
-					nextMainActivity()
+					nextActivity()
 				}
 			}
 		}
-
-		setContentView(binding.root)
-
 		binding.btnKakaoLogin.setOnClickListener(this)
+		binding.btnNaverLogin.setOnClickListener{
+			startActivity(Intent(this, MainActivity::class.java))
+			finish()
+		}
 	}
 
-	private fun nextMainActivity() {
-		startActivity(Intent(this, MainActivity::class.java))
+	private fun nextActivity() {
+		startActivity(Intent(this, JoinActivity::class.java))
 		finish()
 	}
 }

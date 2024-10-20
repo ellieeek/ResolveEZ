@@ -1,6 +1,7 @@
 package com.mobile.reconnect.ui.map
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.content.pm.PackageManager
 import android.graphics.Color
 import android.location.Location
@@ -108,31 +109,20 @@ class MapFragment: BaseFragment<FragmentMapBinding>(R.layout.fragment_map), OnMa
 			location?.let {
 				val currentLatLng = LatLng(it.latitude, it.longitude)
 				Log.d("현재 위치", "${currentLatLng.latitude}/${currentLatLng.longitude}")
-				map.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng, 15f))
+				map.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng, 5f))
 			}
 		}
-
-		drawCircle(1000.0, Color.parseColor("#7EB9FD"))
 	}
 
 	companion object {
 		private const val LOCATION_PERMISSION_REQUEST_CODE = 1001
 	}
 
+	@SuppressLint("MissingPermission")
 	private fun drawCircle(radius: Double, color: Int) {
 		// 기존 원 삭제
 		currentCircle?.remove()
 
-		if (ActivityCompat.checkSelfPermission(
-				requireContext(),
-				Manifest.permission.ACCESS_FINE_LOCATION
-			) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(
-				requireContext(),
-				Manifest.permission.ACCESS_COARSE_LOCATION
-			) != PackageManager.PERMISSION_GRANTED
-		) {
-			return
-		}
 		fusedLocationClient.lastLocation.addOnSuccessListener { location: Location? ->
 			if (location != null) {
 				val currentLatLng = LatLng(location.latitude, location.longitude)

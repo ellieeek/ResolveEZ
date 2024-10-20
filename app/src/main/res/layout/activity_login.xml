@@ -8,7 +8,7 @@
         android:id="@+id/main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".LoginActivity">
+        tools:context=".ui.login.LoginActivity">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/btn_kakao_login"
@@ -16,12 +16,12 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="12dp"
             android:src="@drawable/ic_kakao_login"
-            app:layout_constraintBottom_toTopOf="@+id/appCompatImageView"
+            app:layout_constraintBottom_toTopOf="@+id/btn_naver_login"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
 
         <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/appCompatImageView"
+            android:id="@+id/btn_naver_login"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="42dp"
