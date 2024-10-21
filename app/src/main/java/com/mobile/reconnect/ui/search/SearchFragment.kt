@@ -5,7 +5,7 @@ import androidx.fragment.app.viewModels
 import com.mobile.reconnect.R
 import com.mobile.reconnect.databinding.FragmentSearchBinding
 import com.mobile.reconnect.ui.search.viewmodel.SearchViewModel
-import com.software.somding.presentation.common.BaseFragment
+import com.mobile.reconnect.ui.common.BaseFragment
 
 class SearchFragment: BaseFragment<FragmentSearchBinding>(R.layout.fragment_search) {
 	private val viewModel: SearchViewModel by viewModels()

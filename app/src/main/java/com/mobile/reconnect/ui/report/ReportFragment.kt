@@ -8,7 +8,7 @@ import com.mobile.reconnect.R
 import com.mobile.reconnect.databinding.FragmentReportBinding
 import com.mobile.reconnect.ui.report.adapter.MissingPersonAdapter
 import com.mobile.reconnect.ui.report.viewmodel.ReportViewModel
-import com.software.somding.presentation.common.BaseFragment
+import com.mobile.reconnect.ui.common.BaseFragment
 
 class ReportFragment: BaseFragment<FragmentReportBinding>(R.layout.fragment_report) {
 	private val viewModel: ReportViewModel by viewModels()

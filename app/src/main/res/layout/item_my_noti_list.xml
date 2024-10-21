@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <data>
+        <variable
+            name="item"
+            type="com.mobile.reconnect.data.model.MyReportList" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@drawable/solid_gray_200_4"
+        android:padding="10dp">
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/chip"
+            style="@style/MediumFontKr.13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="실종"
+            android:textColor="@color/white"
+            app:chipBackgroundColor="@color/chip_selected_red_or_blue"
+            app:chipCornerRadius="2dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_name"
+            style="@style/SemiBoldFontKr.14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="🚨"
+            app:layout_constraintStart_toEndOf="@+id/chip"
+            app:layout_constraintTop_toTopOf="@+id/chip" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

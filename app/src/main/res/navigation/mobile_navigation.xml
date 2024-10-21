@@ -3,29 +3,64 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
+    app:startDestination="@+id/navigation_map">
 
+    <!-- 지도 -->
     <fragment
-        android:id="@+id/navigation_home"
+        android:id="@+id/navigation_map"
         android:name="com.mobile.reconnect.ui.map.MapFragment"
         android:label="@string/title_map"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_map" />
 
+    <!-- 제보 -->
     <fragment
         android:id="@+id/navigation_report"
         android:name="com.mobile.reconnect.ui.report.ReportFragment"
         android:label="@string/title_report"
         tools:layout="@layout/fragment_report" />
 
+    <!-- 검색 -->
     <fragment
         android:id="@+id/navigation_search"
         android:name="com.mobile.reconnect.ui.search.SearchFragment"
         android:label="@string/title_search"
         tools:layout="@layout/fragment_search" />
 
+    <!-- 마이 -->
     <fragment
         android:id="@+id/navigation_mypage"
         android:name="com.mobile.reconnect.ui.my.MyFragment"
         android:label="@string/title_mypage"
-        tools:layout="@layout/fragment_my" />
+        tools:layout="@layout/fragment_my" >
+
+        <action
+            android:id="@+id/action_navigation_mypage_to_navigation_my_report"
+            app:destination="@id/navigation_my_report" />
+        <action
+            android:id="@+id/action_navigation_mypage_to_navigation_my_noti"
+            app:destination="@id/navigation_my_noti" />
+        <action
+            android:id="@+id/action_navigation_mypage_to_navigation_my_info"
+            app:destination="@id/navigation_my_info" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_my_report"
+        android:name="com.mobile.reconnect.ui.my.MyReportFragment"
+        android:label="@string/title_my_report"
+        tools:layout="@layout/fragment_my_report" />
+
+    <fragment
+        android:id="@+id/navigation_my_noti"
+        android:name="com.mobile.reconnect.ui.my.MyNotificationFragment"
+        android:label="@string/title_my_notification"
+        tools:layout="@layout/fragment_my_notification" />
+
+    <fragment
+        android:id="@+id/navigation_my_info"
+        android:name="com.mobile.reconnect.ui.my.MyInfoFragment"
+        android:label="@string/title_my_info"
+        tools:layout="@layout/fragment_my_info" />
+
 </navigation>
