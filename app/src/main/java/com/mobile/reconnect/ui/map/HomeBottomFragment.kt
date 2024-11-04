@@ -20,17 +20,14 @@ import com.mobile.reconnect.ui.map.viewmodel.HomeBottomViewModel
 import com.mobile.reconnect.ui.map.viewmodel.MapViewModel
 
 class HomeBottomFragment: BaseFragment<FragmentHomeBottomBinding>(R.layout.fragment_home_bottom) {
-
-//	private lateinit var binding: FragmentHomeBottomBinding // XML 바인딩
 	private lateinit var adapter: MissingPersonsAdapter
 	private lateinit var persons: List<Ex_MissingPerson_map>
-	private val viewModel: HomeBottomViewModel by viewModels()
+	private val viewModel: HomeBottomViewModel by activityViewModels()
 
 	override fun onCreateView(
 		inflater: LayoutInflater, container: ViewGroup?,
 		savedInstanceState: Bundle?
 	): View {
-//		binding = FragmentHomeBottomBinding.inflate(inflater, container, false)
 
 		return binding.root
 	}
