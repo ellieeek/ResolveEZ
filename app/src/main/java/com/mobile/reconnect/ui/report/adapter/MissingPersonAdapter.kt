@@ -12,7 +12,6 @@ import com.mobile.reconnect.databinding.ItemReportMissingPersonBinding
 
 // RecyclerView에서 실종자 목록 표시를 위한 어댑터 (실종자 데이터 받아 각 항목 구성)
 class MissingPersonAdapter(private val onClick: (MissingPerson, View) -> Unit) : ListAdapter<MissingPerson, MissingPersonAdapter.MissingPersonViewHolder>(DiffCallback) {
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MissingPersonViewHolder {
         val binding = ItemReportMissingPersonBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return MissingPersonViewHolder(binding)

@@ -7,6 +7,7 @@ plugins {
 	alias(libs.plugins.kotlin.android)
 	id("kotlin-kapt")
 	id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
+	id("kotlin-parcelize")
 }
 
 val properties = Properties().apply {
@@ -54,6 +55,12 @@ android {
 		buildConfig = true
 	}
 }
+
+// kapt 설정 추가: annotation processing의 오류를 줄이기 위해 추가
+kapt {
+	correctErrorTypes = true // annotation 처리 과정에서의 에러를 줄여줌
+}
+
 dependencies {
 	// Core
 	implementation(libs.androidx.core.ktx)
@@ -93,5 +100,11 @@ dependencies {
 	testImplementation(libs.junit)
 	androidTestImplementation(libs.androidx.junit)
 	androidTestImplementation(libs.androidx.espresso.core)
+
+	// Glide 라이브러리 추가
+	implementation("com.github.bumptech.glide:glide:4.12.0")
+	kapt("com.github.bumptech.glide:compiler:4.12.0")
+
+	implementation ("com.kakao.sdk:v2-user:2.15.0")
 }
 
