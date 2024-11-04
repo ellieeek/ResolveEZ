@@ -27,6 +27,7 @@
             app:layout_constraintTop_toTopOf="@+id/map">
 
             <com.google.android.material.chip.ChipGroup
+                style="@style/RegularFontKr.16"
                 android:id="@+id/radius_group"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -37,51 +38,59 @@
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/radius_1km"
-                    style="@style/RegularFontKr.16"
-                    app:chipIcon="@drawable/map_chip_1km_color"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="6dp"
-                    android:backgroundTint="@color/white"
                     android:elevation="4dp"
-                    android:text="반경 1km" />
+                    android:text="반경 1km"
+                    app:chipBackgroundColor="@color/white"
+                    app:chipIcon="@drawable/map_chip_1km_color"
+                    app:iconStartPadding="10dp" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/radius_2km"
-                    style="@style/RegularFontKr.16"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="@color/white"
                     android:elevation="4dp"
-                    android:text="반경 2km" />
+                    android:text="반경 2km"
+                    app:chipBackgroundColor="@color/white"
+                    app:chipIcon="@drawable/map_chip_2km_color"
+                    app:iconStartPadding="10dp" />
+
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/radius_3km"
-                    style="@style/RegularFontKr.16"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="@color/white"
                     android:elevation="4dp"
-                    android:text="반경 3km" />
+                    android:text="반경 3km"
+                    app:chipBackgroundColor="@color/white"
+                    app:chipIcon="@drawable/map_chip_3km_color"
+                    app:iconStartPadding="10dp" />
+
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/radius_4km"
-                    style="@style/RegularFontKr.16"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="@color/white"
                     android:elevation="4dp"
-                    android:text="반경 4km" />
+                    android:text="반경 4km"
+                    app:chipBackgroundColor="@color/white"
+                    app:chipIcon="@drawable/map_chip_4km_color"
+                    app:iconStartPadding="10dp" />
+
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/radius_5km"
-                    style="@style/RegularFontKr.16"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="16dp"
-                    android:backgroundTint="@color/white"
                     android:elevation="4dp"
-                    android:text="반경 5km" />
+                    android:text="반경 5km"
+                    app:chipBackgroundColor="@color/white"
+                    app:chipIcon="@drawable/map_chip_5km_color"
+                    app:iconStartPadding="10dp" />
+
             </com.google.android.material.chip.ChipGroup>
         </HorizontalScrollView>
 

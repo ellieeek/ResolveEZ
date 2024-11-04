@@ -21,6 +21,6 @@
     <color name="chip_1km">#FFD2AB</color>
     <color name="chip_2km">#C8E2FF</color>
     <color name="chip_3km">#D1F4D1</color>
-    <color name="chip_41km">#F2DEFF</color>
+    <color name="chip_4km">#F2DEFF</color>
     <color name="chip_5km">#FFFDBE</color>
 </resources>
