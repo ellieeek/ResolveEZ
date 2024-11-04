@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
@@ -11,13 +11,20 @@
             android:id="@+id/map"
             android:name="com.google.android.gms.maps.SupportMapFragment"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <HorizontalScrollView
+            android:id="@+id/horizontalScrollView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:scrollbars="none">
+            android:scrollbars="none"
+            android:layout_marginTop="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/map">
 
             <com.google.android.material.chip.ChipGroup
                 android:id="@+id/radius_group"
@@ -25,12 +32,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"
-                app:singleSelection="true"
-                android:orientation="horizontal">
+                android:orientation="horizontal"
+                app:singleSelection="true">
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/radius_1km"
                     style="@style/RegularFontKr.16"
+                    app:chipIcon="@drawable/map_chip_1km_color"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="6dp"
@@ -48,8 +56,8 @@
                     android:text="반경 2km" />
 
                 <com.google.android.material.chip.Chip
-                    style="@style/RegularFontKr.16"
                     android:id="@+id/radius_3km"
+                    style="@style/RegularFontKr.16"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/white"
@@ -57,8 +65,8 @@
                     android:text="반경 3km" />
 
                 <com.google.android.material.chip.Chip
-                    style="@style/RegularFontKr.16"
                     android:id="@+id/radius_4km"
+                    style="@style/RegularFontKr.16"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@color/white"
@@ -66,23 +74,71 @@
                     android:text="반경 4km" />
 
                 <com.google.android.material.chip.Chip
-                    style="@style/RegularFontKr.16"
                     android:id="@+id/radius_5km"
+                    style="@style/RegularFontKr.16"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:backgroundTint="@color/white"
                     android:layout_marginEnd="16dp"
+                    android:backgroundTint="@color/white"
                     android:elevation="4dp"
                     android:text="반경 5km" />
             </com.google.android.material.chip.ChipGroup>
         </HorizontalScrollView>
 
-        <include
-            android:id="@+id/include_home_bottom"
-            layout="@layout/fragment_home_bottom"
+        <androidx.coordinatorlayout.widget.CoordinatorLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="bottom" />
+            android:layout_height="0dp"
+            android:layout_marginTop="20dp"
+            app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/horizontalScrollView">
 
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+            <LinearLayout
+                android:id="@+id/bottom_sheet"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/background_home_bottom_sheet"
+                android:orientation="vertical"
+                app:behavior_hideable="true"
+                app:behavior_skipCollapsed="true"
+                app:behavior_peekHeight="150dp"
+                app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior">
+
+                <View
+                    android:layout_width="60dp"
+                    android:layout_height="4dp"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:background="@color/gray" />
+                <!--
+                            <TextView
+                                android:id="@+id/tv_title"
+                                style="@style/RegularFontKr.16"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:textColor="@color/black"
+                                android:text="@{`반경 ` + viewModel.radius + `km 이내 실종자 0명`}"
+                                android:layout_marginBottom="20dp"
+                                android:layout_marginStart="20dp" />-->
+                <TextView
+                    android:id="@+id/tv_title"
+                    style="@style/RegularFontKr.16"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginBottom="20dp"
+                    android:textColor="@color/black" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_missing_persons_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:clipToPadding="false"
+                    android:scrollbars="vertical"
+                    tools:listitem="@layout/item_missing_person" />
+            </LinearLayout>
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
