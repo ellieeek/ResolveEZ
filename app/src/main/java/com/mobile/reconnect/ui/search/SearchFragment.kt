@@ -12,7 +12,7 @@ class SearchFragment: BaseFragment<FragmentSearchBinding>(R.layout.fragment_sear
 
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 		super.onViewCreated(view, savedInstanceState)
-
+				
 	}
 
 }

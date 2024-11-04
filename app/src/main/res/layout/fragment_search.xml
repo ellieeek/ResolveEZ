@@ -8,5 +8,81 @@
         android:layout_height="match_parent"
         tools:context=".ui.search.SearchFragment">
 
+        <!-- 검색뷰 -->
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/searchView"
+            android:layout_width="match_parent"
+            android:layout_height="44dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="16dp"
+            android:hint="검색어를 입력하세요."
+            android:background="@drawable/bg_gray100_radius_8"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- 필터링 -->
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/chipGroup"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            app:layout_constraintEnd_toEndOf="@+id/searchView"
+            app:layout_constraintStart_toStartOf="@+id/searchView"
+            app:layout_constraintTop_toBottomOf="@+id/searchView"
+            app:singleLine="true">
+
+            <com.google.android.material.chip.Chip
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:chipBackgroundColor="@color/white"
+                app:chipIcon="@drawable/ic_filltering"
+                app:chipStrokeColor="@color/gray_200"
+                app:chipStrokeWidth="1dp" />
+
+            <com.google.android.material.chip.Chip
+                style="@style/RegularFontKr.14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="성별"
+                android:textColor="@color/gray_600"
+                app:chipBackgroundColor="@color/white"
+                app:chipStrokeColor="@color/gray_200"
+                app:chipStrokeWidth="1dp" />
+
+            <com.google.android.material.chip.Chip
+                style="@style/RegularFontKr.14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="나이"
+                android:textColor="@color/gray_600"
+                app:chipBackgroundColor="@color/white"
+                app:chipStrokeColor="@color/gray_200"
+                app:chipStrokeWidth="1dp" />
+
+            <com.google.android.material.chip.Chip
+                style="@style/RegularFontKr.14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="특이사항"
+                android:textColor="@color/gray_600"
+                app:chipBackgroundColor="@color/white"
+                app:chipStrokeColor="@color/gray_200"
+                app:chipStrokeWidth="1dp" />
+
+        </com.google.android.material.chip.ChipGroup>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="12dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/chipGroup"
+            app:layout_constraintStart_toStartOf="@+id/chipGroup"
+            app:layout_constraintTop_toBottomOf="@+id/chipGroup"
+            tools:listitem="@layout/item_missing_person"
+            android:paddingBottom="17dp"/>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
