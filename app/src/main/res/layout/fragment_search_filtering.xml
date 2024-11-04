@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/bottom_sheet"
+            android:layout_width="match_parent"
+            android:background="@drawable/background_home_bottom_sheet"
+            android:layout_height="match_parent"
+            android:orientation="vertical" >
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_title_gender"
+                style="@style/MediumFontKr.16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="20dp"
+                android:textColor="@color/black"
+                android:text="성별"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/chipGroup_gender"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@+id/tv_title_gender"
+                app:layout_constraintTop_toBottomOf="@+id/tv_title_gender"
+                app:singleLine="true">
+
+                <com.google.android.material.chip.Chip
+                    style="@style/RegularFontKr.15"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="남자"
+                    app:chipBackgroundColor="@color/white"
+                    app:chipStrokeColor="@color/gray_300"
+                    app:chipStrokeWidth="1dp"
+                    app:textEndPadding="14dp"
+                    app:textStartPadding="14dp" />
+
+                <com.google.android.material.chip.Chip
+                    style="@style/RegularFontKr.15"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:text="여자"
+                    app:chipBackgroundColor="@color/white"
+                    app:chipStrokeColor="@color/gray_300"
+                    app:chipStrokeWidth="1dp"
+                    app:textEndPadding="14dp"
+                    app:textStartPadding="14dp" />
+
+            </com.google.android.material.chip.ChipGroup>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_title_age"
+                style="@style/MediumFontKr.16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:textColor="@color/black"
+                android:text="나이"
+                app:layout_constraintStart_toStartOf="@+id/tv_title_gender"
+                app:layout_constraintTop_toBottomOf="@+id/chipGroup_gender" />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_age"
+                android:layout_width="68dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="6dp"
+                android:background="@drawable/bg_white_4_radius_gray"
+                app:layout_constraintStart_toStartOf="@+id/tv_title_age"
+                app:layout_constraintTop_toBottomOf="@+id/tv_title_age" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_age"
+                style="@style/MediumFontKr.16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="6dp"
+                android:textColor="@color/black"
+                android:text="세"
+                app:layout_constraintBottom_toBottomOf="@+id/et_age"
+                app:layout_constraintStart_toEndOf="@+id/et_age"
+                app:layout_constraintTop_toTopOf="@+id/et_age" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_title_detail"
+                style="@style/MediumFontKr.16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:textColor="@color/black"
+                android:text="특이사항"
+                app:layout_constraintStart_toStartOf="@+id/tv_title_gender"
+                app:layout_constraintTop_toBottomOf="@+id/et_age" />
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/chipGroup_detail"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/tv_title_detail"
+                app:layout_constraintTop_toBottomOf="@+id/tv_title_detail">
+
+                <com.google.android.material.chip.Chip
+                    style="@style/RegularFontKr.15"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="비장애아동(18세미만)"
+                    app:chipBackgroundColor="@color/white"
+                    app:chipStrokeColor="@color/gray_300"
+                    app:chipStrokeWidth="1dp"
+                    app:textEndPadding="14dp"
+                    app:textStartPadding="14dp" />
+
+                <com.google.android.material.chip.Chip
+                    style="@style/RegularFontKr.15"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="치매환자"
+                    app:chipBackgroundColor="@color/white"
+                    app:chipStrokeColor="@color/gray_300"
+                    app:chipStrokeWidth="1dp"
+                    app:textEndPadding="14dp"
+                    app:textStartPadding="14dp" />
+
+                <com.google.android.material.chip.Chip
+                    style="@style/RegularFontKr.15"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="가출인"
+                    app:chipBackgroundColor="@color/white"
+                    app:chipStrokeColor="@color/gray_300"
+                    app:chipStrokeWidth="1dp"
+                    app:textEndPadding="14dp"
+                    app:textStartPadding="14dp" />
+
+
+                <com.google.android.material.chip.Chip
+                    style="@style/RegularFontKr.15"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="장애인(지적, 자폐성, 정신)"
+                    app:chipBackgroundColor="@color/white"
+                    app:chipStrokeColor="@color/gray_300"
+                    app:chipStrokeWidth="1dp"
+                    app:textEndPadding="14dp"
+                    app:textStartPadding="14dp" />
+
+
+                <com.google.android.material.chip.Chip
+                    style="@style/RegularFontKr.15"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="기타"
+                    app:chipBackgroundColor="@color/white"
+                    app:chipStrokeColor="@color/gray_300"
+                    app:chipStrokeWidth="1dp"
+                    app:textEndPadding="14dp"
+                    app:textStartPadding="14dp" />
+
+            </com.google.android.material.chip.ChipGroup>
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_title_date"
+                style="@style/MediumFontKr.16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:textColor="@color/black"
+                android:text="발생 일시"
+                app:layout_constraintStart_toStartOf="@+id/tv_title_gender"
+                app:layout_constraintTop_toBottomOf="@+id/chipGroup_detail" />
+
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_date_start"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/bg_white_4_radius_gray"
+                app:layout_constraintStart_toStartOf="@+id/tv_title_date"
+                app:layout_constraintTop_toBottomOf="@+id/tv_title_date" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_date"
+                style="@style/MediumFontKr.16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:text="~"
+                app:layout_constraintBottom_toBottomOf="@+id/et_date_start"
+                app:layout_constraintStart_toEndOf="@+id/et_date_start"
+                app:layout_constraintTop_toTopOf="@+id/et_date_start" />
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_date_end"
+                android:layout_width="100dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="16dp"
+                android:background="@drawable/bg_white_4_radius_gray"
+                app:layout_constraintBottom_toBottomOf="@+id/et_date_start"
+                app:layout_constraintStart_toEndOf="@+id/tv_date"
+                app:layout_constraintTop_toTopOf="@+id/et_date_start" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_title_place"
+                style="@style/MediumFontKr.16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:textColor="@color/black"
+                android:text="발생 지역"
+                app:layout_constraintStart_toStartOf="@+id/tv_title_gender"
+                app:layout_constraintTop_toBottomOf="@+id/et_date_start" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_sub_title_place"
+                style="@style/MediumFontKr.14"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/gray_600"
+                android:text="“서울시 용산구 갈월동”과 같이 검색이 가능합니다."
+                app:layout_constraintStart_toStartOf="@+id/tv_title_gender"
+                app:layout_constraintTop_toBottomOf="@+id/tv_title_place" />
+
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/et_place"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_marginTop="6dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/bg_white_4_radius_gray"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/tv_sub_title_place"
+                app:layout_constraintTop_toBottomOf="@+id/tv_sub_title_place" />
+
+            <androidx.appcompat.widget.AppCompatButton
+                style="@style/SemiBoldFontKr.16"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/bg_primary_red_radius_4"
+                android:text="결과 보기"
+                android:textColor="@color/white"
+                android:layout_marginBottom="16dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/et_place"
+                app:layout_constraintStart_toStartOf="@+id/et_place"
+                app:layout_constraintTop_toBottomOf="@+id/et_place" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

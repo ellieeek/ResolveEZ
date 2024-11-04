@@ -10,8 +10,6 @@ import android.util.Log
 import android.view.View
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
-import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationServices
@@ -23,11 +21,10 @@ import com.google.android.gms.maps.model.Circle
 import com.google.android.gms.maps.model.CircleOptions
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.material.bottomsheet.BottomSheetBehavior
-import com.google.android.material.chip.Chip
 import com.mobile.reconnect.R
-import com.mobile.reconnect.data.model.Ex_MissingPerson_map
+import com.mobile.reconnect.data.model.MissingPerson
+import com.mobile.reconnect.data.model.MissingPerson_ex
 import com.mobile.reconnect.databinding.FragmentMapBinding
-import com.mobile.reconnect.ui.map.viewmodel.MapViewModel
 import com.mobile.reconnect.ui.common.BaseFragment
 import com.mobile.reconnect.ui.map.adapter.MissingPersonsAdapter
 import com.mobile.reconnect.ui.map.viewmodel.HomeBottomViewModel
@@ -41,7 +38,7 @@ class MapFragment: BaseFragment<FragmentMapBinding>(R.layout.fragment_map), OnMa
 	private lateinit var bottomSheetBehavior: BottomSheetBehavior<View>
 	private var currentCircle: Circle? = null
 	private lateinit var adapter: MissingPersonsAdapter
-	private lateinit var persons: List<Ex_MissingPerson_map>
+	private lateinit var persons: List<MissingPerson_ex>
 
 
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -181,12 +178,12 @@ class MapFragment: BaseFragment<FragmentMapBinding>(R.layout.fragment_map), OnMa
 
 	private fun setupRecyclerView() {
 		persons = listOf(
-			Ex_MissingPerson_map(1, "홍길동", "75세, 168cm, 70kg", "치매"),
-			Ex_MissingPerson_map(2, "김철수", "80세, 175cm, 80kg", "치매"),
-			Ex_MissingPerson_map(3, "김철수", "80세, 175cm, 80kg", "치매"),
-			Ex_MissingPerson_map(4, "홍길동", "75세, 168cm, 70kg", "치매"),
-			Ex_MissingPerson_map(5, "김철수", "80세, 175cm, 80kg", "치매"),
-			Ex_MissingPerson_map(6, "이영희", "70세, 160cm, 60kg", "치매")
+			MissingPerson_ex(1, "홍길동", "75세, 168cm, 70kg", "치매"),
+			MissingPerson_ex(2, "김철수", "80세, 175cm, 80kg", "치매"),
+			MissingPerson_ex(3, "김철수", "80세, 175cm, 80kg", "치매"),
+			MissingPerson_ex(4, "홍길동", "75세, 168cm, 70kg", "치매"),
+			MissingPerson_ex(5, "김철수", "80세, 175cm, 80kg", "치매"),
+			MissingPerson_ex(6, "이영희", "70세, 160cm, 60kg", "치매")
 		)
 
 		adapter = MissingPersonsAdapter(persons) { person ->
