@@ -80,8 +80,16 @@
         <item name="android:textSize">16sp</item>
     </style>
 
+    <style name="SemiBoldFontKr.15" parent="SemiBoldFontKr">
+        <item name="android:textSize">15sp</item>
+    </style>
+
     <style name="SemiBoldFontKr.14" parent="SemiBoldFontKr">
         <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="SemiBoldFontKr.13" parent="SemiBoldFontKr">
+        <item name="android:textSize">13sp</item>
     </style>
 
     <style name="SemiBoldFontKr.12" parent="SemiBoldFontKr">
@@ -103,6 +111,10 @@
 
     <style name="MediumFontKr.18" parent="MediumFontKr">
         <item name="android:textSize">18sp</item>
+    </style>
+
+    <style name="MediumFontKr.17" parent="MediumFontKr">
+        <item name="android:textSize">17sp</item>
     </style>
 
     <style name="MediumFontKr.16" parent="MediumFontKr">

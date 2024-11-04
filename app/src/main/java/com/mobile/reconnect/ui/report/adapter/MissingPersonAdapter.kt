@@ -8,12 +8,12 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.mobile.reconnect.data.model.MissingPerson
 import com.mobile.reconnect.databinding.ItemMissingPersonBinding
+import com.mobile.reconnect.databinding.ItemReportMissingPersonBinding
 
 // RecyclerView에서 실종자 목록 표시를 위한 어댑터 (실종자 데이터 받아 각 항목 구성)
 class MissingPersonAdapter(private val onClick: (MissingPerson, View) -> Unit) : ListAdapter<MissingPerson, MissingPersonAdapter.MissingPersonViewHolder>(DiffCallback) {
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MissingPersonViewHolder {
-        val binding = ItemMissingPersonBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding = ItemReportMissingPersonBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return MissingPersonViewHolder(binding)
     }
 
@@ -22,7 +22,7 @@ class MissingPersonAdapter(private val onClick: (MissingPerson, View) -> Unit) :
         holder.bind(missingPerson, onClick)
     }
 
-    class MissingPersonViewHolder(private val binding: ItemMissingPersonBinding) :
+    class MissingPersonViewHolder(private val binding: ItemReportMissingPersonBinding) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(missingPerson: MissingPerson, onClick: (MissingPerson, View) -> Unit) {

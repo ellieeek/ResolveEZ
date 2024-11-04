@@ -3,6 +3,12 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <data>
+        <variable
+            name="missingPerson"
+            type="com.mobile.reconnect.data.model.MissingPerson" />
+    </data>
+
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -19,7 +25,7 @@
                 android:id="@+id/appCompatImageView"
                 android:layout_width="70dp"
                 android:layout_height="0dp"
-                android:src="@drawable/bg_gray100_radius_8"
+                app:imageResource="@{missingPerson.imageResId}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -30,7 +36,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="14dp"
-                android:text="이름"
+                android:text='@{missingPerson.name}'
                 android:textColor="@color/black"
                 app:layout_constraintStart_toEndOf="@+id/appCompatImageView"
                 app:layout_constraintTop_toTopOf="@+id/appCompatImageView" />
@@ -40,7 +46,7 @@
                 style="@style/RegularFontKr.14"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="정보 (예: 나이, 키, 체중 등)"
+                android:text='@{"(" + missingPerson.gender.label + ", " + missingPerson.age + "세, " + missingPerson.height + "cm, " + missingPerson.weight + "kg, " + missingPerson.specialFeature.label + ")"}'
                 android:textColor="@color/gray_800"
                 app:layout_constraintStart_toStartOf="@+id/tv_person_name"
                 app:layout_constraintTop_toBottomOf="@+id/tv_person_name" />
@@ -52,24 +58,25 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="6dp"
                 android:layout_marginBottom="2dp"
-                android:text="정보 (예: 나이, 키, 체중 등)"
+                android:text='@{missingPerson.tops + ", " + missingPerson.bottoms + ", " + missingPerson.shoes + ", " + missingPerson.accessories + ", " + missingPerson.hair}'
                 android:textColor="@color/gray_700"
                 app:layout_constraintBottom_toBottomOf="@+id/tv_person_name"
                 app:layout_constraintStart_toEndOf="@+id/tv_person_name"
                 app:layout_constraintTop_toTopOf="@+id/tv_person_name" />
 
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btnReport"
                 style="@style/SemiBoldFontKr.13"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="5dp"
                 android:background="@drawable/bg_primary_red_radius_4"
-                android:minHeight="4dp"
                 android:minWidth="8dp"
-                android:paddingTop="4dp"
-                android:paddingBottom="4dp"
+                android:minHeight="4dp"
                 android:paddingStart="8dp"
+                android:paddingTop="4dp"
                 android:paddingEnd="8dp"
+                android:paddingBottom="4dp"
                 android:text="제보하기"
                 android:textColor="@color/white"
                 app:layout_constraintStart_toStartOf="@+id/tv_person_detail"
