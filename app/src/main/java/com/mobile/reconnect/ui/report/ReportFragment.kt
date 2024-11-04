@@ -3,6 +3,7 @@ package com.mobile.reconnect.ui.report
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mobile.reconnect.R
 import com.mobile.reconnect.databinding.FragmentReportBinding
@@ -35,9 +36,20 @@ class ReportFragment: BaseFragment<FragmentReportBinding>(R.layout.fragment_repo
 	}
 
 	private fun setupRecyclerView() {
-		missingPersonAdapter = MissingPersonAdapter { missingPerson ->
-			// 클릭 시 상세 화면으로 이동하는 로직
-			// ex: NavigationUtil.navigateToDetail(missingPerson.id)
+		missingPersonAdapter = MissingPersonAdapter { missingPerson, view ->
+			when (view.id) {
+				R.id.btnReport -> {
+					// ReportRegistrationFragment로 이동
+					findNavController().navigate(R.id.action_reportFragment_to_reportRegistrationFragment)
+				}
+				else -> {
+					// ReportDetailFragment로 이동 (missingPerson.id 전달)
+					val bundle = Bundle().apply {
+//						putString("missingPersonId", MissingPerson)
+					}
+					findNavController().navigate(R.id.action_reportFragment_to_reportDetailFragment, bundle)
+				}
+			}
 		}
 
 		binding.recyclerViewReportList.apply {

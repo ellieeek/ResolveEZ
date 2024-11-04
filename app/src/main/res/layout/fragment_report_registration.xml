@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="missingPerson"
+            type="com.mobile.reconnect.data.model.MissingPerson" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageButton
+            android:id="@+id/backButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:background="?attr/selectableItemBackground"
+            android:src="@drawable/ic_back"
+            app:layout_constraintBottom_toBottomOf="@+id/title"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/title" />
+
+        <TextView
+            android:id="@+id/title"
+            style="@style/SemiBoldFontKr.16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|start"
+            android:layout_margin="16dp"
+            android:layout_marginTop="10dp"
+            android:text="제보하기"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/constraintLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="10dp"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="54dp"
+            tools:ignore="MissingConstraints">
+
+            <!-- 왼쪽에 이미지 배치 (정사각형) -->
+
+            <!-- 첫 번째 줄 (이름, 성별, 나이, 키, 몸무게, 특이사항) -->
+            <ImageView
+                android:id="@+id/imageViewPerson"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:paddingRight="5dp"
+                android:src="@drawable/ic_baseline_my_24"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvPersonInfo"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text='@{missingPerson.name + " (" + missingPerson.gender.label + ", " + missingPerson.age + "세, " + missingPerson.height + "cm, " + missingPerson.weight + "kg, " + missingPerson.specialFeature.label + ")"}'
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toTopOf="@+id/tvPersonClothing"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/imageViewPerson"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <!-- 두 번째 줄 (상의, 하의, 신발, 악세사리, 헤어) -->
+            <TextView
+                android:id="@+id/tvPersonClothing"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:ellipsize="end"
+                android:maxLines="1"
+                android:text='@{missingPerson.name + " (" + missingPerson.gender.label + ", " + missingPerson.age + "세, " + missingPerson.height + "cm, " + missingPerson.weight + "kg, " + missingPerson.specialFeature.label + ")"}'
+                android:textColor="@color/gray"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@id/imageViewPerson"
+                app:layout_constraintTop_toBottomOf="@+id/tvPersonInfo" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
