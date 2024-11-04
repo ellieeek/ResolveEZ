@@ -26,7 +26,7 @@ class MissingPersonAdapter(private val onClick: (MissingPerson, View) -> Unit) :
         RecyclerView.ViewHolder(binding.root) {
 
         fun bind(missingPerson: MissingPerson, onClick: (MissingPerson, View) -> Unit) {
-            binding.missingPerson = missingPerson
+            binding.missingPerson = missingPerson // 데이터 바인딩
 
             // 아이템 전체 클릭 시 ReportDetailFragment로 이동
             binding.root.setOnClickListener {
@@ -37,6 +37,9 @@ class MissingPersonAdapter(private val onClick: (MissingPerson, View) -> Unit) :
             binding.btnReport.setOnClickListener {
                 onClick(missingPerson, it)
             }
+
+            // 즉시 데이터 바인딩을 반영
+            binding.executePendingBindings()
         }
     }
 

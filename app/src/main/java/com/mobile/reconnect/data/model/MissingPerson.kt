@@ -1,6 +1,9 @@
 package com.mobile.reconnect.data.model
 
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
 import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 enum class SpecialFeature(val label: String) { // 특이사항
 	NONE("없음"),
@@ -31,10 +34,12 @@ enum class FaceType(val label: String) { // 얼굴형
 	TRIANGLE("역삼각형")
 }
 
+@Parcelize
 data class MissingPerson(
 	val id: Int,
 	val name: String,
 //	val imageURL: String,
+	val imageResId: Int,
 	val specialFeature: SpecialFeature,
 	val nationality: Nationality,
 	val gender: Gender,
@@ -50,4 +55,7 @@ data class MissingPerson(
 	val hair: String,
 	val lastSeenDateTime: LocalDateTime, // 실종 발생 일시
 	val lastSeenLocation: String// 실종 발생 위치
-)
+) : Parcelable {
+	val formattedLastSeenDateTime: String
+		get() = lastSeenDateTime.format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm"))
+}

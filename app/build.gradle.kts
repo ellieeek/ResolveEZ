@@ -7,6 +7,7 @@ plugins {
 	alias(libs.plugins.kotlin.android)
 	id("kotlin-kapt")
 	id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
+	id("kotlin-parcelize")
 }
 
 val properties = Properties().apply {

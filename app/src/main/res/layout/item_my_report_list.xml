@@ -32,7 +32,7 @@
             android:layout_width="57dp"
             android:layout_height="57dp"
             android:layout_marginTop="5dp"
-            android:src="@drawable/child1"
+            android:src="@drawable/bg_gray_rectangle"
             app:layout_constraintStart_toStartOf="@+id/date"
             app:layout_constraintTop_toBottomOf="@+id/date" />
 
