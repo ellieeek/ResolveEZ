@@ -7,7 +7,6 @@ plugins {
 	alias(libs.plugins.kotlin.android)
 	id("kotlin-kapt")
 	id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
-	id("kotlin-parcelize")
 }
 
 val properties = Properties().apply {
@@ -94,9 +93,5 @@ dependencies {
 	testImplementation(libs.junit)
 	androidTestImplementation(libs.androidx.junit)
 	androidTestImplementation(libs.androidx.espresso.core)
-
-	// Glide 라이브러리
-	implementation("com.github.bumptech.glide:glide:4.15.1")
-	kapt("com.github.bumptech.glide:compiler:4.15.1")
 }
 
