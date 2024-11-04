@@ -29,8 +29,7 @@
                 android:layout_width="80dp"
                 android:layout_height="80dp"
                 android:paddingRight="5dp"
-                android:src="@drawable/ic_baseline_my_24"
-                app:imageUrl="@{missingPerson.imageURL}"
+                app:imageResource="@{missingPerson.imageResId}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -54,15 +53,15 @@
                 android:id="@+id/tvPersonClothing"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text='@{missingPerson.tops + ", " + missingPerson.bottoms + ", " + missingPerson.shoes + ", " + missingPerson.accessories + ", " + missingPerson.hair}'
-                android:textColor="@color/gray"
                 android:ellipsize="end"
                 android:maxLines="1"
+                android:text='@{missingPerson.tops + ", " + missingPerson.bottoms + ", " + missingPerson.shoes + ", " + missingPerson.accessories + ", " + missingPerson.hair}'
+                android:textColor="@color/gray_600"
                 android:textSize="14sp"
+                app:layout_constraintBottom_toTopOf="@+id/btnReport"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@id/imageViewPerson"
-                app:layout_constraintTop_toBottomOf="@+id/tvPersonInfo"
-                app:layout_constraintBottom_toTopOf="@+id/btnReport" />
+                app:layout_constraintTop_toBottomOf="@+id/tvPersonInfo" />
 
             <!-- 제보하기 버튼 -->
             <Button

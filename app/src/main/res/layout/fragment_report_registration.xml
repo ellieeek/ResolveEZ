@@ -1,0 +1,621 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+        <variable
+            name="missingPerson"
+            type="com.mobile.reconnect.data.model.MissingPerson" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageButton
+            android:id="@+id/backButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:background="?attr/selectableItemBackground"
+            android:src="@drawable/ic_back"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/title"
+            style="@style/SemiBoldFontKr.16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:text="제보하기"
+            android:textColor="@color/black"
+            android:textSize="20sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ScrollView
+            android:id="@+id/scrollView3"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginBottom="70dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/title">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="10dp">
+
+                <!-- 첫 번째 ConstraintLayout -->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/imageViewPerson"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:paddingRight="5dp"
+                        app:imageResource="@{missingPerson.imageResId}"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tvPersonInfo"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:text='@{missingPerson.name + " (" + missingPerson.gender.label + ", " + missingPerson.age + "세, " + missingPerson.height + "cm, " + missingPerson.weight + "kg, " + missingPerson.specialFeature.label + ")"}'
+                        android:textColor="@color/black"
+                        android:textSize="16sp"
+                        app:layout_constraintBottom_toTopOf="@+id/tvPersonClothing"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toEndOf="@id/imageViewPerson"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tvPersonClothing"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:text='@{missingPerson.tops + ", " + missingPerson.bottoms + ", " + missingPerson.shoes + ", " + missingPerson.accessories + ", " + missingPerson.hair}'
+                        android:textColor="@color/gray_600"
+                        android:textSize="14sp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toEndOf="@id/imageViewPerson"
+                        app:layout_constraintTop_toBottomOf="@+id/tvPersonInfo" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+                <!-- 두 번째 ConstraintLayout -->
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="394dp"
+                    android:layout_height="2090dp"
+                    android:layout_marginTop="20dp"
+                    app:layout_constraintEnd_toEndOf="@+id/radioButton14"
+                    app:layout_constraintStart_toEndOf="@+id/radioButton14">
+
+                    <TextView
+                        android:id="@+id/textView"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="2959dp"
+                        android:text="제보 내용을 작성해주세요.\n모든 항목을 채우지 않으셔도 됩니다."
+                        android:textColor="#FF0000"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/textView8"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="20dp"
+                        android:text="1. 성별"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+
+                    <RadioButton
+                        android:id="@+id/radioButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="15dp"
+                        android:text="남자"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView8" />
+
+                    <RadioButton
+                        android:id="@+id/radioButton2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="여자"
+                        app:layout_constraintStart_toStartOf="@+id/radioButton"
+                        app:layout_constraintTop_toBottomOf="@+id/radioButton" />
+
+                    <CheckBox
+                        android:id="@+id/checkBox3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:checked="false"
+                        android:text="10대 미만"
+                        app:layout_constraintBottom_toTopOf="@+id/checkBox4"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView38" />
+
+                    <TextView
+                        android:id="@+id/textView39"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginBottom="14dp"
+                        android:text="3. 특이사항"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toTopOf="@+id/radioButton13"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/checkBox11" />
+
+                    <TextView
+                        android:id="@+id/textView40"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginBottom="3dp"
+                        android:text="4. 인상착의"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toTopOf="@+id/textView41"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/radioButton15" />
+
+                    <TextView
+                        android:id="@+id/textView49"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="25dp"
+                        android:text="실종자 사진 첨부"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/checkBox14" />
+
+
+                    <TextView
+                        android:id="@+id/textView54"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="24dp"
+                        android:text="주변 사진 첨부"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/editTextText4" />
+
+                    <TextView
+                        android:id="@+id/textView52"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="36dp"
+                        android:text="5. 발견 위치"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/frameLayout3" />
+
+                    <TextView
+                        android:id="@+id/textView56"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="39dp"
+                        android:text="6. 추가 제보"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/frameLayout5" />
+
+                    <CheckBox
+                        android:id="@+id/checkBox5"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="4dp"
+                        android:text="20대"
+                        app:layout_constraintBottom_toTopOf="@+id/checkBox6"
+                        app:layout_constraintStart_toStartOf="@+id/checkBox4"
+                        app:layout_constraintTop_toBottomOf="@+id/checkBox4" />
+
+                    <CheckBox
+                        android:id="@+id/checkBox6"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="1dp"
+                        android:text="30대"
+                        app:layout_constraintBottom_toTopOf="@+id/checkBox7"
+                        app:layout_constraintStart_toStartOf="@+id/checkBox5"
+                        app:layout_constraintTop_toBottomOf="@+id/checkBox5" />
+
+                    <CheckBox
+                        android:id="@+id/checkBox7"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="40대"
+                        app:layout_constraintBottom_toTopOf="@+id/checkBox8"
+                        app:layout_constraintStart_toStartOf="@+id/checkBox6"
+                        app:layout_constraintTop_toBottomOf="@+id/checkBox6" />
+
+                    <CheckBox
+                        android:id="@+id/checkBox8"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="50대"
+                        app:layout_constraintBottom_toTopOf="@+id/checkBox9"
+                        app:layout_constraintStart_toStartOf="@+id/checkBox7"
+                        app:layout_constraintTop_toBottomOf="@+id/checkBox7" />
+
+                    <CheckBox
+                        android:id="@+id/checkBox9"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="60대"
+                        app:layout_constraintBottom_toTopOf="@+id/checkBox10"
+                        app:layout_constraintStart_toStartOf="@+id/checkBox8"
+                        app:layout_constraintTop_toBottomOf="@+id/checkBox8" />
+
+                    <CheckBox
+                        android:id="@+id/checkBox10"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="70대"
+                        app:layout_constraintBottom_toTopOf="@+id/checkBox11"
+                        app:layout_constraintStart_toStartOf="@+id/checkBox9"
+                        app:layout_constraintTop_toBottomOf="@+id/checkBox9" />
+
+                    <CheckBox
+                        android:id="@+id/checkBox11"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="27dp"
+                        android:text="80대 이상"
+                        app:layout_constraintBottom_toTopOf="@+id/textView39"
+                        app:layout_constraintStart_toStartOf="@+id/checkBox10"
+                        app:layout_constraintTop_toBottomOf="@+id/checkBox10" />
+
+                    <TextView
+                        android:id="@+id/textView38"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginBottom="14dp"
+                        android:text="중복 체크 가능합니다."
+                        app:layout_constraintBottom_toTopOf="@+id/checkBox3"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView37" />
+
+                    <TextView
+                        android:id="@+id/textView41"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="3dp"
+                        android:layout_marginBottom="1987dp"
+                        android:text="해당되는 인상착의에 모두 체크해주세요."
+                        app:layout_constraintStart_toStartOf="@+id/textView40"
+                        app:layout_constraintTop_toBottomOf="@+id/textView40" />
+
+                    <RadioButton
+                        android:id="@+id/radioButton13"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:text="해당없음"
+                        android:textSize="16sp"
+                        app:layout_constraintBottom_toTopOf="@+id/radioButton14"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView39" />
+
+                    <RadioButton
+                        android:id="@+id/radioButton14"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="장애 (지적, 자폐성, 정신)"
+                        android:textSize="16sp"
+                        app:layout_constraintBottom_toTopOf="@+id/radioButton15"
+                        app:layout_constraintStart_toStartOf="@+id/radioButton13"
+                        app:layout_constraintTop_toBottomOf="@+id/radioButton13" />
+
+                    <RadioButton
+                        android:id="@+id/radioButton15"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="25dp"
+                        android:text="치매"
+                        android:textSize="16sp"
+                        app:layout_constraintBottom_toTopOf="@+id/textView40"
+                        app:layout_constraintStart_toStartOf="@+id/radioButton14"
+                        app:layout_constraintTop_toBottomOf="@+id/radioButton14" />
+
+                    <CheckBox
+                        android:id="@+id/checkBox4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="10대"
+                        app:layout_constraintBottom_toTopOf="@+id/checkBox5"
+                        app:layout_constraintStart_toStartOf="@+id/checkBox3"
+                        app:layout_constraintTop_toBottomOf="@+id/checkBox3" />
+
+                    <TextView
+                        android:id="@+id/textView37"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="30dp"
+                        android:layout_marginBottom="14dp"
+                        android:text="2. 나이"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        app:layout_constraintBottom_toTopOf="@+id/textView38"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/radioButton2" />
+
+                    <TextView
+                        android:id="@+id/textView42"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="21dp"
+                        android:layout_marginTop="23dp"
+                        android:text="상의"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView41" />
+
+                    <TextView
+                        android:id="@+id/textView44"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="19dp"
+                        android:layout_marginTop="30dp"
+                        android:text="하의"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView42" />
+
+                    <TextView
+                        android:id="@+id/textView45"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="19dp"
+                        android:layout_marginTop="22dp"
+                        android:text="신발"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView44" />
+
+                    <TextView
+                        android:id="@+id/textView46"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="23dp"
+                        android:text="악세사리"
+                        android:textSize="16sp"
+                        app:layout_constraintEnd_toEndOf="@+id/textView45"
+                        app:layout_constraintStart_toEndOf="@+id/textView45"
+                        app:layout_constraintTop_toBottomOf="@+id/textView45" />
+
+                    <TextView
+                        android:id="@+id/textView47"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="19dp"
+                        android:layout_marginTop="24dp"
+                        android:text="두발"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView46" />
+
+                    <CheckBox
+                        android:id="@+id/checkBox13"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{missingPerson.accessories}"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toStartOf="@+id/checkBox12"
+                        app:layout_constraintTop_toBottomOf="@+id/checkBox12" />
+
+                    <CheckBox
+                        android:id="@+id/checkBox14"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{missingPerson.hair}"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toStartOf="@+id/checkBox13"
+                        app:layout_constraintTop_toBottomOf="@+id/checkBox13" />
+
+                    <CheckBox
+                        android:id="@+id/checkBox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="14dp"
+                        android:layout_marginEnd="2dp"
+                        android:text="@{missingPerson.tops}"
+                        android:textSize="16sp"
+                        app:layout_constraintEnd_toEndOf="@+id/textView41"
+                        app:layout_constraintTop_toBottomOf="@+id/textView41" />
+
+                    <CheckBox
+                        android:id="@+id/checkBox2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{missingPerson.bottoms}"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toStartOf="@+id/checkBox"
+                        app:layout_constraintTop_toBottomOf="@+id/checkBox" />
+
+                    <CheckBox
+                        android:id="@+id/checkBox12"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{missingPerson.shoes}"
+                        android:textSize="16sp"
+                        app:layout_constraintStart_toStartOf="@+id/checkBox2"
+                        app:layout_constraintTop_toBottomOf="@+id/checkBox2" />
+
+                    <FrameLayout
+                        android:id="@+id/frameLayout3"
+                        android:layout_width="64dp"
+                        android:layout_height="64dp"
+                        android:layout_marginStart="1dp"
+                        android:layout_marginTop="13dp"
+                        android:layout_marginEnd="1dp"
+                        android:background="#F4F3F3"
+                        app:layout_constraintEnd_toEndOf="@+id/checkBox5"
+                        app:layout_constraintStart_toStartOf="@+id/textView49"
+                        app:layout_constraintTop_toBottomOf="@+id/textView49">
+
+                        <ImageView
+                            android:id="@+id/imageView5"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:layout_gravity="center_horizontal"
+                            app:srcCompat="@android:drawable/ic_menu_camera" />
+
+                        <TextView
+                            android:id="@+id/textView70"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom"
+                            android:text="0 / 5"
+                            android:textAlignment="center"
+                            tools:ignore="RtlCompat" />
+                    </FrameLayout>
+
+                    <EditText
+                        android:id="@+id/editTextText"
+                        android:layout_width="0dp"
+                        android:layout_height="44dp"
+                        android:layout_marginStart="14dp"
+                        android:layout_marginTop="9dp"
+                        android:layout_marginEnd="14dp"
+                        android:background="@drawable/rounded_edittext_background"
+                        android:enabled="false"
+                        android:focusable="false"
+                        android:focusableInTouchMode="false"
+                        android:inputType="none"
+                        android:textColorHint="#808080"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView52" />
+
+                    <EditText
+                        android:id="@+id/editTextText4"
+                        android:layout_width="0dp"
+                        android:layout_height="128dp"
+                        android:layout_marginStart="14dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="14dp"
+                        android:background="@drawable/rounded_edittext_background"
+                        android:inputType="text"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView53" />
+
+                    <EditText
+                        android:id="@+id/editTextText5"
+                        android:layout_width="0dp"
+                        android:layout_height="128dp"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginEnd="12dp"
+                        android:background="@drawable/rounded_edittext_background"
+                        android:inputType="text"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView56" />
+
+                    <TextView
+                        android:id="@+id/textView53"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="28dp"
+                        android:text="추가 설명"
+                        android:textSize="16sp"
+                        android:textStyle="bold"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/button2" />
+
+                    <Button
+                        android:id="@+id/button2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="1dp"
+                        android:text="내 위치 정보 불러오기"
+                        android:textColor="#FFFFFF"
+                        app:layout_constraintStart_toStartOf="@+id/editTextText"
+                        app:layout_constraintTop_toBottomOf="@+id/editTextText" />
+
+                    <FrameLayout
+                        android:id="@+id/frameLayout5"
+                        android:layout_width="64dp"
+                        android:layout_height="64dp"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginTop="15dp"
+                        android:background="#F4F3F3"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView54">
+
+                        <ImageView
+                            android:id="@+id/imageView4"
+                            android:layout_width="48dp"
+                            android:layout_height="48dp"
+                            android:layout_gravity="center_horizontal"
+                            app:srcCompat="@android:drawable/ic_menu_camera" />
+
+                        <TextView
+                            android:id="@+id/textView50"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="bottom"
+                            android:text="0 / 5"
+                            android:textAlignment="center"
+                            tools:ignore="RtlCompat" />
+                    </FrameLayout>
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </LinearLayout>
+        </ScrollView>
+
+        <Button
+            android:id="@+id/reportbtn"
+            android:layout_width="364dp"
+            android:layout_height="63dp"
+            android:layout_marginTop="5dp"
+            android:text="제출하기"
+            android:textColor="@color/white"
+            android:textSize="19dp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/scrollView3" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
