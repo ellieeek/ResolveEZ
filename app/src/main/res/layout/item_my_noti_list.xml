@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
@@ -21,7 +20,7 @@
             style="@style/MediumFontKr.13"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="실종"
+            android:text="@{item.status}"
             android:textColor="@color/white"
             app:chipBackgroundColor="@color/chip_selected_red_or_blue"
             app:chipCornerRadius="2dp"
@@ -33,10 +32,21 @@
             style="@style/SemiBoldFontKr.14"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="🚨"
+            android:text="@{item.message}"
             app:layout_constraintStart_toEndOf="@+id/chip"
-            app:layout_constraintTop_toTopOf="@+id/chip" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent" />
 
+        <TextView
+            android:id="@+id/tv_detail"
+            style="@style/SemiBoldFontKr.14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{item.additionalInfo}"
+            app:layout_constraintStart_toStartOf="@+id/tv_name"
+            app:layout_constraintTop_toBottomOf="@id/tv_name"
+            android:visibility="@{item.additionalInfo != null ? 0 : 8}" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
+

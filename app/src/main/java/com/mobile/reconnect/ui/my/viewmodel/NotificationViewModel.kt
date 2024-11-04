@@ -5,7 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.mobile.reconnect.data.model.MyNotificationList
 
-class AlarmViewModel : ViewModel() {
+class NotificationViewModel : ViewModel() {
 
     private val _alarmList = MutableLiveData<List<MyNotificationList>>()
     val notificationList: LiveData<List<MyNotificationList>> get() = _alarmList

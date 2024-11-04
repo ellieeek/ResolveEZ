@@ -1,4 +1,3 @@
-// NotificationAdapter.kt
 package com.mobile.reconnect.ui.my.adapter
 
 import android.view.LayoutInflater
