@@ -30,7 +30,7 @@
                 android:background="@color/gray"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="20dp"/>
-
+<!--
             <TextView
                 android:id="@+id/tv_title"
                 style="@style/RegularFontKr.16"
@@ -38,6 +38,14 @@
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
                 android:text="@{`반경 ` + viewModel.radius + `km 이내 실종자 0명`}"
+                android:layout_marginBottom="20dp"
+                android:layout_marginStart="20dp" />-->
+            <TextView
+                android:id="@+id/tv_title"
+                style="@style/RegularFontKr.16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/black"
                 android:layout_marginBottom="20dp"
                 android:layout_marginStart="20dp" />
 
