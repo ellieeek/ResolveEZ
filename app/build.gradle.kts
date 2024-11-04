@@ -82,16 +82,30 @@ dependencies {
 	implementation(libs.maps.utils.ktx)
 	implementation(libs.androidx.lifecycle.runtime.ktx)
 
+	// MySQL 의존성 추가
+	implementation(libs.mysql.connector.java)
+
+	// coroutines
+	implementation(libs.kotlinx.coroutines.android)
 
 	// UI Tooling (Android Studio Preview)
 	implementation(libs.androidx.ui.tooling.preview)
 
 	// DataBinding
 	implementation(libs.androidx.databinding.runtime)
+	implementation(libs.androidx.activity)
+
+	// Retrofit 라이브러리
+	implementation (libs.retrofit)
+
+	//OkHttp 라이브러리
+	implementation ("com.squareup.okhttp3:okhttp:4.10.0")
 
 	// Testing
 	testImplementation(libs.junit)
 	androidTestImplementation(libs.androidx.junit)
 	androidTestImplementation(libs.androidx.espresso.core)
+
+	implementation ("com.kakao.sdk:v2-user:2.15.0")
 }
 
