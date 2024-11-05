@@ -20,8 +20,8 @@ class MyPrepersonFragment3 : BaseFragment<FragmentMyPreperson3Binding>(R.layout.
         super.onViewCreated(view, savedInstanceState)
 
 
-//        binding.addbtn.setOnClickListener {
-//            findNavController().navigate(R.id.action_reportRegistrationFragment_to_myReportFragment4)
-//        }
+        binding.addbtn.setOnClickListener {
+            findNavController().navigate(R.id.action_prepersonFragment3_to_prepersonFragment4)
+        }
     }
 }

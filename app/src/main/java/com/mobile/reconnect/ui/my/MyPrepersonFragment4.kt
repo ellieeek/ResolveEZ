@@ -6,12 +6,14 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mobile.reconnect.R
+import com.mobile.reconnect.databinding.FragmentMyPreperson3Binding
+import com.mobile.reconnect.databinding.FragmentMyPreperson4Binding
 import com.mobile.reconnect.databinding.FragmentMyPrepersonBinding
 import com.mobile.reconnect.ui.my.adapter.PrePersonAdapter
 import com.mobile.reconnect.ui.my.viewmodel.PrePersonViewModel
 import com.mobile.reconnect.ui.common.BaseFragment
 
-class MyPrepersonFragment4 : BaseFragment<FragmentMyPrepersonBinding>(R.layout.fragment_my_preperson2) {
+class MyPrepersonFragment4 : BaseFragment<FragmentMyPreperson4Binding>(R.layout.fragment_my_preperson4) {
     private val viewModel: PrePersonViewModel by viewModels()
     private lateinit var prePersonAdapter: PrePersonAdapter
 
@@ -19,8 +21,8 @@ class MyPrepersonFragment4 : BaseFragment<FragmentMyPrepersonBinding>(R.layout.f
         super.onViewCreated(view, savedInstanceState)
 
 
-//        binding.addbtn.setOnClickListener {
-//            findNavController().navigate(R.id.action_myPrepersonFragment_to_myPrePersonFragment3)
-//        }
+        binding.addbtn.setOnClickListener {
+            findNavController().navigate(R.id.action_prepersonFragment4_to_prepersonFragment5)
+        }
     }
 }

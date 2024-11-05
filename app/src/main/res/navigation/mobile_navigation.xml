@@ -125,6 +125,36 @@
         android:id="@+id/fragment_my_preperson3"
         android:name="com.mobile.reconnect.ui.my.MyPrepersonFragment3"
         tools:layout="@layout/fragment_my_preperson3" >
+        <action
+            android:id="@+id/action_prepersonFragment3_to_prepersonFragment4"
+            app:destination="@id/fragment_my_preperson4" />
+    </fragment>
+
+    <!-- 사전 실종자 키 몸무게 입력 화면 -->
+    <fragment
+        android:id="@+id/fragment_my_preperson4"
+        android:name="com.mobile.reconnect.ui.my.MyPrepersonFragment4"
+        tools:layout="@layout/fragment_my_preperson4" >
+        <action
+            android:id="@+id/action_prepersonFragment4_to_prepersonFragment5"
+            app:destination="@id/fragment_my_preperson5" />
+    </fragment>
+
+    <!-- 사전 실종자 얼굴 사진 등록 화면 -->
+    <fragment
+        android:id="@+id/fragment_my_preperson5"
+        android:name="com.mobile.reconnect.ui.my.MyPrepersonFragment5"
+        tools:layout="@layout/fragment_my_preperson5" >
+        <action
+            android:id="@+id/action_prepersonFragment5_to_prepersonFragment6"
+            app:destination="@id/fragment_my_preperson6" />
+    </fragment>
+
+    <!-- 사전 실종자 얼굴 사진 등록 화면 -->
+    <fragment
+        android:id="@+id/fragment_my_preperson6"
+        android:name="com.mobile.reconnect.ui.my.MyPrepersonFragment6"
+        tools:layout="@layout/fragment_my_preperson6" >
     </fragment>
 
 </navigation>
