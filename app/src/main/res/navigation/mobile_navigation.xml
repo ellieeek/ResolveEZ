@@ -17,7 +17,34 @@
         android:id="@+id/navigation_report"
         android:name="com.mobile.reconnect.ui.report.ReportFragment"
         android:label="@string/title_report"
-        tools:layout="@layout/fragment_report" />
+        tools:layout="@layout/fragment_report" >
+        <action
+            android:id="@+id/action_reportFragment_to_reportDetailFragment"
+            app:destination="@id/fragment_report_detail" />
+        <action
+            android:id="@+id/action_reportFragment_to_reportRegistrationFragment"
+            app:destination="@id/fragment_report_registration" />
+    </fragment>
+
+    <!-- 제보 상세 -->
+    <fragment
+        android:id="@+id/fragment_report_detail"
+        android:name="com.mobile.reconnect.ui.report.ReportDetailFragment"
+        tools:layout="@layout/fragment_report_datail" >
+        <action
+            android:id="@+id/action_reportDetailFragment_to_reportRegistrationFragment"
+            app:destination="@id/fragment_report_registration" />
+    </fragment>
+
+    <!-- 제보 등록 -->
+    <fragment
+        android:id="@+id/fragment_report_registration"
+        android:name="com.mobile.reconnect.ui.report.ReportRegistrationFragment"
+        tools:layout="@layout/fragment_report_registration" >
+        <action
+            android:id="@+id/action_reportRegistrationFragment_to_myReportFragment"
+            app:destination="@id/navigation_my_report" />
+    </fragment>
 
     <!-- 검색 -->
     <fragment
