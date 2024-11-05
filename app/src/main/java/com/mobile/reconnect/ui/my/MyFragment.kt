@@ -15,7 +15,8 @@ class MyFragment: BaseFragment<FragmentMyBinding>(R.layout.fragment_my) {
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 		super.onViewCreated(view, savedInstanceState)
 
-		binding.cardRegister.setOnClickListener{ navigate(R.id.action_navigation_mypage_to_navigation_my_info) }
+		binding.cardRegister.setOnClickListener{ navigate(R.id.action_navigation_mypage_to_navigation_my_preperson) }
+		binding.tvMyInfoUpdate.setOnClickListener{ navigate(R.id.action_navigation_mypage_to_navigation_my_info) }
 		binding.tvMyReport.setOnClickListener { navigate(R.id.action_navigation_mypage_to_navigation_my_report) }
 		binding.tvMyNotification.setOnClickListener { navigate(R.id.action_navigation_mypage_to_navigation_my_noti) }
 	}

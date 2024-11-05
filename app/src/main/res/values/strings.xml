@@ -19,6 +19,7 @@
     <string name="title_my_report">나의 제보 내역</string>
     <string name="title_my_notification">알림 관리</string>
     <string name="title_my_info">회원 정보 수정</string>
+    <string name="title_my_preperson">실종자 사전 등록하기</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>

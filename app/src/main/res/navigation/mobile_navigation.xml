@@ -61,16 +61,24 @@
         tools:layout="@layout/fragment_my" >
 
         <action
+            android:id="@+id/action_navigation_mypage_to_navigation_my_preperson"
+            app:destination="@id/navigation_my_preperson" />
+        <action
             android:id="@+id/action_navigation_mypage_to_navigation_my_report"
-            app:destination="@id/navigation_my_report" />
+            app:destination="@id/navigation_my_preperson" />
         <action
             android:id="@+id/action_navigation_mypage_to_navigation_my_noti"
             app:destination="@id/navigation_my_noti" />
         <action
             android:id="@+id/action_navigation_mypage_to_navigation_my_info"
             app:destination="@id/navigation_my_info" />
-
     </fragment>
+
+    <fragment
+        android:id="@+id/navigation_my_preperson"
+        android:name="com.mobile.reconnect.ui.my.MyPrepersonFragment"
+        android:label="@string/title_my_preperson"
+        tools:layout="@layout/fragment_my_preperson" />
 
     <fragment
         android:id="@+id/navigation_my_report"
@@ -89,5 +97,64 @@
         android:name="com.mobile.reconnect.ui.my.MyInfoFragment"
         android:label="@string/title_my_info"
         tools:layout="@layout/fragment_my_info" />
+
+    <!-- 실종자 사전 등록 목록 -->
+    <fragment
+        android:id="@+id/navigation_my_preperson"
+        android:name="com.mobile.reconnect.ui.my.MyPrepersonFragment"
+        android:label="@string/title_my_preperson"
+        tools:layout="@layout/fragment_my_preperson"
+        tools:ignore="DuplicateIds">
+        <action
+            android:id="@+id/action_prepersonFragment_to_prepersonFragment2"
+            app:destination="@id/fragment_my_preperson2" />
+    </fragment>
+
+    <!-- 실종자 사전 등록 약관동의 -->
+    <fragment
+        android:id="@+id/fragment_my_preperson2"
+        android:name="com.mobile.reconnect.ui.my.MyPrepersonFragment2"
+        tools:layout="@layout/fragment_my_preperson2" >
+        <action
+            android:id="@+id/action_prepersonFragment2_to_prepersonFragment3"
+            app:destination="@id/fragment_my_preperson3" />
+    </fragment>
+
+    <!-- 사전 실종자 개인정보 입력 화면 -->
+    <fragment
+        android:id="@+id/fragment_my_preperson3"
+        android:name="com.mobile.reconnect.ui.my.MyPrepersonFragment3"
+        tools:layout="@layout/fragment_my_preperson3" >
+        <action
+            android:id="@+id/action_prepersonFragment3_to_prepersonFragment4"
+            app:destination="@id/fragment_my_preperson4" />
+    </fragment>
+
+    <!-- 사전 실종자 키 몸무게 입력 화면 -->
+    <fragment
+        android:id="@+id/fragment_my_preperson4"
+        android:name="com.mobile.reconnect.ui.my.MyPrepersonFragment4"
+        tools:layout="@layout/fragment_my_preperson4" >
+        <action
+            android:id="@+id/action_prepersonFragment4_to_prepersonFragment5"
+            app:destination="@id/fragment_my_preperson5" />
+    </fragment>
+
+    <!-- 사전 실종자 얼굴 사진 등록 화면 -->
+    <fragment
+        android:id="@+id/fragment_my_preperson5"
+        android:name="com.mobile.reconnect.ui.my.MyPrepersonFragment5"
+        tools:layout="@layout/fragment_my_preperson5" >
+        <action
+            android:id="@+id/action_prepersonFragment5_to_prepersonFragment6"
+            app:destination="@id/fragment_my_preperson6" />
+    </fragment>
+
+    <!-- 사전 실종자 얼굴 사진 등록 화면 -->
+    <fragment
+        android:id="@+id/fragment_my_preperson6"
+        android:name="com.mobile.reconnect.ui.my.MyPrepersonFragment6"
+        tools:layout="@layout/fragment_my_preperson6" >
+    </fragment>
 
 </navigation>
