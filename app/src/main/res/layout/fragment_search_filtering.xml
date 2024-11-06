@@ -10,6 +10,16 @@
             android:layout_height="match_parent"
             android:orientation="vertical" >
 
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:background="@color/white"
+                android:src="@drawable/ic_x"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_title_gender"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/tv_title_gender"
                 style="@style/MediumFontKr.16"
@@ -31,17 +41,20 @@
                 app:singleLine="true">
 
                 <com.google.android.material.chip.Chip
+                    android:id="@+id/btn_male"
                     style="@style/RegularFontKr.15"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="남자"
                     app:chipBackgroundColor="@color/white"
-                    app:chipStrokeColor="@color/gray_300"
+                    android:textColor="@color/chip_selected_red_or_gray700"
+                    app:chipStrokeColor="@color/chip_selected_red_or_gray300"
                     app:chipStrokeWidth="1dp"
                     app:textEndPadding="14dp"
                     app:textStartPadding="14dp" />
 
                 <com.google.android.material.chip.Chip
+                    android:id="@+id/btn_female"
                     style="@style/RegularFontKr.15"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -107,6 +120,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/tv_title_detail">
 
                 <com.google.android.material.chip.Chip
+                    android:id="@+id/btn_non_disabled"
                     style="@style/RegularFontKr.15"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -118,6 +132,7 @@
                     app:textStartPadding="14dp" />
 
                 <com.google.android.material.chip.Chip
+                    android:id="@+id/btn_dementia"
                     style="@style/RegularFontKr.15"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -129,6 +144,7 @@
                     app:textStartPadding="14dp" />
 
                 <com.google.android.material.chip.Chip
+                    android:id="@+id/btn_runaway"
                     style="@style/RegularFontKr.15"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -141,6 +157,7 @@
 
 
                 <com.google.android.material.chip.Chip
+                    android:id="@+id/btn_disabled"
                     style="@style/RegularFontKr.15"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -153,6 +170,7 @@
 
 
                 <com.google.android.material.chip.Chip
+                    android:id="@+id/btn_etc"
                     style="@style/RegularFontKr.15"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -177,8 +195,7 @@
                 app:layout_constraintStart_toStartOf="@+id/tv_title_gender"
                 app:layout_constraintTop_toBottomOf="@+id/chipGroup_detail" />
 
-
-            <com.google.android.material.textfield.TextInputEditText
+            <DatePicker
                 android:id="@+id/et_date_start"
                 android:layout_width="100dp"
                 android:layout_height="40dp"
@@ -199,7 +216,7 @@
                 app:layout_constraintStart_toEndOf="@+id/et_date_start"
                 app:layout_constraintTop_toTopOf="@+id/et_date_start" />
 
-            <com.google.android.material.textfield.TextInputEditText
+            <DatePicker
                 android:id="@+id/et_date_end"
                 android:layout_width="100dp"
                 android:layout_height="40dp"

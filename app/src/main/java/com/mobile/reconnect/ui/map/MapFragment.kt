@@ -120,7 +120,7 @@ class MapFragment: BaseFragment<FragmentMapBinding>(R.layout.fragment_map), OnMa
 			location?.let {
 				val currentLatLng = LatLng(it.latitude, it.longitude)
 				Log.d("현재 위치", "${currentLatLng.latitude}/${currentLatLng.longitude}")
-				map.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng, 5f))
+				map.moveCamera(CameraUpdateFactory.newLatLngZoom(currentLatLng, 12f))
 			}
 		}
 	}
