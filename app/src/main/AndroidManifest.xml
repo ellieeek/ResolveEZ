@@ -61,6 +61,9 @@
         <meta-data
             android:name="com.kakao.sdk.AppKey"
             android:value="${KAKAO_LOGIN_KEY}" />
+        <meta-data
+            android:name="com.kakao.vectormap.KAKAO_MAP_KEY"
+            android:value="${KAKAO_LOGIN_KEY}"/>
     </application>
 
 </manifest>

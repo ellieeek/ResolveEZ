@@ -2,6 +2,7 @@ package com.mobile.reconnect
 
 import android.app.Application
 import com.kakao.sdk.common.KakaoSdk
+import com.kakao.vectormap.KakaoMapSdk
 
 class GlobalApplication : Application() {
 	override fun onCreate() {
