@@ -69,8 +69,10 @@ class SearchFilteringFragment : BottomSheetDialogFragment() {
 
 			if (currentStrokeColor == ContextCompat.getColor(requireContext(), selectedColor)) {
 				chip.setChipStrokeColorResource(unselectedColor)
+				chip.setTextColor(ContextCompat.getColor(requireContext(), R.color.gray_700))
 			} else {
 				chip.setChipStrokeColorResource(selectedColor)
+				chip.setTextColor(ContextCompat.getColor(requireContext(), selectedColor))
 			}
 
 			chip.isChecked = !chip.isChecked

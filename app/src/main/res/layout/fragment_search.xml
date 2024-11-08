@@ -43,33 +43,36 @@
                 app:chipStrokeWidth="1dp" />
 
             <com.google.android.material.chip.Chip
+                android:id="@+id/btn_gender"
                 style="@style/RegularFontKr.14"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="성별"
-                android:textColor="@color/gray_600"
+                android:textColor="@color/chip_selected_red_or_gray600"
                 app:chipBackgroundColor="@color/white"
-                app:chipStrokeColor="@color/gray_200"
+                app:chipStrokeColor="@color/chip_selected_red_or_gray300"
                 app:chipStrokeWidth="1dp" />
 
             <com.google.android.material.chip.Chip
+                android:id="@+id/btn_age"
                 style="@style/RegularFontKr.14"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="나이"
-                android:textColor="@color/gray_600"
+                android:textColor="@color/chip_selected_red_or_gray600"
                 app:chipBackgroundColor="@color/white"
-                app:chipStrokeColor="@color/gray_200"
+                app:chipStrokeColor="@color/chip_selected_red_or_gray300"
                 app:chipStrokeWidth="1dp" />
 
             <com.google.android.material.chip.Chip
+                android:id="@+id/btn_defail"
                 style="@style/RegularFontKr.14"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="특이사항"
-                android:textColor="@color/gray_600"
+                android:textColor="@color/chip_selected_red_or_gray600"
                 app:chipBackgroundColor="@color/white"
-                app:chipStrokeColor="@color/gray_200"
+                app:chipStrokeColor="@color/chip_selected_red_or_gray300"
                 app:chipStrokeWidth="1dp" />
 
         </com.google.android.material.chip.ChipGroup>
