@@ -98,6 +98,7 @@
                 app:cardElevation="0dp">
 
                 <androidx.constraintlayout.widget.ConstraintLayout
+                    android:id="@+id/card_file_report"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@drawable/bg_my_card_view_color"

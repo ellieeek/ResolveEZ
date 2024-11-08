@@ -72,6 +72,9 @@
         <action
             android:id="@+id/action_navigation_mypage_to_navigation_my_info"
             app:destination="@id/navigation_my_info" />
+        <action
+            android:id="@+id/action_navigation_mypage_to_navigation_file_report"
+            app:destination="@id/navigation_file_report" />
     </fragment>
 
     <fragment
@@ -82,9 +85,37 @@
 
     <fragment
         android:id="@+id/navigation_my_report"
-        android:name="com.mobile.reconnect.ui.my.MyReportFragment"
+        android:name="com.mobile.reconnect.ui.my.myReport.MyReportFragment"
         android:label="@string/title_my_report"
         tools:layout="@layout/fragment_my_report" />
+
+    <fragment
+        android:id="@+id/navigation_file_report"
+        android:name="com.mobile.reconnect.ui.my.fileReport.FileReportFragment"
+        android:label="@string/title_my_report"
+        tools:layout="@layout/fragment_file_report" >
+        <action
+            android:id="@+id/action_navigation_file_report_to_navigation_file_report_2"
+            app:destination="@id/navigation_file_report_2" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_file_report_2"
+        android:name="com.mobile.reconnect.ui.my.fileReport.FileReport2Fragment"
+        android:label="@string/title_my_report"
+        tools:layout="@layout/fragment_file_report2" >
+        <action
+            android:id="@+id/action_navigation_file_report_2_to_navigation_file_report_map"
+            app:destination="@id/navigation_file_report_map" />
+    </fragment>
+
+
+    <fragment
+        android:id="@+id/navigation_file_report_map"
+        android:name="com.mobile.reconnect.ui.my.fileReport.FileReportMapFragment"
+        android:label="@string/title_my_report"
+        tools:layout="@layout/fragment_file_report_map" />
+
 
     <fragment
         android:id="@+id/navigation_my_noti"
