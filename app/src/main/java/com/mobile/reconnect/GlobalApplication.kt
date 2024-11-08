@@ -9,5 +9,6 @@ class GlobalApplication : Application() {
 		super.onCreate()
 
 		KakaoSdk.init(this, BuildConfig.KAKAO_LOGIN_KEY)
+//		KakaoMapSdk.init(this, BuildConfig.KAKAO_MAP_KEY)
 	}
 }

@@ -11,6 +11,7 @@
             android:orientation="vertical" >
 
             <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/btn_cancel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="16dp"
@@ -46,8 +47,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="남자"
-                    app:chipBackgroundColor="@color/white"
                     android:textColor="@color/chip_selected_red_or_gray700"
+                    app:chipBackgroundColor="@color/white"
                     app:chipStrokeColor="@color/chip_selected_red_or_gray300"
                     app:chipStrokeWidth="1dp"
                     app:textEndPadding="14dp"
@@ -60,8 +61,9 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="6dp"
                     android:text="여자"
+                    android:textColor="@color/chip_selected_red_or_gray700"
                     app:chipBackgroundColor="@color/white"
-                    app:chipStrokeColor="@color/gray_300"
+                    app:chipStrokeColor="@color/chip_selected_red_or_gray300"
                     app:chipStrokeWidth="1dp"
                     app:textEndPadding="14dp"
                     app:textStartPadding="14dp" />
@@ -195,10 +197,11 @@
                 app:layout_constraintStart_toStartOf="@+id/tv_title_gender"
                 app:layout_constraintTop_toBottomOf="@+id/chipGroup_detail" />
 
-            <DatePicker
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/et_date_start"
+                style="?android:attr/borderlessButtonStyle"
                 android:layout_width="100dp"
-                android:layout_height="40dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
                 android:layout_marginEnd="16dp"
                 android:background="@drawable/bg_white_4_radius_gray"
@@ -216,10 +219,11 @@
                 app:layout_constraintStart_toEndOf="@+id/et_date_start"
                 app:layout_constraintTop_toTopOf="@+id/et_date_start" />
 
-            <DatePicker
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/et_date_end"
+                style="?android:attr/borderlessButtonStyle"
                 android:layout_width="100dp"
-                android:layout_height="40dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:background="@drawable/bg_white_4_radius_gray"
                 app:layout_constraintBottom_toBottomOf="@+id/et_date_start"
