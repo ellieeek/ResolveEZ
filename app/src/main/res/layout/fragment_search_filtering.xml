@@ -51,6 +51,7 @@
                     app:chipBackgroundColor="@color/white"
                     app:chipStrokeColor="@color/chip_selected_red_or_gray300"
                     app:chipStrokeWidth="1dp"
+                    app:rippleColor="@android:color/transparent"
                     app:textEndPadding="14dp"
                     app:textStartPadding="14dp" />
 
@@ -65,6 +66,7 @@
                     app:chipBackgroundColor="@color/white"
                     app:chipStrokeColor="@color/chip_selected_red_or_gray300"
                     app:chipStrokeWidth="1dp"
+                    app:rippleColor="@android:color/transparent"
                     app:textEndPadding="14dp"
                     app:textStartPadding="14dp" />
 
@@ -132,6 +134,7 @@
                     app:chipBackgroundColor="@color/white"
                     app:chipStrokeColor="@color/gray_300"
                     app:chipStrokeWidth="1dp"
+                    app:rippleColor="@android:color/transparent"
                     app:textEndPadding="14dp"
                     app:textStartPadding="14dp" />
 
@@ -144,6 +147,7 @@
                     app:chipBackgroundColor="@color/white"
                     app:chipStrokeColor="@color/gray_300"
                     app:chipStrokeWidth="1dp"
+                    app:rippleColor="@android:color/transparent"
                     app:textEndPadding="14dp"
                     app:textStartPadding="14dp" />
 
@@ -156,9 +160,9 @@
                     app:chipBackgroundColor="@color/white"
                     app:chipStrokeColor="@color/gray_300"
                     app:chipStrokeWidth="1dp"
+                    app:rippleColor="@android:color/transparent"
                     app:textEndPadding="14dp"
                     app:textStartPadding="14dp" />
-
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/btn_disabled"
@@ -169,6 +173,7 @@
                     app:chipBackgroundColor="@color/white"
                     app:chipStrokeColor="@color/gray_300"
                     app:chipStrokeWidth="1dp"
+                    app:rippleColor="@android:color/transparent"
                     app:textEndPadding="14dp"
                     app:textStartPadding="14dp" />
 
@@ -182,6 +187,7 @@
                     app:chipBackgroundColor="@color/white"
                     app:chipStrokeColor="@color/gray_300"
                     app:chipStrokeWidth="1dp"
+                    app:rippleColor="@android:color/transparent"
                     app:textEndPadding="14dp"
                     app:textStartPadding="14dp" />
 

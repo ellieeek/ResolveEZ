@@ -40,7 +40,8 @@
                 app:chipBackgroundColor="@color/white"
                 app:chipIcon="@drawable/ic_filtering"
                 app:chipStrokeColor="@color/gray_200"
-                app:chipStrokeWidth="1dp" />
+                app:chipStrokeWidth="1dp"
+                app:rippleColor="@android:color/transparent"/>
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/btn_gender"
@@ -51,7 +52,8 @@
                 android:textColor="@color/chip_selected_red_or_gray600"
                 app:chipBackgroundColor="@color/white"
                 app:chipStrokeColor="@color/chip_selected_red_or_gray300"
-                app:chipStrokeWidth="1dp" />
+                app:chipStrokeWidth="1dp"
+                app:rippleColor="@android:color/transparent" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/btn_age"
@@ -62,7 +64,8 @@
                 android:textColor="@color/chip_selected_red_or_gray600"
                 app:chipBackgroundColor="@color/white"
                 app:chipStrokeColor="@color/chip_selected_red_or_gray300"
-                app:chipStrokeWidth="1dp" />
+                app:chipStrokeWidth="1dp"
+                app:rippleColor="@android:color/transparent" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/btn_defail"
@@ -73,7 +76,8 @@
                 android:textColor="@color/chip_selected_red_or_gray600"
                 app:chipBackgroundColor="@color/white"
                 app:chipStrokeColor="@color/chip_selected_red_or_gray300"
-                app:chipStrokeWidth="1dp" />
+                app:chipStrokeWidth="1dp"
+                app:rippleColor="@android:color/transparent" />
 
         </com.google.android.material.chip.ChipGroup>
 
