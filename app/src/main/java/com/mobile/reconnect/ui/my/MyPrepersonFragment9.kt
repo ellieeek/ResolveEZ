@@ -1,17 +1,19 @@
 package com.mobile.reconnect.ui.my
 
+import PrePersonViewModel
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mobile.reconnect.R
+import com.mobile.reconnect.databinding.FragmentMyPreperson7Binding
+import com.mobile.reconnect.databinding.FragmentMyPreperson9Binding
 import com.mobile.reconnect.databinding.FragmentMyPrepersonBinding
 import com.mobile.reconnect.ui.my.adapter.PrePersonAdapter
-import com.mobile.reconnect.ui.my.viewmodel.PrePersonViewModel
 import com.mobile.reconnect.ui.common.BaseFragment
 
-class MyPrepersonFragment9 : BaseFragment<FragmentMyPrepersonBinding>(R.layout.fragment_my_preperson2) {
+class MyPrepersonFragment9 : BaseFragment<FragmentMyPreperson9Binding>(R.layout.fragment_my_preperson9) {
     private val viewModel: PrePersonViewModel by viewModels()
     private lateinit var prePersonAdapter: PrePersonAdapter
 
@@ -19,8 +21,13 @@ class MyPrepersonFragment9 : BaseFragment<FragmentMyPrepersonBinding>(R.layout.f
         super.onViewCreated(view, savedInstanceState)
 
 
-//        binding.addbtn.setOnClickListener {
-//            findNavController().navigate(R.id.action_myPrepersonFragment_to_myPrePersonFragment3)
-//        }
+        binding.addbtn.setOnClickListener {
+            findNavController().navigate(R.id.action_prepersonFragment9_to_prepersonFragment10)
+        }
+
+        // 뒤로 가기 버튼 설정
+        binding.backButton.setOnClickListener {
+            findNavController().navigateUp()
+        }
     }
 }

@@ -56,7 +56,9 @@
                 <!-- 첫 번째 ConstraintLayout -->
                 <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp">
 
                     <ImageView
                         android:id="@+id/imageViewPerson"
@@ -69,26 +71,44 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        android:id="@+id/tvPersonInfo"
+                        android:id="@+id/tvPersonName"
+                        style="@style/SemiBoldFontKr.16"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
+                        android:layout_marginBottom="62dp"
                         android:ellipsize="end"
                         android:maxLines="1"
-                        android:text='@{missingPerson.name + " (" + missingPerson.gender.label + ", " + missingPerson.age + "세, " + missingPerson.height + "cm, " + missingPerson.weight + "kg, " + missingPerson.specialFeature.label + ")"}'
-                        android:textColor="@color/black"
-                        android:textSize="16sp"
-                        app:layout_constraintBottom_toTopOf="@+id/tvPersonClothing"
-                        app:layout_constraintEnd_toEndOf="parent"
+                        android:text='@{missingPerson.name}'
+                        android:textColor="@color/gray_800"
+                        android:textSize="15sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toEndOf="@id/imageViewPerson"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
+                        android:id="@+id/tvPersonInfo"
+                        style="@style/SemiBoldFontKr.16"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="6dp"
+                        android:layout_marginBottom="64dp"
+                        android:ellipsize="end"
+                        android:maxLines="1"
+                        android:text='@{" (" + missingPerson.gender.label + ", " + missingPerson.age + "세, " + missingPerson.height + "cm, " + missingPerson.weight + "kg, " + missingPerson.specialFeature.label + ")"}'
+                        android:textColor="@color/gray_700"
+                        android:textSize="13sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toEndOf="@+id/tvPersonName"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
                         android:id="@+id/tvPersonClothing"
+                        style="@style/SemiBoldFontKr.16"
                         android:layout_width="0dp"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="8dp"
                         android:ellipsize="end"
-                        android:maxLines="1"
+                        android:maxLines="2"
                         android:text='@{missingPerson.tops + ", " + missingPerson.bottoms + ", " + missingPerson.shoes + ", " + missingPerson.accessories + ", " + missingPerson.hair}'
                         android:textColor="@color/gray_600"
                         android:textSize="14sp"
@@ -101,29 +121,33 @@
 
                 <!-- 두 번째 ConstraintLayout -->
                 <androidx.constraintlayout.widget.ConstraintLayout
-                    android:layout_width="394dp"
-                    android:layout_height="2090dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
                     android:layout_marginTop="20dp"
+                    android:layout_marginEnd="16dp"
                     app:layout_constraintEnd_toEndOf="@+id/radioButton14"
                     app:layout_constraintStart_toEndOf="@+id/radioButton14">
 
                     <TextView
                         android:id="@+id/textView"
-                        android:layout_width="wrap_content"
+                        style="@style/SemiBoldFontKr.16"
+                        android:layout_width="0dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="2959dp"
                         android:text="제보 내용을 작성해주세요.\n모든 항목을 채우지 않으셔도 됩니다."
-                        android:textColor="#FF0000"
+                        android:textColor="@color/primary_red"
                         android:textStyle="bold"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
                         android:id="@+id/textView8"
+                        style="@style/SemiBoldFontKr.16"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
+                        android:layout_marginTop="30dp"
                         android:text="1. 성별"
+                        android:textColor="@color/gray_800"
                         android:textSize="18sp"
                         android:textStyle="bold"
                         app:layout_constraintStart_toStartOf="parent"
@@ -132,15 +156,17 @@
 
                     <RadioButton
                         android:id="@+id/radioButton"
+                        style="@style/SemiBoldFontKr.16"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="15dp"
+                        android:layout_marginTop="14dp"
                         android:text="남자"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
                     <RadioButton
                         android:id="@+id/radioButton2"
+                        style="@style/SemiBoldFontKr.16"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="여자"
@@ -149,47 +175,48 @@
 
                     <CheckBox
                         android:id="@+id/checkBox3"
+                        style="@style/SemiBoldFontKr.16"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="14dp"
                         android:checked="false"
                         android:text="10대 미만"
-                        app:layout_constraintBottom_toTopOf="@+id/checkBox4"
+                        android:textSize="12sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/textView38" />
 
                     <TextView
                         android:id="@+id/textView39"
+                        style="@style/SemiBoldFontKr.16"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="12dp"
-                        android:layout_marginBottom="14dp"
+                        android:layout_marginTop="48dp"
                         android:text="3. 특이사항"
+                        android:textColor="@color/gray_800"
                         android:textSize="18sp"
                         android:textStyle="bold"
-                        app:layout_constraintBottom_toTopOf="@+id/radioButton13"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/checkBox11" />
 
                     <TextView
                         android:id="@+id/textView40"
+                        style="@style/SemiBoldFontKr.16"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginBottom="3dp"
+                        android:layout_marginTop="48dp"
                         android:text="4. 인상착의"
+                        android:textColor="@color/gray_800"
                         android:textSize="18sp"
                         android:textStyle="bold"
-                        app:layout_constraintBottom_toTopOf="@+id/textView41"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/radioButton15" />
 
                     <TextView
                         android:id="@+id/textView49"
+                        style="@style/SemiBoldFontKr.16"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginTop="25dp"
+                        android:layout_marginTop="14dp"
                         android:text="실종자 사진 첨부"
                         android:textSize="16sp"
                         android:textStyle="bold"
@@ -199,11 +226,12 @@
 
                     <TextView
                         android:id="@+id/textView54"
+                        style="@style/SemiBoldFontKr.16"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="12dp"
-                        android:layout_marginTop="24dp"
+                        android:layout_marginTop="20dp"
                         android:text="주변 사진 첨부"
+                        android:textColor="@color/gray_800"
                         android:textSize="16sp"
                         android:textStyle="bold"
                         app:layout_constraintStart_toStartOf="parent"
@@ -211,11 +239,12 @@
 
                     <TextView
                         android:id="@+id/textView52"
+                        style="@style/SemiBoldFontKr.16"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginTop="36dp"
+                        android:layout_marginTop="48dp"
                         android:text="5. 발견 위치"
+                        android:textColor="@color/gray_800"
                         android:textSize="18sp"
                         android:textStyle="bold"
                         app:layout_constraintStart_toStartOf="parent"
@@ -223,11 +252,12 @@
 
                     <TextView
                         android:id="@+id/textView56"
+                        style="@style/SemiBoldFontKr.16"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="12dp"
-                        android:layout_marginTop="39dp"
+                        android:layout_marginTop="48dp"
                         android:text="6. 추가 제보"
+                        android:textColor="@color/gray_800"
                         android:textSize="18sp"
                         android:textStyle="bold"
                         app:layout_constraintStart_toStartOf="parent"
@@ -235,139 +265,148 @@
 
                     <CheckBox
                         android:id="@+id/checkBox5"
+                        style="@style/SemiBoldFontKr.16"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="4dp"
                         android:text="20대"
-                        app:layout_constraintBottom_toTopOf="@+id/checkBox6"
+                        android:textSize="12sp"
                         app:layout_constraintStart_toStartOf="@+id/checkBox4"
                         app:layout_constraintTop_toBottomOf="@+id/checkBox4" />
 
                     <CheckBox
                         android:id="@+id/checkBox6"
+                        style="@style/SemiBoldFontKr.16"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="1dp"
                         android:text="30대"
-                        app:layout_constraintBottom_toTopOf="@+id/checkBox7"
+                        android:textSize="12sp"
                         app:layout_constraintStart_toStartOf="@+id/checkBox5"
                         app:layout_constraintTop_toBottomOf="@+id/checkBox5" />
 
                     <CheckBox
                         android:id="@+id/checkBox7"
+                        style="@style/SemiBoldFontKr.16"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="40대"
-                        app:layout_constraintBottom_toTopOf="@+id/checkBox8"
+                        android:textSize="12sp"
                         app:layout_constraintStart_toStartOf="@+id/checkBox6"
                         app:layout_constraintTop_toBottomOf="@+id/checkBox6" />
 
                     <CheckBox
                         android:id="@+id/checkBox8"
+                        style="@style/SemiBoldFontKr.16"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="50대"
-                        app:layout_constraintBottom_toTopOf="@+id/checkBox9"
+                        android:textSize="12sp"
                         app:layout_constraintStart_toStartOf="@+id/checkBox7"
                         app:layout_constraintTop_toBottomOf="@+id/checkBox7" />
 
                     <CheckBox
                         android:id="@+id/checkBox9"
+                        style="@style/SemiBoldFontKr.16"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="60대"
-                        app:layout_constraintBottom_toTopOf="@+id/checkBox10"
+                        android:textSize="12sp"
                         app:layout_constraintStart_toStartOf="@+id/checkBox8"
                         app:layout_constraintTop_toBottomOf="@+id/checkBox8" />
 
                     <CheckBox
                         android:id="@+id/checkBox10"
+                        style="@style/SemiBoldFontKr.16"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="70대"
-                        app:layout_constraintBottom_toTopOf="@+id/checkBox11"
+                        android:textSize="12sp"
                         app:layout_constraintStart_toStartOf="@+id/checkBox9"
                         app:layout_constraintTop_toBottomOf="@+id/checkBox9" />
 
                     <CheckBox
                         android:id="@+id/checkBox11"
+                        style="@style/SemiBoldFontKr.16"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="27dp"
                         android:text="80대 이상"
-                        app:layout_constraintBottom_toTopOf="@+id/textView39"
+                        android:textSize="12sp"
                         app:layout_constraintStart_toStartOf="@+id/checkBox10"
                         app:layout_constraintTop_toBottomOf="@+id/checkBox10" />
 
                     <TextView
                         android:id="@+id/textView38"
+                        style="@style/SemiBoldFontKr.16"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:layout_marginBottom="14dp"
+                        android:layout_marginTop="2dp"
                         android:text="중복 체크 가능합니다."
-                        app:layout_constraintBottom_toTopOf="@+id/checkBox3"
+                        android:textColor="@color/gray_500"
+                        android:textSize="12sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/textView37" />
 
                     <TextView
                         android:id="@+id/textView41"
+                        style="@style/SemiBoldFontKr.16"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="3dp"
-                        android:layout_marginBottom="1987dp"
+                        android:layout_marginTop="2dp"
                         android:text="해당되는 인상착의에 모두 체크해주세요."
                         app:layout_constraintStart_toStartOf="@+id/textView40"
                         app:layout_constraintTop_toBottomOf="@+id/textView40" />
 
                     <RadioButton
                         android:id="@+id/radioButton13"
+                        style="@style/SemiBoldFontKr.16"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
+                        android:layout_marginTop="14dp"
                         android:text="해당없음"
-                        android:textSize="16sp"
+                        android:textSize="14sp"
                         app:layout_constraintBottom_toTopOf="@+id/radioButton14"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/textView39" />
 
                     <RadioButton
                         android:id="@+id/radioButton14"
+                        style="@style/SemiBoldFontKr.16"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="장애 (지적, 자폐성, 정신)"
-                        android:textSize="16sp"
+                        android:textSize="14sp"
                         app:layout_constraintBottom_toTopOf="@+id/radioButton15"
                         app:layout_constraintStart_toStartOf="@+id/radioButton13"
                         app:layout_constraintTop_toBottomOf="@+id/radioButton13" />
 
                     <RadioButton
                         android:id="@+id/radioButton15"
+                        style="@style/SemiBoldFontKr.16"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginBottom="25dp"
                         android:text="치매"
-                        android:textSize="16sp"
-                        app:layout_constraintBottom_toTopOf="@+id/textView40"
+                        android:textSize="14sp"
                         app:layout_constraintStart_toStartOf="@+id/radioButton14"
                         app:layout_constraintTop_toBottomOf="@+id/radioButton14" />
 
                     <CheckBox
                         android:id="@+id/checkBox4"
+                        style="@style/SemiBoldFontKr.16"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="10대"
-                        app:layout_constraintBottom_toTopOf="@+id/checkBox5"
+                        android:textSize="12sp"
                         app:layout_constraintStart_toStartOf="@+id/checkBox3"
                         app:layout_constraintTop_toBottomOf="@+id/checkBox3" />
 
                     <TextView
                         android:id="@+id/textView37"
+                        style="@style/SemiBoldFontKr.16"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="30dp"
+                        android:layout_marginTop="48dp"
                         android:layout_marginBottom="14dp"
                         android:text="2. 나이"
+                        android:textColor="@color/gray_800"
                         android:textSize="18sp"
                         android:textStyle="bold"
                         app:layout_constraintBottom_toTopOf="@+id/textView38"
@@ -376,10 +415,11 @@
 
                     <TextView
                         android:id="@+id/textView42"
-                        android:layout_width="wrap_content"
+                        style="@style/SemiBoldFontKr.16"
+                        android:layout_width="84dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="21dp"
-                        android:layout_marginTop="23dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="28dp"
                         android:text="상의"
                         android:textSize="16sp"
                         app:layout_constraintStart_toStartOf="parent"
@@ -387,10 +427,11 @@
 
                     <TextView
                         android:id="@+id/textView44"
-                        android:layout_width="wrap_content"
+                        style="@style/SemiBoldFontKr.16"
+                        android:layout_width="84dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="19dp"
-                        android:layout_marginTop="30dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="29dp"
                         android:text="하의"
                         android:textSize="16sp"
                         app:layout_constraintStart_toStartOf="parent"
@@ -398,10 +439,11 @@
 
                     <TextView
                         android:id="@+id/textView45"
-                        android:layout_width="wrap_content"
+                        style="@style/SemiBoldFontKr.16"
+                        android:layout_width="84dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="19dp"
-                        android:layout_marginTop="22dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="29dp"
                         android:text="신발"
                         android:textSize="16sp"
                         app:layout_constraintStart_toStartOf="parent"
@@ -409,21 +451,23 @@
 
                     <TextView
                         android:id="@+id/textView46"
-                        android:layout_width="wrap_content"
+                        style="@style/SemiBoldFontKr.16"
+                        android:layout_width="84dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="23dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="29dp"
                         android:text="악세사리"
                         android:textSize="16sp"
-                        app:layout_constraintEnd_toEndOf="@+id/textView45"
-                        app:layout_constraintStart_toEndOf="@+id/textView45"
+                        app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/textView45" />
 
                     <TextView
                         android:id="@+id/textView47"
-                        android:layout_width="wrap_content"
+                        style="@style/SemiBoldFontKr.16"
+                        android:layout_width="84dp"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="19dp"
-                        android:layout_marginTop="24dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="28dp"
                         android:text="두발"
                         android:textSize="16sp"
                         app:layout_constraintStart_toStartOf="parent"
@@ -431,48 +475,57 @@
 
                     <CheckBox
                         android:id="@+id/checkBox13"
+                        style="@style/SemiBoldFontKr.16"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@{missingPerson.accessories}"
-                        android:textSize="16sp"
+                        android:textColor="@color/gray_800"
+                        android:textSize="14sp"
                         app:layout_constraintStart_toStartOf="@+id/checkBox12"
                         app:layout_constraintTop_toBottomOf="@+id/checkBox12" />
 
                     <CheckBox
                         android:id="@+id/checkBox14"
+                        style="@style/SemiBoldFontKr.16"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@{missingPerson.hair}"
-                        android:textSize="16sp"
+                        android:textColor="@color/gray_800"
+                        android:textSize="14sp"
                         app:layout_constraintStart_toStartOf="@+id/checkBox13"
                         app:layout_constraintTop_toBottomOf="@+id/checkBox13" />
 
                     <CheckBox
                         android:id="@+id/checkBox"
+                        style="@style/SemiBoldFontKr.16"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="14dp"
-                        android:layout_marginEnd="2dp"
                         android:text="@{missingPerson.tops}"
-                        android:textSize="16sp"
-                        app:layout_constraintEnd_toEndOf="@+id/textView41"
+                        android:textColor="@color/gray_800"
+                        android:textSize="14sp"
+                        app:layout_constraintStart_toEndOf="@+id/textView42"
                         app:layout_constraintTop_toBottomOf="@+id/textView41" />
 
                     <CheckBox
                         android:id="@+id/checkBox2"
+                        style="@style/SemiBoldFontKr.16"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@{missingPerson.bottoms}"
-                        android:textSize="16sp"
+                        android:textColor="@color/gray_800"
+                        android:textSize="14sp"
                         app:layout_constraintStart_toStartOf="@+id/checkBox"
                         app:layout_constraintTop_toBottomOf="@+id/checkBox" />
 
                     <CheckBox
                         android:id="@+id/checkBox12"
+                        style="@style/SemiBoldFontKr.16"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@{missingPerson.shoes}"
-                        android:textSize="16sp"
+                        android:textColor="@color/gray_800"
+                        android:textSize="14sp"
                         app:layout_constraintStart_toStartOf="@+id/checkBox2"
                         app:layout_constraintTop_toBottomOf="@+id/checkBox2" />
 
@@ -480,12 +533,9 @@
                         android:id="@+id/frameLayout3"
                         android:layout_width="64dp"
                         android:layout_height="64dp"
-                        android:layout_marginStart="1dp"
                         android:layout_marginTop="13dp"
-                        android:layout_marginEnd="1dp"
                         android:background="#F4F3F3"
-                        app:layout_constraintEnd_toEndOf="@+id/checkBox5"
-                        app:layout_constraintStart_toStartOf="@+id/textView49"
+                        app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/textView49">
 
                         <ImageView
@@ -497,6 +547,7 @@
 
                         <TextView
                             android:id="@+id/textView70"
+                            style="@style/SemiBoldFontKr.16"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="bottom"
@@ -507,11 +558,10 @@
 
                     <EditText
                         android:id="@+id/editTextText"
+                        style="@style/SemiBoldFontKr.16"
                         android:layout_width="0dp"
-                        android:layout_height="44dp"
-                        android:layout_marginStart="14dp"
-                        android:layout_marginTop="9dp"
-                        android:layout_marginEnd="14dp"
+                        android:layout_height="36dp"
+                        android:layout_marginTop="14dp"
                         android:background="@drawable/rounded_edittext_background"
                         android:enabled="false"
                         android:focusable="false"
@@ -524,11 +574,10 @@
 
                     <EditText
                         android:id="@+id/editTextText4"
+                        style="@style/SemiBoldFontKr.16"
                         android:layout_width="0dp"
-                        android:layout_height="128dp"
-                        android:layout_marginStart="14dp"
-                        android:layout_marginTop="16dp"
-                        android:layout_marginEnd="14dp"
+                        android:layout_height="96dp"
+                        android:layout_marginTop="4dp"
                         android:background="@drawable/rounded_edittext_background"
                         android:inputType="text"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -537,11 +586,10 @@
 
                     <EditText
                         android:id="@+id/editTextText5"
+                        style="@style/SemiBoldFontKr.16"
                         android:layout_width="0dp"
                         android:layout_height="128dp"
-                        android:layout_marginStart="12dp"
-                        android:layout_marginTop="15dp"
-                        android:layout_marginEnd="12dp"
+                        android:layout_marginTop="14dp"
                         android:background="@drawable/rounded_edittext_background"
                         android:inputType="text"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -550,23 +598,30 @@
 
                     <TextView
                         android:id="@+id/textView53"
+                        style="@style/SemiBoldFontKr.16"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
                         android:layout_marginTop="28dp"
                         android:text="추가 설명"
+                        android:textColor="@color/gray_800"
                         android:textSize="16sp"
                         android:textStyle="bold"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/button2" />
 
-                    <Button
+                    <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/button2"
+                        style="@style/SemiBoldFontKr.16"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="1dp"
+                        android:layout_marginTop="4dp"
                         android:text="내 위치 정보 불러오기"
-                        android:textColor="#FFFFFF"
+                        android:background="@drawable/bg_gray_radius_4"
+                        android:paddingStart="20dp"
+                        android:paddingTop="10dp"
+                        android:paddingEnd="20dp"
+                        android:paddingBottom="10dp"
+                        android:textColor="@color/gray_800"
                         app:layout_constraintStart_toStartOf="@+id/editTextText"
                         app:layout_constraintTop_toBottomOf="@+id/editTextText" />
 
@@ -574,8 +629,7 @@
                         android:id="@+id/frameLayout5"
                         android:layout_width="64dp"
                         android:layout_height="64dp"
-                        android:layout_marginStart="12dp"
-                        android:layout_marginTop="15dp"
+                        android:layout_marginTop="4dp"
                         android:background="#F4F3F3"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/textView54">
@@ -589,6 +643,7 @@
 
                         <TextView
                             android:id="@+id/textView50"
+                            style="@style/SemiBoldFontKr.16"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_gravity="bottom"
@@ -605,16 +660,19 @@
 
         <Button
             android:id="@+id/reportbtn"
-            android:layout_width="364dp"
-            android:layout_height="63dp"
-            android:layout_marginTop="5dp"
+            style="@style/SemiBoldFontKr.16"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="20dp"
             android:text="제출하기"
             android:textColor="@color/white"
             android:textSize="19dp"
             android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/scrollView3" />
+            app:layout_constraintStart_toStartOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
