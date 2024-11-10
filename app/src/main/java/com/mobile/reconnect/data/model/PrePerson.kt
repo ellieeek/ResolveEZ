@@ -50,7 +50,8 @@ data class PrePerson(
     val personality: PrePersonality?,
     val frequentPlace: String?,
     val additionalInfo: String?,
-    val familyImageResId: Int
+    val familyImageResId: Int,
+    var imageName: String? = null
 ) : Parcelable {
     // 나이 계산 필드
     val age: Int

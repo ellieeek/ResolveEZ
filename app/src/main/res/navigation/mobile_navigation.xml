@@ -145,16 +145,69 @@
         android:id="@+id/fragment_my_preperson5"
         android:name="com.mobile.reconnect.ui.my.MyPrepersonFragment5"
         tools:layout="@layout/fragment_my_preperson5" >
-        <action
+       <action
             android:id="@+id/action_prepersonFragment5_to_prepersonFragment6"
             app:destination="@id/fragment_my_preperson6" />
     </fragment>
 
-    <!-- 사전 실종자 얼굴 사진 등록 화면 -->
+    <!-- 사전 실종자 특이사항 등록 화면 -->
     <fragment
         android:id="@+id/fragment_my_preperson6"
         android:name="com.mobile.reconnect.ui.my.MyPrepersonFragment6"
         tools:layout="@layout/fragment_my_preperson6" >
+        <action
+            android:id="@+id/action_prepersonFragment6_to_prepersonFragment7"
+            app:destination="@id/fragment_my_preperson7" />
+    </fragment>
+
+    <!-- 사전 실종자 성격 등록 화면 -->
+    <fragment
+        android:id="@+id/fragment_my_preperson7"
+        android:name="com.mobile.reconnect.ui.my.MyPrepersonFragment7"
+        tools:layout="@layout/fragment_my_preperson7" >
+        <action
+            android:id="@+id/action_prepersonFragment7_to_prepersonFragment8"
+            app:destination="@id/fragment_my_preperson8" />
+    </fragment>
+
+    <!-- 사전 실종자 자주 가는 장소 등록 화면 -->
+    <fragment
+        android:id="@+id/fragment_my_preperson8"
+        android:name="com.mobile.reconnect.ui.my.MyPrepersonFragment8"
+        tools:layout="@layout/fragment_my_preperson8" >
+        <action
+            android:id="@+id/action_prepersonFragment8_to_prepersonFragment9"
+            app:destination="@id/fragment_my_preperson9" />
+    </fragment>
+
+    <!-- 사전 실종자 추가 특징 등록 화면 -->
+    <fragment
+        android:id="@+id/fragment_my_preperson9"
+        android:name="com.mobile.reconnect.ui.my.MyPrepersonFragment9"
+        tools:layout="@layout/fragment_my_preperson9" >
+        <action
+            android:id="@+id/action_prepersonFragment9_to_prepersonFragment10"
+            app:destination="@id/fragment_my_preperson10" />
+    </fragment>
+
+    <!-- 사전 실종자 가족관계증명서 등록 화면 -->
+    <fragment
+        android:id="@+id/fragment_my_preperson10"
+        android:name="com.mobile.reconnect.ui.my.MyPrepersonFragment10"
+        tools:layout="@layout/fragment_my_preperson10" >
+        <action
+            android:id="@+id/action_prepersonFragment10_to_prepersonFragment11"
+            app:destination="@id/fragment_my_preperson11" />
+    </fragment>
+
+    <!-- 사전 실종자 등록 완료 화면 -->
+    <fragment
+        android:id="@+id/fragment_my_preperson11"
+        android:name="com.mobile.reconnect.ui.my.MyPrepersonFragment11"
+        tools:layout="@layout/fragment_my_preperson11" >
+        <action
+            android:id="@+id/action_prepersonFragment11_to_navigation_my_preperson"
+            app:destination="@id/navigation_my_preperson" />
     </fragment>
 
 </navigation>

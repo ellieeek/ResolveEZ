@@ -29,7 +29,7 @@ data class Report(
     val ageGroup: AgeGroup, // 제보된 나이대
     val specialFeature: ReportSpecialFeature, // 제보된 특이사항
     val selectedClothingItems: List<String>, // 인상착의 선택 (체크박스 선택으로 구성됨)
-//    val foundImageUrl: String?, // 실종자 사진 첨부 (카메라 촬영 이미지 URL)
+    val foundImageUrl: String?, // 실종자 사진 첨부 (카메라 촬영 이미지 URL)
     val imageResId: Int,
     val locationFound: String, // 발견 위치
     val additionalDescription: String, // 추가 설명
