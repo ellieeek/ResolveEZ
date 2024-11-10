@@ -115,7 +115,9 @@ dependencies {
 	implementation("com.github.bumptech.glide:glide:4.12.0")
 	kapt("com.github.bumptech.glide:compiler:4.12.0")
 
+	// kakao
 	implementation ("com.kakao.sdk:v2-user:2.15.0")
+	implementation ("com.kakao.maps.open:android:2.12.8")
 
 	// Network
 	implementation ("com.squareup.retrofit2:retrofit:2.9.0")
