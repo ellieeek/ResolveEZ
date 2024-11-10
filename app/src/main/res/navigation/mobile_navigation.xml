@@ -65,7 +65,7 @@
             app:destination="@id/navigation_my_preperson" />
         <action
             android:id="@+id/action_navigation_mypage_to_navigation_my_report"
-            app:destination="@id/navigation_my_preperson" />
+            app:destination="@id/navigation_my_report" />
         <action
             android:id="@+id/action_navigation_mypage_to_navigation_my_noti"
             app:destination="@id/navigation_my_noti" />

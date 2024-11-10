@@ -4,6 +4,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
+        <import type="com.mobile.reconnect.data.model.enumeration.Status" />
+
         <variable
             name="item"
             type="com.mobile.reconnect.data.model.MyReportList" />
@@ -18,7 +20,7 @@
 
         <TextView
             style="@style/RegularFontKr.12"
-            android:id="@+id/date"
+            android:id="@+id/tv_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
@@ -33,8 +35,8 @@
             android:layout_height="57dp"
             android:layout_marginTop="5dp"
             android:src="@drawable/bg_gray_rectangle"
-            app:layout_constraintStart_toStartOf="@+id/date"
-            app:layout_constraintTop_toBottomOf="@+id/date" />
+            app:layout_constraintStart_toStartOf="@+id/tv_date"
+            app:layout_constraintTop_toBottomOf="@+id/tv_date" />
 
         <TextView
             android:id="@+id/tv_name"
@@ -51,14 +53,16 @@
             app:layout_constraintTop_toTopOf="@+id/ig_profile" />
 
         <TextView
+            android:id="@+id/tv_status"
             style="@style/BoldFontKr.14"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
             android:text="수색 중"
+            android:textColor="@{item.status == Status.SEARCHING ? @color/primary_red : @color/blue}"
             app:layout_constraintBottom_toBottomOf="@+id/ig_profile"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/date" />
+            app:layout_constraintTop_toBottomOf="@+id/tv_date" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
