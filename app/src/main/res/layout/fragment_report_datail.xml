@@ -11,7 +11,10 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginTop="0dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp">
 
         <ImageButton
             android:id="@+id/backButton"
@@ -55,249 +58,286 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="3000dp"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
                 tools:layout_editor_absoluteX="0dp"
                 tools:layout_editor_absoluteY="47dp">
 
                 <ImageView
                     android:id="@+id/missingPersonImage"
-                    android:layout_width="337dp"
-                    android:layout_height="292dp"
+                    android:layout_width="360dp"
+                    android:layout_height="354dp"
                     app:imageResource="@{missingPerson.imageResId}"
                     app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/textView2"
+                    style="@style/SemiBoldFontKr.16"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="28dp"
-                    android:layout_marginTop="32dp"
+                    android:layout_marginTop="12dp"
                     android:background="#FFC107"
-                    android:text="@{missingPerson.specialFeature.label}"
-                    android:textSize="22sp"
+                    android:text="@{' ' + missingPerson.specialFeature.label+' '}"
+                    android:textSize="17sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/missingPersonImage" />
 
                 <TextView
-                    android:id="@+id/textView3"
+                    android:id="@+id/textView1"
+                    style="@style/SemiBoldFontKr.16"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginTop="32dp"
+                    android:layout_marginStart="5dp"
+                    android:layout_marginTop="12dp"
                     android:lineSpacingExtra="16sp"
-                    android:text="@{missingPerson.name + '(' + missingPerson.nationality.label + ',' + missingPerson.gender.label + ',' + missingPerson.age +'세' +')'}"
-                    android:textSize="20sp"
+                    android:text="@{missingPerson.name}"
+                    android:textColor="@color/gray_800"
+                    android:textSize="17sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toEndOf="@+id/textView2"
                     app:layout_constraintTop_toBottomOf="@+id/missingPersonImage" />
 
+
                 <TextView
-                    android:id="@+id/textView9"
+                    android:id="@+id/textView3"
+                    style="@style/SemiBoldFontKr.16"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="32dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginTop="12dp"
+                    android:lineSpacingExtra="16sp"
+                    android:padding="2dp"
+                    android:text="@{'(' + missingPerson.nationality.label + ',' + missingPerson.gender.label + ',' + missingPerson.age +'세' +')'}"
+                    android:textColor="@color/gray_700"
+                    android:textSize="15sp"
+                    app:layout_constraintStart_toEndOf="@+id/textView1"
+                    app:layout_constraintTop_toBottomOf="@+id/missingPersonImage" />
+
+                <TextView
+                    android:id="@+id/textView9"
+                    style="@style/SemiBoldFontKr.16"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
                     android:text="신체정보"
-                    android:textSize="16sp"
+                    android:textColor="@color/gray_800"
+                    android:textSize="15sp"
                     android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.085"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
                 <TextView
                     android:id="@+id/textView20"
+                    style="@style/SemiBoldFontKr.16"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="32dp"
+                    android:layout_marginTop="20dp"
                     android:text="인상착의"
-                    android:textSize="16sp"
+                    android:textColor="@color/gray_800"
+                    android:textSize="15sp"
                     android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.08"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/separatorLine" />
 
                 <TextView
                     android:id="@+id/textView31"
+                    style="@style/SemiBoldFontKr.16"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="32dp"
+                    android:layout_marginTop="20dp"
                     android:text="실종위치"
-                    android:textSize="16sp"
+                    android:textColor="@color/gray_800"
+                    android:textSize="15sp"
                     android:textStyle="bold"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintHorizontal_bias="0.08"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/separatorLine2" />
 
                 <TextView
                     android:id="@+id/textView10"
-                    android:layout_width="wrap_content"
+                    style="@style/SemiBoldFontKr.16"
+                    android:layout_width="50dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="48dp"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginTop="12dp"
                     android:text="키"
-                    android:textSize="16sp"
+                    android:textAlignment="center"
+                    android:textColor="@color/gray_600_2"
+                    android:textSize="14sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
                 <TextView
                     android:id="@+id/textView21"
-                    android:layout_width="0dp"
+                    style="@style/SemiBoldFontKr.16"
+                    android:layout_width="99dp"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="28dp"
-                    android:layout_marginTop="36dp"
+                    android:layout_marginTop="12dp"
                     android:text="상의"
-                    android:textSize="16sp"
+                    android:textColor="@color/gray_600_2"
+                    android:textSize="14sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView20" />
 
                 <TextView
                     android:id="@+id/textView32"
-                    android:layout_width="0dp"
+                    style="@style/SemiBoldFontKr.16"
+                    android:layout_width="99dp"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="28dp"
-                    android:layout_marginTop="24dp"
+                    android:layout_marginTop="12dp"
                     android:text="발생일시"
-                    android:textSize="16sp"
+                    android:textColor="@color/gray_600_2"
+                    android:textSize="14sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView31" />
 
                 <TextView
                     android:id="@+id/textView34"
-                    android:layout_width="0dp"
+                    style="@style/SemiBoldFontKr.16"
+                    android:layout_width="99dp"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="28dp"
-                    android:layout_marginTop="22dp"
+                    android:layout_marginTop="12dp"
                     android:text="발생장소"
-                    android:textSize="16sp"
+                    android:textColor="@color/gray_600_2"
+                    android:textSize="14sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView32" />
 
                 <TextView
                     android:id="@+id/textView36"
-                    android:layout_width="0dp"
+                    style="@style/SemiBoldFontKr.16"
+                    android:layout_width="99dp"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="28dp"
-                    android:layout_marginTop="34dp"
+                    android:layout_marginTop="12dp"
                     android:text="현재예상위치"
-                    android:textSize="16sp"
+                    android:textColor="@color/gray_600_2"
+                    android:textSize="14sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView34" />
 
                 <TextView
                     android:id="@+id/textView23"
-                    android:layout_width="0dp"
+                    style="@style/SemiBoldFontKr.16"
+                    android:layout_width="99dp"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="28dp"
-                    android:layout_marginTop="28dp"
+                    android:layout_marginTop="12dp"
                     android:text="하의"
-                    android:textSize="16sp"
+                    android:textSize="14sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView21" />
 
                 <TextView
                     android:id="@+id/textView25"
-                    android:layout_width="0dp"
+                    style="@style/SemiBoldFontKr.16"
+                    android:layout_width="99dp"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="28dp"
-                    android:layout_marginTop="28dp"
+                    android:layout_marginTop="12dp"
                     android:text="신발"
-                    android:textSize="16sp"
+                    android:textSize="14sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView23" />
 
                 <TextView
                     android:id="@+id/textView27"
-                    android:layout_width="0dp"
+                    style="@style/SemiBoldFontKr.16"
+                    android:layout_width="99dp"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="28dp"
-                    android:layout_marginTop="28dp"
+                    android:layout_marginTop="12dp"
                     android:text="악세사리"
-                    android:textSize="16sp"
+                    android:textSize="14sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView25" />
 
                 <TextView
                     android:id="@+id/textView29"
-                    android:layout_width="0dp"
+                    style="@style/SemiBoldFontKr.16"
+                    android:layout_width="99dp"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="28dp"
-                    android:layout_marginTop="28dp"
+                    android:layout_marginTop="12dp"
                     android:text="두발"
-                    android:textSize="16sp"
+                    android:textSize="14sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView27" />
 
                 <TextView
                     android:id="@+id/textView22"
+                    style="@style/SemiBoldFontKr.16"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="100dp"
-                    android:layout_marginTop="36dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="12dp"
                     android:text="@{missingPerson.tops}"
-                    android:textSize="16sp"
+                    android:textColor="@color/gray_800"
+                    android:textSize="15sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toEndOf="@+id/textView21"
                     app:layout_constraintTop_toBottomOf="@+id/textView20" />
 
                 <TextView
                     android:id="@+id/textView26"
+                    style="@style/SemiBoldFontKr.16"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="100dp"
-                    android:layout_marginTop="28dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="12dp"
                     android:text="@{missingPerson.shoes}"
-                    android:textSize="16sp"
+                    android:textColor="@color/gray_800"
+                    android:textSize="15sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toEndOf="@+id/textView25"
-                    app:layout_constraintTop_toBottomOf="@+id/textView24" />
+                    app:layout_constraintTop_toBottomOf="@+id/textView23" />
 
                 <TextView
                     android:id="@+id/textView28"
+                    style="@style/SemiBoldFontKr.16"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="72dp"
-                    android:layout_marginTop="32dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="12dp"
                     android:text="@{missingPerson.accessories}"
-                    android:textSize="16sp"
+                    android:textColor="@color/gray_800"
+                    android:textSize="15sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toEndOf="@+id/textView27"
-                    app:layout_constraintTop_toBottomOf="@+id/textView26" />
+                    app:layout_constraintTop_toBottomOf="@+id/textView25" />
 
                 <TextView
                     android:id="@+id/textView30"
+                    style="@style/SemiBoldFontKr.16"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="100dp"
-                    android:layout_marginTop="24dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="12dp"
                     android:text="@{missingPerson.hair}"
-                    android:textSize="16sp"
+                    android:textColor="@color/gray_800"
+                    android:textSize="15sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toEndOf="@+id/textView29"
-                    app:layout_constraintTop_toBottomOf="@+id/textView28" />
+                    app:layout_constraintTop_toBottomOf="@+id/textView27" />
 
                 <TextView
                     android:id="@+id/textView24"
+                    style="@style/SemiBoldFontKr.16"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="100dp"
-                    android:layout_marginTop="28dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="12dp"
                     android:text="@{missingPerson.bottoms}"
-                    android:textSize="16sp"
+                    android:textColor="@color/gray_800"
+                    android:textSize="15sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toEndOf="@+id/textView23"
                     app:layout_constraintTop_toBottomOf="@+id/textView22" />
 
                 <TextView
                     android:id="@+id/textView33"
+                    style="@style/SemiBoldFontKr.16"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="72dp"
-                    android:layout_marginTop="24dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="12dp"
                     android:text="@{missingPerson.formattedLastSeenDateTime}"
                     android:textSize="16sp"
                     android:textStyle="bold"
@@ -306,10 +346,11 @@
 
                 <TextView
                     android:id="@+id/textView35"
+                    style="@style/SemiBoldFontKr.16"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
-                    android:layout_marginStart="72dp"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="12dp"
                     android:text="@{missingPerson.lastSeenLocation}"
                     android:textSize="16sp"
                     android:textStyle="bold"
@@ -318,87 +359,113 @@
 
                 <TextView
                     android:id="@+id/textView13"
-                    android:layout_width="wrap_content"
+                    style="@style/SemiBoldFontKr.16"
+                    android:layout_width="45dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="68dp"
+                    android:layout_marginStart="64dp"
+                    android:layout_marginTop="12dp"
                     android:text="몸무게"
-                    android:textSize="16sp"
+                    android:textAlignment="center"
+                    android:textColor="@color/gray_600_2"
+                    android:textSize="14sp"
                     app:layout_constraintStart_toEndOf="@+id/textView10"
-                    app:layout_constraintTop_toTopOf="@+id/textView10" />
+                    app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
                 <TextView
                     android:id="@+id/textView15"
-                    android:layout_width="wrap_content"
+                    style="@style/SemiBoldFontKr.16"
+                    android:layout_width="45dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="64dp"
+                    android:layout_marginTop="12dp"
                     android:text="체격"
-                    android:textSize="16sp"
+                    android:textAlignment="center"
+                    android:textColor="@color/gray_600_2"
+                    android:textSize="14sp"
                     app:layout_constraintStart_toEndOf="@+id/textView13"
-                    app:layout_constraintTop_toTopOf="@+id/textView10" />
+                    app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
                 <TextView
                     android:id="@+id/textView17"
-                    android:layout_width="wrap_content"
+                    style="@style/SemiBoldFontKr.16"
+                    android:layout_width="45dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="64dp"
+                    android:layout_marginTop="12dp"
                     android:text="얼굴형"
-                    android:textSize="16sp"
+                    android:textAlignment="center"
+                    android:textColor="@color/gray_600_2"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toEndOf="@+id/textView15"
-                    app:layout_constraintTop_toTopOf="@+id/textView10" />
+                    app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
                 <TextView
                     android:id="@+id/textView12"
-                    android:layout_width="wrap_content"
+                    style="@style/SemiBoldFontKr.16"
+                    android:layout_width="50dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="28dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="4dp"
                     android:text='@{String.format("%dcm", missingPerson.height)}'
-                    android:textSize="16sp"
-                    android:textStyle="bold"
+                    android:textAlignment="center"
+                    android:textColor="@color/gray_800"
+                    android:textSize="15sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
                 <TextView
                     android:id="@+id/textView14"
-                    android:layout_width="wrap_content"
+                    style="@style/SemiBoldFontKr.16"
+                    android:layout_width="45dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="60dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginStart="64dp"
+                    android:layout_marginTop="4dp"
                     android:text='@{String.format("%dkg", missingPerson.weight)}'
-                    android:textSize="16sp"
+                    android:textAlignment="center"
+                    android:textColor="@color/gray_800"
+                    android:textSize="15sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toEndOf="@+id/textView12"
                     app:layout_constraintTop_toBottomOf="@+id/textView13" />
 
                 <TextView
                     android:id="@+id/textView16"
-                    android:layout_width="wrap_content"
+                    style="@style/SemiBoldFontKr.16"
+                    android:layout_width="45dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="64dp"
-                    android:layout_marginTop="40dp"
+                    android:layout_marginTop="4dp"
                     android:text="@{missingPerson.bodyType.label}"
-                    android:textSize="16sp"
+                    android:textAlignment="center"
+                    android:textColor="@color/gray_800"
+                    android:textSize="15sp"
                     android:textStyle="bold"
                     app:layout_constraintStart_toEndOf="@+id/textView14"
-                    app:layout_constraintTop_toTopOf="@+id/textView15" />
+                    app:layout_constraintTop_toBottomOf="@+id/textView15" />
 
                 <TextView
                     android:id="@+id/textView18"
-                    android:layout_width="wrap_content"
+                    style="@style/SemiBoldFontKr.16"
+                    android:layout_width="45dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="64dp"
-                    android:layout_marginTop="40dp"
+                    android:layout_marginTop="4dp"
                     android:text="@{missingPerson.faceType.label}"
-                    android:textSize="16sp"
+                    android:textAlignment="center"
+                    android:textColor="@color/gray_800"
+                    android:textSize="15sp"
                     android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="1.0"
                     app:layout_constraintStart_toEndOf="@+id/textView16"
-                    app:layout_constraintTop_toTopOf="@+id/textView17" />
+                    app:layout_constraintTop_toBottomOf="@+id/textView17" />
 
                 <View
                     android:id="@+id/separatorLine"
                     android:layout_width="0dp"
                     android:layout_height="1dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="20dp"
                     android:background="#D3D3D3"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
@@ -408,46 +475,47 @@
                     android:id="@+id/separatorLine2"
                     android:layout_width="0dp"
                     android:layout_height="1dp"
-                    android:layout_marginTop="16dp"
+                    android:layout_marginTop="20dp"
                     android:background="#D3D3D3"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/textView29" />
 
-                <TextView
-                    android:layout_width="100dp"
-                    android:layout_height="10dp"
-                    android:text="        "
-                    app:layout_editor_absoluteY="1100dp"
-                    tools:ignore="MissingConstraints" />
-
-                <Button
+                <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/button"
                     style="@style/Widget.AppCompat.Button.Small"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="40dp"
-                    android:layout_marginTop="20dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="12dp"
+                    android:background="@drawable/bg_light_pink_radius_3"
+                    android:paddingStart="20dp"
+                    android:paddingEnd="20dp"
                     android:text="지도에서 확인하기"
-                    android:textColor="@color/white"
+                    android:textColor="@color/primary_red"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
                     app:layout_constraintStart_toEndOf="@+id/textView36"
-                    app:layout_constraintTop_toBottomOf="@+id/textView35" />
+                    app:layout_constraintTop_toBottomOf="@+id/textView34" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
 
         <Button
             android:id="@+id/reportbtn"
-            android:layout_width="364dp"
-            android:layout_height="63dp"
-            android:layout_marginTop="5dp"
+            style="@style/SemiBoldFontKr.16"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="1dp"
+            android:layout_marginBottom="4dp"
             android:text="제보하기"
-            android:textStyle="bold"
             android:textColor="@color/white"
             android:textSize="19dp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/scrollView3" />
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

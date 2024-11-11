@@ -11,6 +11,7 @@ import androidx.navigation.fragment.findNavController
 import com.mobile.reconnect.R
 import com.mobile.reconnect.data.model.MissingPerson
 import com.mobile.reconnect.databinding.FragmentReportRegistrationBinding
+import android.widget.RadioButton
 
 class ReportRegistrationFragment : Fragment() {
 
@@ -38,6 +39,9 @@ class ReportRegistrationFragment : Fragment() {
             binding.missingPerson = person // 데이터 바인딩에 설정
         }
 
+        // 라디오 버튼 그룹 설정
+        setupRadioGroups()
+
         // 카메라 호출 기능 설정
         binding.frameLayout3.setOnClickListener {
             openCamera()
@@ -54,6 +58,29 @@ class ReportRegistrationFragment : Fragment() {
         // reportbtn 클릭 시 MyReportFragment로 이동
         binding.reportbtn.setOnClickListener {
             findNavController().navigate(R.id.action_reportRegistrationFragment_to_myReportFragment)
+        }
+    }
+
+    private fun setupRadioGroups() {
+        // 그룹 1: 남자, 여자
+        val genderRadioButtons = listOf(binding.radioButton, binding.radioButton2)
+        setRadioButtonGroup(genderRadioButtons)
+
+        // 그룹 2: 해당없음, 장애 (지적, 자폐성, 정신), 치매
+        val specialConditionRadioButtons = listOf(binding.radioButton13, binding.radioButton14, binding.radioButton15)
+        setRadioButtonGroup(specialConditionRadioButtons)
+    }
+
+    private fun setRadioButtonGroup(radioButtons: List<RadioButton>) {
+        for (radioButton in radioButtons) {
+            radioButton.setOnClickListener {
+                // 클릭된 버튼 이외의 버튼들 선택 해제
+                radioButtons.forEach { btn ->
+                    if (btn != radioButton) {
+                        btn.isChecked = false
+                    }
+                }
+            }
         }
     }
 
