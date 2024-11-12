@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/bottom_sheet"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/background_home_bottom_sheet"
+            android:orientation="vertical" >
+
+            <androidx.appcompat.widget.AppCompatImageButton
+                android:id="@+id/btn_cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:background="@color/white"
+                android:src="@drawable/ic_x"
+                app:layout_constraintBottom_toBottomOf="@+id/tv_title_gender"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_title_gender"
+                style="@style/MediumFontKr.16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="20dp"
+                android:textColor="@color/black"
+                android:text="성별"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/chipGroup_gender"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="@+id/tv_title_gender"
+                app:layout_constraintTop_toBottomOf="@+id/tv_title_gender"
+                app:singleLine="true">
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/btn_male"
+                    style="@style/RegularFontKr.15"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="남자"
+                    android:textColor="@color/chip_selected_red_or_gray700"
+                    app:chipBackgroundColor="@color/white"
+                    app:chipStrokeColor="@color/chip_selected_red_or_gray300"
+                    app:chipStrokeWidth="1dp"
+                    app:rippleColor="@android:color/transparent"
+                    app:textEndPadding="14dp"
+                    app:textStartPadding="14dp" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/btn_female"
+                    style="@style/RegularFontKr.15"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="6dp"
+                    android:text="여자"
+                    android:textColor="@color/chip_selected_red_or_gray700"
+                    app:chipBackgroundColor="@color/white"
+                    app:chipStrokeColor="@color/chip_selected_red_or_gray300"
+                    app:chipStrokeWidth="1dp"
+                    app:rippleColor="@android:color/transparent"
+                    app:textEndPadding="14dp"
+                    app:textStartPadding="14dp" />
+
+            </com.google.android.material.chip.ChipGroup>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_select"
+                style="@style/SemiBoldFontKr.16"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="16dp"
+                android:background="@drawable/bg_primary_red_radius_4"
+                android:text="결과 보기"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/chipGroup_gender"
+                app:layout_constraintTop_toBottomOf="@+id/chipGroup_gender" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

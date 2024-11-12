@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import androidx.core.content.ContextCompat
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.chip.Chip
@@ -16,7 +17,7 @@ import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_search) {
-	private val viewModel: SearchViewModel by viewModels()
+	private val viewModel: SearchViewModel by activityViewModels()
 
 	private lateinit var adapter: MissingPersonsAdapter
 
@@ -46,9 +47,15 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_sea
 			filterBottomSheet.show(childFragmentManager, filterBottomSheet.tag)
 		}
 
-		setChipClickListener(binding.btnAge, R.color.primary_red, R.color.gray_300)
-		setChipClickListener(binding.btnDefail, R.color.primary_red, R.color.gray_300)
-		setChipClickListener(binding.btnGender, R.color.primary_red, R.color.gray_300)
+		binding.filteringChipGender.setOnClickListener {
+			val filterBottomSheet = SearchFilteringGenderFragment()
+			filterBottomSheet.show(childFragmentManager, filterBottomSheet.tag)
+
+			setChipClickListener(binding.filteringChipGender, R.color.primary_red, R.color.gray_300)
+		}
+
+		setChipClickListener(binding.filteringChipAge, R.color.primary_red, R.color.gray_300)
+		setChipClickListener(binding.filteringChipFeature, R.color.primary_red, R.color.gray_300)
 
 		// ViewModel 상태에 따라 UI 업데이트
 		viewModel.missingPersons.observe(viewLifecycleOwner) { persons ->
@@ -57,7 +64,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_sea
 
 		// 에러 처리
 		viewModel.error.observe(viewLifecycleOwner) {
-			// 에러 메시지 처리 (예: Toast 또는 Snackbar)
+
 		}
 	}
 
@@ -72,7 +79,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_sea
 
 	// Chip 클릭 시 색상 변경 함수
 	private fun setChipClickListener(chip: Chip, selectedColor: Int, unselectedColor: Int) {
-		chip.setOnClickListener {
+//		chip.setOnClickListener {
 			val currentStrokeColor = chip.chipStrokeColor?.defaultColor
 
 			if (currentStrokeColor == ContextCompat.getColor(requireContext(), selectedColor)) {
@@ -84,6 +91,6 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_sea
 			}
 
 			chip.isChecked = !chip.isChecked
-		}
+//		}
 	}
 }
