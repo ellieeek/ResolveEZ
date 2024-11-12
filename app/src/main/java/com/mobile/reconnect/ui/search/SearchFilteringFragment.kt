@@ -9,7 +9,10 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.mobile.reconnect.R
 import com.mobile.reconnect.databinding.FragmentSearchFilteringBinding
 import androidx.core.content.ContextCompat
+import dagger.hilt.EntryPoint
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SearchFilteringFragment : BottomSheetDialogFragment() {
 	private var _binding: FragmentSearchFilteringBinding? = null
 	private val binding get() = _binding!!

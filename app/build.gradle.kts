@@ -8,6 +8,7 @@ plugins {
 	id("kotlin-kapt")
 	id("com.google.android.libraries.mapsplatform.secrets-gradle-plugin")
 	id("kotlin-parcelize")
+	id("dagger.hilt.android.plugin")
 }
 
 val properties = Properties().apply {
@@ -29,7 +30,7 @@ android {
 		vectorDrawables {
 			useSupportLibrary = true
 		}
-
+		buildConfigField("String", "KAKAO_LOGIN_KEY", properties.getProperty("KAKAO_LOGIN_KEY"))
 		buildConfigField("String", "MAPS_API_KEY", properties.getProperty("MAPS_API_KEY"))
 	}
 
@@ -126,8 +127,7 @@ dependencies {
 	implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
 
 	// Hilt
-	implementation("com.google.dagger:hilt-android:2.44")
-	kapt("com.google.dagger:hilt-android-compiler:2.44")
-
+	implementation("com.google.dagger:hilt-android:2.48")
+	kapt("com.google.dagger:hilt-android-compiler:2.48")
 }
 
