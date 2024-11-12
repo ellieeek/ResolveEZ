@@ -10,7 +10,6 @@
             name="item"
             type="com.mobile.reconnect.data.model.MyReportList" />
     </data>
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -59,7 +58,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="16dp"
             android:text="수색 중"
-            android:textColor="@{item.status == Status.SEARCHING ? @color/primary_red : @color/blue}"
+            android:textColor="@{item.status.equals(Status.SEARCHING) ? @color/primary_red : @color/blue}"
             app:layout_constraintBottom_toBottomOf="@+id/ig_profile"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv_date" />

@@ -1,13 +1,14 @@
 package com.mobile.reconnect.data.network
 
+import com.mobile.reconnect.BuildConfig
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.net.CookieManager
 
 object ApiClient {
-	private const val BASE_URL = ""
-//	private const val BASE_URL = BuildConfig.BASE_URL
+//	private const val BASE_URL = ""
+	private const val BASE_URL = BuildConfig.BASE_URL
 val cookieManager = CookieManager()
 
 	private var builder = OkHttpClient().newBuilder()

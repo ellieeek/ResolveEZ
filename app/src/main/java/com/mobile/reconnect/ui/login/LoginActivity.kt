@@ -17,8 +17,10 @@ import com.mobile.reconnect.MainActivity
 import com.mobile.reconnect.R
 import com.mobile.reconnect.databinding.ActivityLoginBinding
 import com.mobile.reconnect.utils.Constants
-import com.software.somding.presentation.common.BaseActivity
+import com.mobile.reconnect.ui.common.BaseActivity
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class LoginActivity: BaseActivity<ActivityLoginBinding>(R.layout.activity_login), View.OnClickListener {
 
 	private val mCallback: (OAuthToken?, Throwable?) -> Unit = { token, error ->

@@ -1,15 +1,13 @@
 package com.mobile.reconnect
 
 import android.os.Bundle
-import com.google.android.material.bottomnavigation.BottomNavigationView
-import androidx.navigation.findNavController
 import androidx.navigation.fragment.NavHostFragment
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.mobile.reconnect.databinding.ActivityMainBinding
-import com.software.somding.presentation.common.BaseActivity
+import com.mobile.reconnect.ui.common.BaseActivity
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity: BaseActivity<ActivityMainBinding>(R.layout.activity_main) {
 
 	override fun onCreate(savedInstanceState: Bundle?) {

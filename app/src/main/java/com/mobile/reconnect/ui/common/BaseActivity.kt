@@ -1,10 +1,11 @@
-package com.software.somding.presentation.common
+package com.mobile.reconnect.ui.common
 
 import android.os.Bundle
 import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
+import dagger.hilt.android.AndroidEntryPoint
 
 abstract class BaseActivity<T: ViewDataBinding>(@LayoutRes private val layoutRes: Int) : AppCompatActivity() {
 
