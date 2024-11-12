@@ -24,6 +24,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_sea
 		super.onViewCreated(view, savedInstanceState)
 
 		setupRecyclerView()
+		viewModel.searchMissingPersons("") // 실종자 목록 조회
 
 		// 검색 뷰 설정
 		binding.searchView.setOnQueryTextListener(object : androidx.appcompat.widget.SearchView.OnQueryTextListener {

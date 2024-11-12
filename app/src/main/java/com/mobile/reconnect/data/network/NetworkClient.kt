@@ -39,7 +39,7 @@ object NetworkClient {
 	@Provides
 	@Singleton
 	fun provideSearchApi(retrofit: Retrofit): SearchApi {
-		return retrofit.create(SearchApi::class.java)  // SearchApi 인스턴스를 제공
+		return retrofit.create(SearchApi::class.java)
 	}
 
 	@Provides

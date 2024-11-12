@@ -33,8 +33,9 @@ class SearchViewModel @Inject constructor(
 	private var currentPage = 0
 
 	// 실종자 검색 함수
+	// 실종자 검색 함수
 	fun searchMissingPersons(query: String) {
-		val pageable = PageableRequest(currentPage, 10) // 10개의 항목을 한 페이지로 설정
+		val pageable = PageableRequest(currentPage, 10)
 		Log.d("SearchViewModel", "Searching for: $query with page: $currentPage")
 
 		searchRepository.searchMissingPerson(query, pageable).enqueue(object :
@@ -47,14 +48,23 @@ class SearchViewModel @Inject constructor(
 					// 성공적인 응답 처리
 					val responseBody = response.body()
 					if (responseBody != null && responseBody.content.isNotEmpty()) {
-						_missingPersons.value = responseBody.content
-						currentPage++
-						Log.d(
-							"SearchViewModel",
-							"Response successful: ${responseBody.content.size} items found"
-						)
+						// query와 이름이 일치하는 실종자만 필터링
+						val filteredList = responseBody.content.filter { missingPerson ->
+							missingPerson.name.contains(query, ignoreCase = true) // 대소문자 구분 없이 검색
+						}
+
+						// 필터링된 리스트를 _missingPersons에 업데이트
+						if (filteredList.isNotEmpty()) {
+							_missingPersons.value = filteredList
+							currentPage++
+							Log.d("SearchViewModel", "Response successful: ${filteredList.size} items found")
+						} else {
+							Log.d("SearchViewModel", "No data found for the query: $query")
+							_missingPersons.value = emptyList()
+						}
 					} else {
 						Log.d("SearchViewModel", "No data found")
+						_missingPersons.value = emptyList()
 					}
 				} else {
 					// 실패 시 처리
