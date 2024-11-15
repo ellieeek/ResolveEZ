@@ -282,16 +282,6 @@ class MapFragment : BaseFragment<FragmentMapBinding>(R.layout.fragment_map) {
 	 * 위치 label 출력
 	 */
 	private fun drawLocationLabel(lat: Double, lng: Double) {
-//		val styles = kakaoMap!!.labelManager
-//			?.addLabelStyles(LabelStyles.from(LabelStyle.from(R.drawable.ic_predicted_location)))
-//
-//		val options = LabelOptions.from(LatLng.from(lat, lng))
-//			.setStyles(styles)
-//
-//		val layer = kakaoMap!!.labelManager!!.layer
-//
-//		label = layer!!.addLabel(options)
-
 		val styles: LabelStyles = LabelStyles.from(LabelStyle.from(R.drawable.ic_predicted_location))
 
 		val options = LabelOptions.from(LatLng.from(lat, lng))
