@@ -69,10 +69,11 @@ class MapFragment : BaseFragment<FragmentMapBinding>(R.layout.fragment_map) {
 
 	private lateinit var client: OkHttpClient
 	private lateinit var stompClient: StompClient
-	private lateinit var topic: Disposable
-	private lateinit var jsonObject: JSONObject
 	private var latitude: Double = 0.0
 	private var longitude: Double = 0.0
+
+	private var label: Label? = null
+
 
 	private val PERMISSIONS_REQUEST_CODE = 100
 	private val permissions = arrayOf(
@@ -123,11 +124,6 @@ class MapFragment : BaseFragment<FragmentMapBinding>(R.layout.fragment_map) {
 		viewModel.radius.observe(viewLifecycleOwner) { radiusValue ->
 			binding.tvTitle.text = "반경 ${radiusValue}km 이내 실종자 0명"
 		}
-
-		client = OkHttpClient()
-		val url = "ws://223.130.139.166:8080/ws"
-		stompClient = Stomp.over(Stomp.ConnectionProvider.OKHTTP, url)
-		runStomp()
 	}
 
 	/***
@@ -151,13 +147,11 @@ class MapFragment : BaseFragment<FragmentMapBinding>(R.layout.fragment_map) {
 		})
 	}
 
-
 	private fun centerMap(latitude: Double, longitude: Double) {
 		val latLng = LatLng.from(latitude, longitude)
 
 		kakaoMap?.moveCamera(CameraUpdateFactory.newCenterPosition(latLng, 13))
 	}
-
 
 	/***
 	 * bottom sheet
@@ -268,8 +262,6 @@ class MapFragment : BaseFragment<FragmentMapBinding>(R.layout.fragment_map) {
 		}
 	}
 
-	private var label: Label? = null
-
 	private fun drawLabel(lat: Double, lng: Double) {
 		label?.remove()
 
@@ -294,13 +286,70 @@ class MapFragment : BaseFragment<FragmentMapBinding>(R.layout.fragment_map) {
 		val url = "ws://223.130.139.166:8080/ws"
 		stompClient = Stomp.over(Stomp.ConnectionProvider.OKHTTP, url)
 
-		runStomp()
+		runStompTopicRadiusMissingPersons()
 	}
 
 	/***
 	 * stomp
 	 */
-	private fun runStomp() {
+	private var isSubscribedToResponse = false
+
+	private fun runStompTopicRadiusMissingPersons() {
+		stompClient.topic("/topic/radius-missing-persons").subscribe { topicMessage ->
+			Log.i("Message Received", topicMessage.payload)
+		}
+
+		val headerList = arrayListOf<StompHeader>()
+		stompClient.connect(headerList)
+
+		stompClient.lifecycle().subscribe { lifecycleEvent ->
+			when (lifecycleEvent.type) {
+				LifecycleEvent.Type.OPENED -> {
+					Log.i("OPENED", "STOMP connection opened")
+				}
+
+				LifecycleEvent.Type.CLOSED -> {
+					Log.i("CLOSED", "STOMP connection closed")
+				}
+
+				LifecycleEvent.Type.ERROR -> {
+					Log.i("ERROR", "Error in STOMP connection")
+					Log.e("CONNECT ERROR", lifecycleEvent.exception.toString())
+				}
+
+				else -> {
+					Log.i("ELSE", lifecycleEvent.message ?: "Unknown event")
+				}
+			}
+		}
+
+		val combinedLocation = MediatorLiveData<Pair<Double, Double>>()
+
+		combinedLocation.addSource(viewModel.uLatitude) { latitude ->
+			val longitude = viewModel.uLongitude.value ?: 0.0
+			combinedLocation.value = Pair(latitude, longitude)
+		}
+
+		combinedLocation.addSource(viewModel.uLongitude) { longitude ->
+			val latitude = viewModel.uLatitude.value ?: 0.0
+			combinedLocation.value = Pair(latitude, longitude)
+		}
+
+		combinedLocation.observe(viewLifecycleOwner) { (latitude, longitude) ->
+			Log.d("내 위치...", "위도: $latitude, 경도: $longitude")
+
+			val data = JSONObject().apply {
+				put("userLocation", JSONObject().apply {
+					put("latitude", latitude)
+					put("longitude", longitude)
+				})
+				put("radius", viewModel.radius.value)
+			}
+
+			stompClient.send("/app/ws/radius/missing-persons", data.toString()).subscribe()
+		}
+	}
+	private fun runStompTopicPredictedLocations() {
 		stompClient.topic("/topic/predicted-locations").subscribe { topicMessage ->
 			Log.i("Message Received", topicMessage.payload)
 		}
@@ -349,7 +398,7 @@ class MapFragment : BaseFragment<FragmentMapBinding>(R.layout.fragment_map) {
 					put("latitude", latitude)
 					put("longitude", longitude)
 				})
-				put("radiust", viewModel.radius.value)
+				put("radius", viewModel.radius.value)
 			}
 
 			stompClient.send("/app/ws/radius/missing-persons", data.toString()).subscribe()
