@@ -91,31 +91,31 @@ class MapFragment : BaseFragment<FragmentMapBinding>(R.layout.fragment_map) {
 		setupStompConnection() // stomp 설정
 
 		binding.radius1km.setOnClickListener {
-			drawCircle(1000.0, "#F89035")
+			drawCircle(1000.0, Color.argb(40, 248, 144, 53))
 			bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
 			viewModel.updateRadius(1)
 		}
 
 		binding.radius2km.setOnClickListener {
-			drawCircle(2000.0, "#7EB9FD")
+			drawCircle(2000.0, Color.argb(40, 126, 185, 253))
 			bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
 			viewModel.updateRadius(2)
 		}
 
 		binding.radius3km.setOnClickListener {
-			drawCircle(3000.0, "#89D38B")
+			drawCircle(3000.0, Color.argb(40, 137, 211, 139))
 			bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
 			viewModel.updateRadius(3)
 		}
 
 		binding.radius4km.setOnClickListener {
-			drawCircle(4000.0, "#E4BDFF")
+			drawCircle(4000.0, Color.argb(40, 228, 189, 255))
 			bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
 			viewModel.updateRadius(4)
 		}
 
 		binding.radius5km.setOnClickListener {
-			drawCircle(5000.0, "#FDF77B")
+			drawCircle(5000.0, Color.argb(40, 253, 247, 123))
 			bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
 			viewModel.updateRadius(5)
 		}
@@ -361,7 +361,7 @@ class MapFragment : BaseFragment<FragmentMapBinding>(R.layout.fragment_map) {
 	}
 
 	@SuppressLint("MissingPermission")
-	private fun drawCircle(radius: Double, color: String) {
+	private fun drawCircle(radius: Double, color: Int) {
 		// 기존 원 삭제
 		currentCircle?.remove()
 
@@ -377,7 +377,7 @@ class MapFragment : BaseFragment<FragmentMapBinding>(R.layout.fragment_map) {
 						radius.toFloat()
 					)
 				)
-					.setStylesSet(PolygonStylesSet.from(PolygonStyles.from(Color.parseColor(color))))
+					.setStylesSet(PolygonStylesSet.from(PolygonStyles.from(color)))
 
 
 				currentCircle = kakaoMap!!.shapeManager!!.layer.addPolygon(circleOptions)
