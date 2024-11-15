@@ -49,7 +49,6 @@ class SearchFilteringFragment : BottomSheetDialogFragment() {
 
 	private fun selectGender(selectedChip: Chip, unselectedChip: Chip) {
 		val selectedColor = ContextCompat.getColor(requireContext(), R.color.primary_red)
-		val unselectedColor = ContextCompat.getColor(requireContext(), R.color.gray_300)
 
 		val currentStrokeColor = selectedChip.chipStrokeColor?.defaultColor
 

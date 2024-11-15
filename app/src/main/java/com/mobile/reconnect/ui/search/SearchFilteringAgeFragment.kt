@@ -9,17 +9,19 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.mobile.reconnect.R
 import com.mobile.reconnect.databinding.FragmentSearchFilteringBinding
 import androidx.core.content.ContextCompat
+import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 import com.mobile.reconnect.data.model.search.SearchRequest
+import com.mobile.reconnect.databinding.FragmentSearchFilteringAgeBinding
 import com.mobile.reconnect.databinding.FragmentSearchFilteringGenderBinding
 import com.mobile.reconnect.ui.search.viewmodel.SearchViewModel
 import dagger.hilt.EntryPoint
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class SearchFilteringGenderFragment : BottomSheetDialogFragment() {
-	private var _binding: FragmentSearchFilteringGenderBinding? = null
+class SearchFilteringAgeFragment : BottomSheetDialogFragment() {
+	private var _binding: FragmentSearchFilteringAgeBinding? = null
 	private val binding get() = _binding!!
 
 	private val viewModel: SearchViewModel by activityViewModels()
@@ -29,24 +31,16 @@ class SearchFilteringGenderFragment : BottomSheetDialogFragment() {
 		inflater: LayoutInflater, container: ViewGroup?,
 		savedInstanceState: Bundle?
 	): View {
-		_binding = FragmentSearchFilteringGenderBinding.inflate(inflater, container, false)
+		_binding = FragmentSearchFilteringAgeBinding.inflate(inflater, container, false)
 		return binding.root
 	}
 
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 		super.onViewCreated(view, savedInstanceState)
-		var gender = ""
+		var age = ""
 
-		binding.btnMale.setOnClickListener {
-			selectGender(binding.btnMale, binding.btnFemale)
-			gender = "MALE"
-			request = SearchRequest(gender = gender)
-		}
-
-		binding.btnFemale.setOnClickListener {
-			selectGender(binding.btnFemale, binding.btnMale)
-			gender = "FEMALE"
-			request = SearchRequest(gender = gender)
+		binding.etAge.doAfterTextChanged {
+			request = SearchRequest(age = age.toInt())
 		}
 
 		binding.btnSelect.setOnClickListener {
@@ -62,6 +56,7 @@ class SearchFilteringGenderFragment : BottomSheetDialogFragment() {
 
 	private fun selectGender(selectedChip: Chip, unselectedChip: Chip) {
 		val selectedColor = ContextCompat.getColor(requireContext(), R.color.primary_red)
+		val unselectedColor = ContextCompat.getColor(requireContext(), R.color.gray_300)
 
 		val currentStrokeColor = selectedChip.chipStrokeColor?.defaultColor
 

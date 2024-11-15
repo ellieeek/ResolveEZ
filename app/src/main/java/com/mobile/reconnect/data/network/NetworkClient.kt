@@ -12,6 +12,7 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
+import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
 @Module
@@ -23,6 +24,8 @@ object NetworkClient {
 	fun provideOkHttpClient(): OkHttpClient {
 		return OkHttpClient.Builder()
 			.cookieJar(JavaNetCookieJar(CookieManager()))  // 쿠키 관리 설정
+//			.readTimeOut(30, TimeUnit.SECONDS)
+//			.writeTimeOut(30, TimeUnit.SECONDS)
 			.build()
 	}
 
@@ -47,4 +50,5 @@ object NetworkClient {
 	fun provideApiService(retrofit: Retrofit): ApiService {
 		return retrofit.create(ApiService::class.java)
 	}
+
 }

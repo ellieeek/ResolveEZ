@@ -39,6 +39,8 @@ class MissingPersonsAdapter(
 				"NONE" -> ""
 				"DISABILITY" -> ", 장애"
 				"DEMENTIA" -> ", 치매"
+				"RUNAWAY" -> ", 가출인"
+				"OTHER" -> ", 기타"
 				else -> person.specialFeature
 			}
 

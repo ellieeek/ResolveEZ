@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.mobile.reconnect.data.model.search.MissingPerson
 import com.mobile.reconnect.data.model.search.PageableRequest
+import com.mobile.reconnect.data.model.search.SearchRequest
 import com.mobile.reconnect.data.model.search.SearchResponse
 import com.mobile.reconnect.data.repository.SearchRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -38,8 +39,8 @@ class SearchViewModel @Inject constructor(
 	/***
 	 * 실종자 검색
 	 * @return 실종자 리스트
- 	 */
-	fun searchMissingPersons(query: String) {
+	 */
+	fun searchMissingPersons(query: SearchRequest) {
 		val pageable = PageableRequest(currentPage, 10)
 		Log.d("SearchViewModel", "Searching for: $query with page: $currentPage")
 
@@ -56,15 +57,11 @@ class SearchViewModel @Inject constructor(
 
 						// 필터링
 						var filteredList = responseBody.content.filter { missingPerson ->
-							missingPerson.name.contains(query, ignoreCase = true) // 대소문자 구분 없이 검색,
+							missingPerson.name.equals(query.name, ignoreCase = true) ||
+									missingPerson.gender == query.gender ||
+									missingPerson.age.toString() == query.age.toString() ||
+									missingPerson.specialFeature == query.specialFeature
 						}
-//
-						if(query == "MALE" || query == "FEMALE"){
-							filteredList = responseBody.content.filter { missingPerson ->
-								missingPerson.gender == query
-							}
-						}
-
 
 						// 필터링된 리스트를 _missingPersons에 업데이트
 						if (filteredList.isNotEmpty()) {

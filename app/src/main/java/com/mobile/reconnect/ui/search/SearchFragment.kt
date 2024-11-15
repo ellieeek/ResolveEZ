@@ -9,6 +9,7 @@ import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.chip.Chip
 import com.mobile.reconnect.R
+import com.mobile.reconnect.data.model.search.SearchRequest
 import com.mobile.reconnect.databinding.FragmentSearchBinding
 import com.mobile.reconnect.ui.common.BaseFragment
 import com.mobile.reconnect.ui.search.viewmodel.SearchViewModel
@@ -20,18 +21,21 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_sea
 	private val viewModel: SearchViewModel by activityViewModels()
 
 	private lateinit var adapter: MissingPersonsAdapter
+	private var request = SearchRequest()
 
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 		super.onViewCreated(view, savedInstanceState)
 
 		setupRecyclerView()
-		viewModel.searchMissingPersons("") // 실종자 목록 조회
+		request = SearchRequest()
+		viewModel.searchMissingPersons(request) // 실종자 목록 조회
 
 		// 검색 뷰 설정
 		binding.searchView.setOnQueryTextListener(object : androidx.appcompat.widget.SearchView.OnQueryTextListener {
 			override fun onQueryTextSubmit(query: String?): Boolean {
 				query?.let {
-					viewModel.searchMissingPersons(it)
+					request = SearchRequest(name = it)
+					viewModel.searchMissingPersons(request)
 				}
 				return true
 			}
@@ -46,16 +50,24 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_sea
 			val filterBottomSheet = SearchFilteringFragment()
 			filterBottomSheet.show(childFragmentManager, filterBottomSheet.tag)
 		}
-
 		binding.filteringChipGender.setOnClickListener {
 			val filterBottomSheet = SearchFilteringGenderFragment()
 			filterBottomSheet.show(childFragmentManager, filterBottomSheet.tag)
 
 			setChipClickListener(binding.filteringChipGender, R.color.primary_red, R.color.gray_300)
 		}
+		binding.filteringChipFeature.setOnClickListener {
+			val filterBottomSheet = SearchFilteringFeatureFragment()
+			filterBottomSheet.show(childFragmentManager, filterBottomSheet.tag)
 
-		setChipClickListener(binding.filteringChipAge, R.color.primary_red, R.color.gray_300)
-		setChipClickListener(binding.filteringChipFeature, R.color.primary_red, R.color.gray_300)
+			setChipClickListener(binding.filteringChipFeature, R.color.primary_red, R.color.gray_300)
+		}
+		binding.filteringChipAge.setOnClickListener {
+			val filterBottomSheet = SearchFilteringAgeFragment()
+			filterBottomSheet.show(childFragmentManager, filterBottomSheet.tag)
+
+			setChipClickListener(binding.filteringChipAge, R.color.primary_red, R.color.gray_300)
+		}
 
 		// ViewModel 상태에 따라 UI 업데이트
 		viewModel.missingPersons.observe(viewLifecycleOwner) { persons ->
