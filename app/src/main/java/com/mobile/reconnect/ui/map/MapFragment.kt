@@ -1,7 +1,6 @@
 package com.mobile.reconnect.ui.map
 
 import android.Manifest
-import android.R.attr.label
 import android.annotation.SuppressLint
 import android.content.pm.PackageManager
 import android.graphics.Color
@@ -27,9 +26,15 @@ import com.kakao.vectormap.LatLng
 import com.kakao.vectormap.MapLifeCycleCallback
 import com.kakao.vectormap.MapView
 import com.kakao.vectormap.camera.CameraUpdateFactory
+import com.kakao.vectormap.label.Label
 import com.kakao.vectormap.label.LabelOptions
 import com.kakao.vectormap.label.LabelStyle
 import com.kakao.vectormap.label.LabelStyles
+import com.kakao.vectormap.shape.DotPoints
+import com.kakao.vectormap.shape.Polygon
+import com.kakao.vectormap.shape.PolygonOptions
+import com.kakao.vectormap.shape.PolygonStyles
+import com.kakao.vectormap.shape.PolygonStylesSet
 import com.mobile.reconnect.R
 import com.mobile.reconnect.data.model.MissingPerson_ex
 import com.mobile.reconnect.databinding.FragmentMapBinding
@@ -45,8 +50,9 @@ import ua.naiksoftware.stomp.StompClient
 import ua.naiksoftware.stomp.dto.LifecycleEvent
 import ua.naiksoftware.stomp.dto.StompHeader
 
+
 @AndroidEntryPoint
-class MapFragment: BaseFragment<FragmentMapBinding>(R.layout.fragment_map) {
+class MapFragment : BaseFragment<FragmentMapBinding>(R.layout.fragment_map) {
 	private val viewModel: HomeBottomViewModel by activityViewModels()
 
 	private lateinit var mapView: MapView
@@ -56,7 +62,8 @@ class MapFragment: BaseFragment<FragmentMapBinding>(R.layout.fragment_map) {
 	private lateinit var mapViewContainer: ViewGroup
 
 	private lateinit var bottomSheetBehavior: BottomSheetBehavior<View>
-	//	private var currentCircle: Circle? = null
+
+	private var currentCircle: Polygon? = null
 	private lateinit var adapter: MissingPersonsAdapter
 	private lateinit var persons: List<MissingPerson_ex>
 
@@ -84,31 +91,31 @@ class MapFragment: BaseFragment<FragmentMapBinding>(R.layout.fragment_map) {
 		setupStompConnection() // stomp 설정
 
 		binding.radius1km.setOnClickListener {
-			drawCircle(1000.0, Color.parseColor("#F89035"))
+			drawCircle(1000.0, "#F89035")
 			bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
 			viewModel.updateRadius(1)
 		}
 
 		binding.radius2km.setOnClickListener {
-			drawCircle(2000.0, Color.parseColor("#7EB9FD"))
+			drawCircle(2000.0, "#7EB9FD")
 			bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
 			viewModel.updateRadius(2)
 		}
 
 		binding.radius3km.setOnClickListener {
-			drawCircle(3000.0, Color.parseColor("#89D38B"))
+			drawCircle(3000.0, "#89D38B")
 			bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
 			viewModel.updateRadius(3)
 		}
 
 		binding.radius4km.setOnClickListener {
-			drawCircle(4000.0, Color.parseColor("#E4BDFF"))
+			drawCircle(4000.0, "#E4BDFF")
 			bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
 			viewModel.updateRadius(4)
 		}
 
 		binding.radius5km.setOnClickListener {
-			drawCircle(5000.0, Color.parseColor("#FDF77B"))
+			drawCircle(5000.0, "#FDF77B")
 			bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
 			viewModel.updateRadius(5)
 		}
@@ -129,7 +136,6 @@ class MapFragment: BaseFragment<FragmentMapBinding>(R.layout.fragment_map) {
 	private fun showMapView() {
 		mapView = binding.map
 
-		// KakaoMapSDK initialization
 		mapView.start(object : MapLifeCycleCallback() {
 			override fun onMapDestroy() {
 				Log.d("KakaoMap", "onMapDestroy")
@@ -149,7 +155,7 @@ class MapFragment: BaseFragment<FragmentMapBinding>(R.layout.fragment_map) {
 	private fun centerMap(latitude: Double, longitude: Double) {
 		val latLng = LatLng.from(latitude, longitude)
 
-		kakaoMap?.moveCamera(CameraUpdateFactory.newCenterPosition(latLng, 15))  // 줌 레벨 15로 설정
+		kakaoMap?.moveCamera(CameraUpdateFactory.newCenterPosition(latLng, 10))
 	}
 
 
@@ -176,7 +182,11 @@ class MapFragment: BaseFragment<FragmentMapBinding>(R.layout.fragment_map) {
 	private fun checkPermissions() {
 		val requestList = mutableListOf<String>()
 		for (permission in permissions) {
-			if (ActivityCompat.checkSelfPermission(requireContext(), permission) != PackageManager.PERMISSION_GRANTED) {
+			if (ActivityCompat.checkSelfPermission(
+					requireContext(),
+					permission
+				) != PackageManager.PERMISSION_GRANTED
+			) {
 				requestList.add(permission)
 				Log.d("엥", "ㅜㅜㅜ")
 			}
@@ -184,7 +194,11 @@ class MapFragment: BaseFragment<FragmentMapBinding>(R.layout.fragment_map) {
 
 		if (requestList.isNotEmpty()) {
 			// 권한이 없으면 요청
-			ActivityCompat.requestPermissions(requireActivity(), requestList.toTypedArray(), PERMISSIONS_REQUEST_CODE)
+			ActivityCompat.requestPermissions(
+				requireActivity(),
+				requestList.toTypedArray(),
+				PERMISSIONS_REQUEST_CODE
+			)
 		} else {
 			// 권한이 있으면 바로 위치 가져오기
 			getLocation()
@@ -192,7 +206,11 @@ class MapFragment: BaseFragment<FragmentMapBinding>(R.layout.fragment_map) {
 		}
 	}
 
-	override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+	override fun onRequestPermissionsResult(
+		requestCode: Int,
+		permissions: Array<String>,
+		grantResults: IntArray
+	) {
 		super.onRequestPermissionsResult(requestCode, permissions, grantResults)
 		if (requestCode == PERMISSIONS_REQUEST_CODE) {
 			for (grantResult in grantResults) {
@@ -230,16 +248,31 @@ class MapFragment: BaseFragment<FragmentMapBinding>(R.layout.fragment_map) {
 			}
 		}
 
-		if (ActivityCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
-			fusedLocationClient.requestLocationUpdates(locationRequest, locationCallback, Looper.getMainLooper())
+		if (ActivityCompat.checkSelfPermission(
+				requireContext(),
+				Manifest.permission.ACCESS_FINE_LOCATION
+			) == PackageManager.PERMISSION_GRANTED
+		) {
+			fusedLocationClient.requestLocationUpdates(
+				locationRequest,
+				locationCallback,
+				Looper.getMainLooper()
+			)
 		} else {
 			// 권한이 없으면 권한 요청
-			ActivityCompat.requestPermissions(requireActivity(), arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), PERMISSIONS_REQUEST_CODE)
+			ActivityCompat.requestPermissions(
+				requireActivity(),
+				arrayOf(Manifest.permission.ACCESS_FINE_LOCATION),
+				PERMISSIONS_REQUEST_CODE
+			)
 		}
 	}
 
+	private var label: Label? = null
 
 	private fun drawLabel(lat: Double, lng: Double) {
+		label?.remove()
+
 		val styles = kakaoMap!!.labelManager
 			?.addLabelStyles(LabelStyles.from(LabelStyle.from(R.drawable.ic_my_location)))
 //			.styles.size(30f)
@@ -249,8 +282,8 @@ class MapFragment: BaseFragment<FragmentMapBinding>(R.layout.fragment_map) {
 
 		val layer = kakaoMap!!.labelManager!!.layer
 
-		val label = layer!!.addLabel(options)
-		label.show()
+		label = layer!!.addLabel(options)
+//		label.show()
 	}
 
 	/***
@@ -328,15 +361,26 @@ class MapFragment: BaseFragment<FragmentMapBinding>(R.layout.fragment_map) {
 	}
 
 	@SuppressLint("MissingPermission")
-	private fun drawCircle(radius: Double, color: Int) {
+	private fun drawCircle(radius: Double, color: String) {
 		// 기존 원 삭제
-//		currentCircle?.remove()
-//
+		currentCircle?.remove()
+
 		fusedLocationClient.lastLocation.addOnSuccessListener { location: Location? ->
 			if (location != null) {
 				val currentLatLng = LatLng.from(location.latitude, location.longitude)
 
 
+				// 반지름 200 미터(meter) 의 원형 폴리곤
+				val circleOptions: PolygonOptions = PolygonOptions.from(
+					DotPoints.fromCircle(
+						currentLatLng,
+						radius.toFloat()
+					)
+				)
+					.setStylesSet(PolygonStylesSet.from(PolygonStyles.from(Color.parseColor(color))))
+
+
+				currentCircle = kakaoMap!!.shapeManager!!.layer.addPolygon(circleOptions)
 			}
 		}
 	}
