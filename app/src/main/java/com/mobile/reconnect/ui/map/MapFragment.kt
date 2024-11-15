@@ -20,14 +20,16 @@ import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationRequest
 import com.google.android.gms.location.LocationResult
 import com.google.android.gms.location.LocationServices
-import com.google.android.gms.maps.model.Circle
-import com.google.android.gms.maps.model.CircleOptions
-import com.google.android.gms.maps.model.LatLng
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.kakao.vectormap.KakaoMap
 import com.kakao.vectormap.KakaoMapReadyCallback
+import com.kakao.vectormap.LatLng
 import com.kakao.vectormap.MapLifeCycleCallback
 import com.kakao.vectormap.MapView
+import com.kakao.vectormap.camera.CameraUpdateFactory
+import com.kakao.vectormap.label.LabelOptions
+import com.kakao.vectormap.label.LabelStyle
+import com.kakao.vectormap.label.LabelStyles
 import com.mobile.reconnect.R
 import com.mobile.reconnect.data.model.MissingPerson_ex
 import com.mobile.reconnect.databinding.FragmentMapBinding
@@ -43,33 +45,44 @@ import ua.naiksoftware.stomp.StompClient
 import ua.naiksoftware.stomp.dto.LifecycleEvent
 import ua.naiksoftware.stomp.dto.StompHeader
 
-
-/*
-class MapFragment: BaseFragment<FragmentMapBinding>(R.layout.fragment_map), OnMapReadyCallback {
+@AndroidEntryPoint
+class MapFragment: BaseFragment<FragmentMapBinding>(R.layout.fragment_map) {
 	private val viewModel: HomeBottomViewModel by activityViewModels()
 
-	private lateinit var map: GoogleMap
+	private lateinit var mapView: MapView
+	private var kakaoMap: KakaoMap? = null
 	private lateinit var fusedLocationClient: FusedLocationProviderClient
 
+	private lateinit var mapViewContainer: ViewGroup
+
 	private lateinit var bottomSheetBehavior: BottomSheetBehavior<View>
-	private var currentCircle: Circle? = null
+	//	private var currentCircle: Circle? = null
 	private lateinit var adapter: MissingPersonsAdapter
 	private lateinit var persons: List<MissingPerson_ex>
 
+	private lateinit var client: OkHttpClient
+	private lateinit var stompClient: StompClient
+	private lateinit var topic: Disposable
+	private lateinit var jsonObject: JSONObject
+	private var latitude: Double = 0.0
+	private var longitude: Double = 0.0
+
+	private val PERMISSIONS_REQUEST_CODE = 100
+	private val permissions = arrayOf(
+		Manifest.permission.ACCESS_FINE_LOCATION,
+		Manifest.permission.ACCESS_COARSE_LOCATION
+	)
 
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 		super.onViewCreated(view, savedInstanceState)
 
 		fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireContext())
-		KakaoMapSdk.init(requireContext(), BuildConfig.KAKAO_LOGIN_KEY)
 
-		val mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment
-		mapFragment.getMapAsync(this)
+		setBottomSheet() // 바텀시트 설정
+		showMapView() // 카카오 맵 설정
+		checkPermissions() // 위치 권한 설정
+		setupStompConnection() // stomp 설정
 
-		setBottomSheet()
-		setupRecyclerView()
-
-		// Chip 클릭 리스너 설정
 		binding.radius1km.setOnClickListener {
 			drawCircle(1000.0, Color.parseColor("#F89035"))
 			bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
@@ -103,82 +116,6 @@ class MapFragment: BaseFragment<FragmentMapBinding>(R.layout.fragment_map), OnMa
 		viewModel.radius.observe(viewLifecycleOwner) { radiusValue ->
 			binding.tvTitle.text = "반경 ${radiusValue}km 이내 실종자 0명"
 		}
-	}
-
-	*/
-/*	@SuppressLint("MissingPermission")
-	private fun drawCircle(radius: Double, color: Int) {
-		// 기존 원 삭제
-		currentCircle?.remove()
-
-		fusedLocationClient.lastLocation.addOnSuccessListener { location: Location? ->
-			if (location != null) {
-				val currentLatLng = LatLng(location.latitude, location.longitude)
-
-				// 새로운 원 그리기
-				currentCircle = map.addCircle(
-					CircleOptions()
-						.center(currentLatLng)
-						.radius(radius)
-						.strokeColor(color)
-						.fillColor(adjustAlpha(color, 0.3f))
-						.strokeWidth(2f)
-				)
-			}
-		}
-	}
-
-	private fun adjustAlpha(color: Int, factor: Float): Int {
-		val alpha = Math.round(Color.alpha(color) * factor)
-		val red = Color.red(color)
-		val green = Color.green(color)
-		val blue = Color.blue(color)
-		return Color.argb(alpha, red, green, blue)
-	}
-
-	*/
-
-@AndroidEntryPoint
-class MapFragment: BaseFragment<FragmentMapBinding>(R.layout.fragment_map) {
-	private val viewModel: HomeBottomViewModel by activityViewModels()
-
-	private lateinit var mapView: MapView
-	private var kakaoMap: KakaoMap? = null
-	private lateinit var fusedLocationClient: FusedLocationProviderClient
-
-	private lateinit var mapViewContainer: ViewGroup
-
-	private lateinit var bottomSheetBehavior: BottomSheetBehavior<View>
-	private var currentCircle: Circle? = null
-	private lateinit var adapter: MissingPersonsAdapter
-	private lateinit var persons: List<MissingPerson_ex>
-
-	private lateinit var client: OkHttpClient
-	private lateinit var stompClient: StompClient
-	private lateinit var topic: Disposable
-	private lateinit var jsonObject: JSONObject
-	private var latitude: Double = 0.0
-	private var longitude: Double = 0.0
-
-	private val PERMISSIONS_REQUEST_CODE = 100
-	private val permissions = arrayOf(
-		Manifest.permission.ACCESS_FINE_LOCATION,
-		Manifest.permission.ACCESS_COARSE_LOCATION
-	)
-
-	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-		super.onViewCreated(view, savedInstanceState)
-
-		fusedLocationClient = LocationServices.getFusedLocationProviderClient(requireContext())
-
-		setBottomSheet() // 바텀시트 설정
-		showMapView() // 카카오 맵 설정
-		checkPermissions() // 위치 권한 설정
-		setupStompConnection() // stomp 설정
-
-		viewModel.radius.observe(viewLifecycleOwner) { radiusValue ->
-			binding.tvTitle.text = "반경 ${radiusValue}km 이내 실종자 0명"
-		}
 
 		client = OkHttpClient()
 		val url = "ws://223.130.139.166:8080/ws"
@@ -207,6 +144,14 @@ class MapFragment: BaseFragment<FragmentMapBinding>(R.layout.fragment_map) {
 			}
 		})
 	}
+
+
+	private fun centerMap(latitude: Double, longitude: Double) {
+		val latLng = LatLng.from(latitude, longitude)
+
+		kakaoMap?.moveCamera(CameraUpdateFactory.newCenterPosition(latLng, 15))  // 줌 레벨 15로 설정
+	}
+
 
 	/***
 	 * bottom sheet
@@ -277,7 +222,8 @@ class MapFragment: BaseFragment<FragmentMapBinding>(R.layout.fragment_map) {
 					val location = it.lastLocation
 					location?.let {
 						viewModel.setLocation(location.latitude, location.longitude)
-
+						drawLabel(location.latitude, location.longitude)  // 현위치에 라벨 추가
+						centerMap(location.latitude, location.longitude)
 //						drawCircle(location.latitude, location.longitude) // 위치를 기반으로 원 그리기
 					}
 				}
@@ -290,6 +236,21 @@ class MapFragment: BaseFragment<FragmentMapBinding>(R.layout.fragment_map) {
 			// 권한이 없으면 권한 요청
 			ActivityCompat.requestPermissions(requireActivity(), arrayOf(Manifest.permission.ACCESS_FINE_LOCATION), PERMISSIONS_REQUEST_CODE)
 		}
+	}
+
+
+	private fun drawLabel(lat: Double, lng: Double) {
+		val styles = kakaoMap!!.labelManager
+			?.addLabelStyles(LabelStyles.from(LabelStyle.from(R.drawable.ic_my_location)))
+//			.styles.size(30f)
+
+		val options = LabelOptions.from(LatLng.from(lat, lng))
+			.setStyles(styles)
+
+		val layer = kakaoMap!!.labelManager!!.layer
+
+		val label = layer!!.addLabel(options)
+		label.show()
 	}
 
 	/***
@@ -355,9 +316,10 @@ class MapFragment: BaseFragment<FragmentMapBinding>(R.layout.fragment_map) {
 					put("latitude", latitude)
 					put("longitude", longitude)
 				})
+				put("radiust", viewModel.radius.value)
 			}
 
-			stompClient.send("/app/ws/location", data.toString()).subscribe()
+			stompClient.send("/app/ws/radius/missing-persons", data.toString()).subscribe()
 		}
 	}
 
@@ -368,21 +330,13 @@ class MapFragment: BaseFragment<FragmentMapBinding>(R.layout.fragment_map) {
 	@SuppressLint("MissingPermission")
 	private fun drawCircle(radius: Double, color: Int) {
 		// 기존 원 삭제
-		currentCircle?.remove()
-
+//		currentCircle?.remove()
+//
 		fusedLocationClient.lastLocation.addOnSuccessListener { location: Location? ->
 			if (location != null) {
-				val currentLatLng = LatLng(location.latitude, location.longitude)
+				val currentLatLng = LatLng.from(location.latitude, location.longitude)
 
-				// 새로운 원 그리기
-//				currentCircle = kakaoMap.addCircle(
-//					CircleOptions()
-//						.center(currentLatLng)
-//						.radius(radius)
-//						.strokeColor(color)
-//						.fillColor(adjustAlpha(color, 0.3f))
-//						.strokeWidth(2f)
-//				)
+
 			}
 		}
 	}
