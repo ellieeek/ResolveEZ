@@ -11,7 +11,7 @@ import com.mobile.reconnect.ui.search.adapter.MissingPersonDiffCallback
 import com.mobile.reconnect.utils.BindingAdapters.loadImage
 
 class MissingPersonsAdapter(
-	private val onItemClicked: List<MissingPerson>
+	private val onItemClicked: (Int) -> Unit // Modify to accept a function that returns the id
 ) : ListAdapter<MissingPerson, MissingPersonsAdapter.MissingPersonViewHolder>(
 	MissingPersonDiffCallback()
 ) {
@@ -26,9 +26,9 @@ class MissingPersonsAdapter(
 		val person = getItem(position)
 		holder.bind(person)
 
-//		holder.itemView.setOnClickListener {
-//			onItemClicked(person)
-//		}
+		holder.itemView.setOnClickListener {
+			onItemClicked(person.id)
+		}
 	}
 
 	class MissingPersonViewHolder(private val binding: ItemMissingPersonBinding) :

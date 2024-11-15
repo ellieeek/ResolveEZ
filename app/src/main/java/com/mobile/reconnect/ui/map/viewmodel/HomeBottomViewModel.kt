@@ -10,6 +10,9 @@ class HomeBottomViewModel : ViewModel() {
 	private val _radius = MutableLiveData<Int>()
 	val radius: LiveData<Int> get() = _radius
 
+	private val _id = MutableLiveData<Int>()
+	val id: LiveData<Int> get() = _id
+
 	private val _uLatitude = MutableLiveData<Double>()
 	val uLatitude: LiveData<Double> get() = _uLatitude
 
@@ -25,5 +28,9 @@ class HomeBottomViewModel : ViewModel() {
 	fun setLocation(latitude: Double, longitude: Double) {
 		_uLatitude.value = latitude
 		_uLongitude.value = longitude
+	}
+
+	fun setId(id: Int) {
+		_id.value = id
 	}
 }
