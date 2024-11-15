@@ -91,31 +91,31 @@ class MapFragment : BaseFragment<FragmentMapBinding>(R.layout.fragment_map) {
 		setupStompConnection() // stomp 설정
 
 		binding.radius1km.setOnClickListener {
-			drawCircle(1000.0, Color.argb(40, 248, 144, 53))
+			drawCircle(1000.0, Color.argb(60, 248, 144, 53))
 			bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
 			viewModel.updateRadius(1)
 		}
 
 		binding.radius2km.setOnClickListener {
-			drawCircle(2000.0, Color.argb(40, 126, 185, 253))
+			drawCircle(2000.0, Color.argb(60, 126, 185, 253))
 			bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
 			viewModel.updateRadius(2)
 		}
 
 		binding.radius3km.setOnClickListener {
-			drawCircle(3000.0, Color.argb(40, 137, 211, 139))
+			drawCircle(3000.0, Color.argb(60, 137, 211, 139))
 			bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
 			viewModel.updateRadius(3)
 		}
 
 		binding.radius4km.setOnClickListener {
-			drawCircle(4000.0, Color.argb(40, 228, 189, 255))
+			drawCircle(4000.0, Color.argb(60, 228, 189, 255))
 			bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
 			viewModel.updateRadius(4)
 		}
 
 		binding.radius5km.setOnClickListener {
-			drawCircle(5000.0, Color.argb(40, 253, 247, 123))
+			drawCircle(5000.0, Color.argb(60, 253, 247, 123))
 			bottomSheetBehavior.state = BottomSheetBehavior.STATE_COLLAPSED
 			viewModel.updateRadius(5)
 		}
@@ -155,7 +155,7 @@ class MapFragment : BaseFragment<FragmentMapBinding>(R.layout.fragment_map) {
 	private fun centerMap(latitude: Double, longitude: Double) {
 		val latLng = LatLng.from(latitude, longitude)
 
-		kakaoMap?.moveCamera(CameraUpdateFactory.newCenterPosition(latLng, 10))
+		kakaoMap?.moveCamera(CameraUpdateFactory.newCenterPosition(latLng, 13))
 	}
 
 
