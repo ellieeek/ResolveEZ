@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.mobile.reconnect.data.model.search.MissingPerson
 import com.mobile.reconnect.data.model.search.PageableRequest
+import com.mobile.reconnect.data.model.search.SearchRequest
 import com.mobile.reconnect.data.model.search.SearchResponse
 import com.mobile.reconnect.data.repository.SearchRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -27,14 +28,19 @@ class SearchViewModel @Inject constructor(
 			List<MissingPerson>?>
 		get() = _missingPersons
 
+	private val _ifFiltered = MutableLiveData<Boolean>()
+	val ifFiltered: LiveData<Boolean> get() = _ifFiltered
+
 	private val _error = MutableLiveData<String>()
 	val error: LiveData<String> get() = _error
 
 	private var currentPage = 0
 
-	// 실종자 검색 함수
-	// 실종자 검색 함수
-	fun searchMissingPersons(query: String) {
+	/***
+	 * 실종자 검색
+	 * @return 실종자 리스트
+	 */
+	fun searchMissingPersons(query: SearchRequest) {
 		val pageable = PageableRequest(currentPage, 10)
 		Log.d("SearchViewModel", "Searching for: $query with page: $currentPage")
 
@@ -48,29 +54,33 @@ class SearchViewModel @Inject constructor(
 					// 성공적인 응답 처리
 					val responseBody = response.body()
 					if (responseBody != null && responseBody.content.isNotEmpty()) {
-						// query와 이름이 일치하는 실종자만 필터링
-						val filteredList = responseBody.content.filter { missingPerson ->
-							missingPerson.name.contains(query, ignoreCase = true) // 대소문자 구분 없이 검색
+
+						// 필터링
+						var filteredList = responseBody.content.filter { missingPerson ->
+							missingPerson.name.equals(query.name, ignoreCase = true) ||
+									missingPerson.gender == query.gender ||
+									missingPerson.age.toString() == query.age.toString() ||
+									missingPerson.specialFeature == query.specialFeature
 						}
 
 						// 필터링된 리스트를 _missingPersons에 업데이트
 						if (filteredList.isNotEmpty()) {
 							_missingPersons.value = filteredList
 							currentPage++
-							Log.d("SearchViewModel", "Response successful: ${filteredList.size} items found")
+							Log.d("SearchViewModel", "성공: ${filteredList.size}개 결과 찾음")
 						} else {
-							Log.d("SearchViewModel", "No data found for the query: $query")
+							Log.d("SearchViewModel", "검색 결과 없음: $query")
 							_missingPersons.value = emptyList()
 						}
 					} else {
-						Log.d("SearchViewModel", "No data found")
+						Log.d("SearchViewModel", "데이터 없음")
 						_missingPersons.value = emptyList()
 					}
 				} else {
 					// 실패 시 처리
 					Log.e(
 						"SearchViewModel",
-						"Error response: ${response.code()} - ${response.message()} - ${response.body()}"
+						"오류: ${response.code()} - ${response.message()} - ${response.body()}"
 					)
 					_error.value = "검색 결과를 가져오지 못했습니다."
 				}
@@ -84,10 +94,7 @@ class SearchViewModel @Inject constructor(
 		})
 	}
 
-	// 필터링 처리 로직 추가
-	fun applyFilters(filters: Map<String, String>) {
-		// 필터링 로직을 추가할 수 있습니다.
-		// 예: 나이, 성별 등 필터 조건을 적용하여 서버 요청
-		Log.d("SearchViewModel", "Applying filters: $filters")
+	fun setFilters(boolean: Boolean) {
+		_ifFiltered.value = boolean
 	}
 }

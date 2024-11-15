@@ -129,5 +129,11 @@ dependencies {
 	// Hilt
 	implementation("com.google.dagger:hilt-android:2.48")
 	kapt("com.google.dagger:hilt-android-compiler:2.48")
-}
 
+	// stomp
+	implementation("com.github.NaikSoftware:StompProtocolAndroid:1.6.6")
+
+	//rx
+	implementation("io.reactivex.rxjava2:rxjava:2.2.5")
+	implementation("io.reactivex.rxjava2:rxandroid:2.1.0")
+}

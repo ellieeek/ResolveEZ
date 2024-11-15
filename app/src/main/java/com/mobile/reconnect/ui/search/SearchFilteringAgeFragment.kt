@@ -9,46 +9,54 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.mobile.reconnect.R
 import com.mobile.reconnect.databinding.FragmentSearchFilteringBinding
 import androidx.core.content.ContextCompat
+import androidx.core.widget.doAfterTextChanged
+import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
+import com.mobile.reconnect.data.model.search.SearchRequest
+import com.mobile.reconnect.databinding.FragmentSearchFilteringAgeBinding
+import com.mobile.reconnect.databinding.FragmentSearchFilteringGenderBinding
+import com.mobile.reconnect.ui.search.viewmodel.SearchViewModel
 import dagger.hilt.EntryPoint
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class SearchFilteringFragment : BottomSheetDialogFragment() {
-	private var _binding: FragmentSearchFilteringBinding? = null
+class SearchFilteringAgeFragment : BottomSheetDialogFragment() {
+	private var _binding: FragmentSearchFilteringAgeBinding? = null
 	private val binding get() = _binding!!
+
+	private val viewModel: SearchViewModel by activityViewModels()
+	private var request = SearchRequest()
 
 	override fun onCreateView(
 		inflater: LayoutInflater, container: ViewGroup?,
 		savedInstanceState: Bundle?
 	): View {
-		_binding = FragmentSearchFilteringBinding.inflate(inflater, container, false)
+		_binding = FragmentSearchFilteringAgeBinding.inflate(inflater, container, false)
 		return binding.root
 	}
 
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 		super.onViewCreated(view, savedInstanceState)
+		var age = ""
 
-		binding.btnMale.setOnClickListener {
-			selectGender(binding.btnMale, binding.btnFemale)
+		binding.etAge.doAfterTextChanged {
+			request = SearchRequest(age = age.toInt())
 		}
 
-		binding.btnFemale.setOnClickListener {
-			selectGender(binding.btnFemale, binding.btnMale)
+		binding.btnSelect.setOnClickListener {
+			viewModel.searchMissingPersons(request)
+			dismiss()
 		}
-
-		setChipClickListener(binding.btnNonDisabled, R.color.primary_red, R.color.gray_300)
-		setChipClickListener(binding.btnDementia, R.color.primary_red, R.color.gray_300)
-		setChipClickListener(binding.btnRunaway, R.color.primary_red, R.color.gray_300)
-		setChipClickListener(binding.btnDisabled, R.color.primary_red, R.color.gray_300)
-		setChipClickListener(binding.btnEtc, R.color.primary_red, R.color.gray_300)
 
 		binding.btnCancel.setOnClickListener {
+			viewModel.setFilters(false)
 			dismiss()
 		}
 	}
 
 	private fun selectGender(selectedChip: Chip, unselectedChip: Chip) {
 		val selectedColor = ContextCompat.getColor(requireContext(), R.color.primary_red)
+		val unselectedColor = ContextCompat.getColor(requireContext(), R.color.gray_300)
 
 		val currentStrokeColor = selectedChip.chipStrokeColor?.defaultColor
 
@@ -58,27 +66,11 @@ class SearchFilteringFragment : BottomSheetDialogFragment() {
 		} else {
 			selectedChip.setChipStrokeColorResource(R.color.primary_red)
 			selectedChip.isChecked = true
+			viewModel.setFilters(true)
 		}
 
 		unselectedChip.setChipStrokeColorResource(R.color.gray_300)
 		unselectedChip.isChecked = false
-	}
-
-	// Chip 클릭 시 색상 변경 함수
-	private fun setChipClickListener(chip: Chip, selectedColor: Int, unselectedColor: Int) {
-		chip.setOnClickListener {
-			val currentStrokeColor = chip.chipStrokeColor?.defaultColor
-
-			if (currentStrokeColor == ContextCompat.getColor(requireContext(), selectedColor)) {
-				chip.setChipStrokeColorResource(unselectedColor)
-				chip.setTextColor(ContextCompat.getColor(requireContext(), R.color.gray_700))
-			} else {
-				chip.setChipStrokeColorResource(selectedColor)
-				chip.setTextColor(ContextCompat.getColor(requireContext(), selectedColor))
-			}
-
-			chip.isChecked = !chip.isChecked
-		}
 	}
 
 	override fun onDestroyView() {

@@ -18,8 +18,7 @@ class SearchRepository @Inject constructor(
 	 * @param query 검색어
 	 * @param pageable 페이지네이션 정보
 	 */
-	fun searchMissingPerson(query: String, pageable: PageableRequest): Call<SearchResponse> {
-		val searchRequest = SearchRequest(query)
-		return searchApi.search(searchRequest, pageable)
+	fun searchMissingPerson(query: SearchRequest, pageable: PageableRequest): Call<SearchResponse> {
+		return searchApi.search(query, pageable)
 	}
 }
