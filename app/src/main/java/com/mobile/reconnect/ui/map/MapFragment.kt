@@ -14,6 +14,7 @@ import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.MediatorLiveData
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.gms.location.FusedLocationProviderClient
 import com.google.android.gms.location.LocationCallback
 import com.google.android.gms.location.LocationRequest
@@ -37,18 +38,21 @@ import com.kakao.vectormap.shape.PolygonStyles
 import com.kakao.vectormap.shape.PolygonStylesSet
 import com.mobile.reconnect.R
 import com.mobile.reconnect.data.model.MissingPerson_ex
+import com.mobile.reconnect.data.model.search.MissingPerson
 import com.mobile.reconnect.databinding.FragmentMapBinding
 import com.mobile.reconnect.ui.common.BaseFragment
 import com.mobile.reconnect.ui.map.adapter.MissingPersonsAdapter
 import com.mobile.reconnect.ui.map.viewmodel.HomeBottomViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import io.reactivex.disposables.Disposable
 import okhttp3.OkHttpClient
+import org.json.JSONArray
 import org.json.JSONObject
 import ua.naiksoftware.stomp.Stomp
 import ua.naiksoftware.stomp.StompClient
 import ua.naiksoftware.stomp.dto.LifecycleEvent
 import ua.naiksoftware.stomp.dto.StompHeader
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 
 @AndroidEntryPoint
@@ -59,19 +63,15 @@ class MapFragment : BaseFragment<FragmentMapBinding>(R.layout.fragment_map) {
 	private var kakaoMap: KakaoMap? = null
 	private lateinit var fusedLocationClient: FusedLocationProviderClient
 
-	private lateinit var mapViewContainer: ViewGroup
+	private val list = mutableListOf<MissingPerson>()
 
 	private lateinit var bottomSheetBehavior: BottomSheetBehavior<View>
+	private lateinit var adapter: MissingPersonsAdapter
 
 	private var currentCircle: Polygon? = null
-	private lateinit var adapter: MissingPersonsAdapter
-	private lateinit var persons: List<MissingPerson_ex>
 
 	private lateinit var client: OkHttpClient
 	private lateinit var stompClient: StompClient
-	private var latitude: Double = 0.0
-	private var longitude: Double = 0.0
-
 	private var label: Label? = null
 
 
@@ -122,7 +122,8 @@ class MapFragment : BaseFragment<FragmentMapBinding>(R.layout.fragment_map) {
 		}
 
 		viewModel.radius.observe(viewLifecycleOwner) { radiusValue ->
-			binding.tvTitle.text = "반경 ${radiusValue}km 이내 실종자 0명"
+			val missingPersonCount = adapter.currentList.size + 1
+			binding.tvTitle.text = "반경 ${radiusValue}km 이내 실종자 ${missingPersonCount}명"
 		}
 	}
 
@@ -196,7 +197,6 @@ class MapFragment : BaseFragment<FragmentMapBinding>(R.layout.fragment_map) {
 		} else {
 			// 권한이 있으면 바로 위치 가져오기
 			getLocation()
-			Log.d("엥", "getLocation()")
 		}
 	}
 
@@ -262,12 +262,14 @@ class MapFragment : BaseFragment<FragmentMapBinding>(R.layout.fragment_map) {
 		}
 	}
 
+	/***
+	 * 현위치 label 출력
+	 */
 	private fun drawLabel(lat: Double, lng: Double) {
 		label?.remove()
 
 		val styles = kakaoMap!!.labelManager
 			?.addLabelStyles(LabelStyles.from(LabelStyle.from(R.drawable.ic_my_location)))
-//			.styles.size(30f)
 
 		val options = LabelOptions.from(LatLng.from(lat, lng))
 			.setStyles(styles)
@@ -292,11 +294,44 @@ class MapFragment : BaseFragment<FragmentMapBinding>(R.layout.fragment_map) {
 	/***
 	 * stomp
 	 */
-	private var isSubscribedToResponse = false
-
+	@SuppressLint("CheckResult")
 	private fun runStompTopicRadiusMissingPersons() {
 		stompClient.topic("/topic/radius-missing-persons").subscribe { topicMessage ->
 			Log.i("Message Received", topicMessage.payload)
+			try {
+				val jsonArray = JSONArray(topicMessage.payload)
+				val personList = mutableListOf<MissingPerson>()
+
+				for (i in 0 until jsonArray.length()) {
+					val jsonObject = jsonArray.getJSONObject(i)
+					val person = MissingPerson(
+						id = jsonObject.getInt("id"),
+						name = jsonObject.getString("name"),
+						imageURL = jsonObject.getString("imageURL"),
+						specialFeature = jsonObject.getString("specialFeature"),
+						gender = jsonObject.getString("gender"),
+						age = jsonObject.getInt("age"),
+						height = jsonObject.getInt("height"),
+						weight = jsonObject.getInt("weight"),
+						tops = jsonObject.getString("tops"),
+						bottoms = jsonObject.getString("bottoms"),
+						shoes = jsonObject.getString("shoes"),
+						accessories = jsonObject.getString("accessories"),
+						hair = jsonObject.getString("hair")
+					)
+					personList.add(person)
+				}
+
+				viewModel.personListLiveData.postValue(personList)
+				Log.i("STOMP Response", "Received and parsed person list")
+			} catch (e: Exception) {
+				Log.e("STOMP Error", "Error parsing response", e)
+			}
+		}
+
+		viewModel.personListLiveData.observe(viewLifecycleOwner) { personList ->
+			initProjectRecyclerView(personList)
+			updateRecyclerView(personList)
 		}
 
 		val headerList = arrayListOf<StompHeader>()
@@ -336,8 +371,6 @@ class MapFragment : BaseFragment<FragmentMapBinding>(R.layout.fragment_map) {
 		}
 
 		combinedLocation.observe(viewLifecycleOwner) { (latitude, longitude) ->
-			Log.d("내 위치...", "위도: $latitude, 경도: $longitude")
-
 			val data = JSONObject().apply {
 				put("userLocation", JSONObject().apply {
 					put("latitude", latitude)
@@ -349,6 +382,7 @@ class MapFragment : BaseFragment<FragmentMapBinding>(R.layout.fragment_map) {
 			stompClient.send("/app/ws/radius/missing-persons", data.toString()).subscribe()
 		}
 	}
+
 	private fun runStompTopicPredictedLocations() {
 		stompClient.topic("/topic/predicted-locations").subscribe { topicMessage ->
 			Log.i("Message Received", topicMessage.payload)
@@ -409,6 +443,24 @@ class MapFragment : BaseFragment<FragmentMapBinding>(R.layout.fragment_map) {
 		private const val LOCATION_PERMISSION_REQUEST_CODE = 1001
 	}
 
+	private fun initProjectRecyclerView(personList: List<MissingPerson>) {
+		adapter = MissingPersonsAdapter(personList)
+		binding.rvMissingPersonsList.adapter = adapter
+		binding.rvMissingPersonsList.layoutManager =
+			LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
+
+		adapter.submitList(personList)
+	}
+
+	private fun updateRecyclerView(newData: List<MissingPerson>) {
+		list.clear() // 기존 데이터 클리어
+		list.addAll(newData) // 새로운 데이터 추가
+		binding.rvMissingPersonsList.adapter?.notifyDataSetChanged()
+	}
+
+	/***
+	 * 반경 원형 그리기
+	 */
 	@SuppressLint("MissingPermission")
 	private fun drawCircle(radius: Double, color: Int) {
 		// 기존 원 삭제
@@ -417,7 +469,6 @@ class MapFragment : BaseFragment<FragmentMapBinding>(R.layout.fragment_map) {
 		fusedLocationClient.lastLocation.addOnSuccessListener { location: Location? ->
 			if (location != null) {
 				val currentLatLng = LatLng.from(location.latitude, location.longitude)
-
 
 				// 반지름 200 미터(meter) 의 원형 폴리곤
 				val circleOptions: PolygonOptions = PolygonOptions.from(
@@ -433,13 +484,4 @@ class MapFragment : BaseFragment<FragmentMapBinding>(R.layout.fragment_map) {
 			}
 		}
 	}
-
-	private fun adjustAlpha(color: Int, factor: Float): Int {
-		val alpha = Math.round(Color.alpha(color) * factor)
-		val red = Color.red(color)
-		val green = Color.green(color)
-		val blue = Color.blue(color)
-		return Color.argb(alpha, red, green, blue)
-	}
-
 }

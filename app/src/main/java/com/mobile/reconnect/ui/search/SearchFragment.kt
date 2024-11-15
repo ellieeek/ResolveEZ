@@ -5,7 +5,6 @@ import android.util.Log
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
-import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.chip.Chip
 import com.mobile.reconnect.R
@@ -14,13 +13,14 @@ import com.mobile.reconnect.databinding.FragmentSearchBinding
 import com.mobile.reconnect.ui.common.BaseFragment
 import com.mobile.reconnect.ui.search.viewmodel.SearchViewModel
 import com.mobile.reconnect.ui.map.adapter.MissingPersonsAdapter
+import com.mobile.reconnect.ui.search.adapter.SearchMissingPersonsAdapter
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_search) {
 	private val viewModel: SearchViewModel by activityViewModels()
 
-	private lateinit var adapter: MissingPersonsAdapter
+	private lateinit var adapter: SearchMissingPersonsAdapter
 	private var request = SearchRequest()
 
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -81,7 +81,7 @@ class SearchFragment : BaseFragment<FragmentSearchBinding>(R.layout.fragment_sea
 	}
 
 	private fun setupRecyclerView() {
-		adapter = MissingPersonsAdapter { person ->
+		adapter = SearchMissingPersonsAdapter { person ->
 			Log.d("SearchFragment", "Clicked: ${person.name}")
 		}
 

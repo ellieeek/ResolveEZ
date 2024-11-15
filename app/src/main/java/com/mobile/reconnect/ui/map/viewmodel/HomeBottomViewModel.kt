@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import com.mobile.reconnect.data.model.search.MissingPerson
 
 class HomeBottomViewModel : ViewModel() {
 	private val _radius = MutableLiveData<Int>()
@@ -14,6 +15,8 @@ class HomeBottomViewModel : ViewModel() {
 
 	private val _uLongitude = MutableLiveData<Double>()
 	val uLongitude: LiveData<Double> get() = _uLongitude
+
+	val personListLiveData = MutableLiveData<List<MissingPerson>>()
 
 	fun updateRadius(radiusValue: Int) {
 		_radius.value = radiusValue

@@ -1,4 +1,4 @@
-package com.mobile.reconnect.ui.map.adapter
+package com.mobile.reconnect.ui.search.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,12 +7,13 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.mobile.reconnect.data.model.search.MissingPerson
 import com.mobile.reconnect.databinding.ItemMissingPersonBinding
-import com.mobile.reconnect.ui.search.adapter.MissingPersonDiffCallback
+import com.mobile.reconnect.ui.map.adapter.MissingPersonDiffCallback
+import com.mobile.reconnect.ui.map.adapter.MissingPersonsAdapter
 import com.mobile.reconnect.utils.BindingAdapters.loadImage
 
-class MissingPersonsAdapter(
-	private val onItemClicked: List<MissingPerson>
-) : ListAdapter<MissingPerson, MissingPersonsAdapter.MissingPersonViewHolder>(
+class SearchMissingPersonsAdapter(
+	private val onItemClicked: (MissingPerson) -> Unit
+) : ListAdapter<MissingPerson, SearchMissingPersonsAdapter.MissingPersonViewHolder>(
 	MissingPersonDiffCallback()
 ) {
 
@@ -62,10 +63,10 @@ class MissingPersonsAdapter(
 
 class MissingPersonDiffCallback : DiffUtil.ItemCallback<MissingPerson>() {
 	override fun areItemsTheSame(oldItem: MissingPerson, newItem: MissingPerson): Boolean {
-		return oldItem.id == newItem.id
+		return oldItem.id == newItem.id // id로 비교
 	}
 
 	override fun areContentsTheSame(oldItem: MissingPerson, newItem: MissingPerson): Boolean {
-		return oldItem == newItem
+		return oldItem == newItem // 전체 내용이 동일한지 비교
 	}
 }
