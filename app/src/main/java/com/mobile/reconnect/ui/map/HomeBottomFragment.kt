@@ -13,7 +13,9 @@ import com.mobile.reconnect.databinding.FragmentHomeBottomBinding
 import com.mobile.reconnect.ui.common.BaseFragment
 import com.mobile.reconnect.ui.map.adapter.MissingPersonsAdapter
 import com.mobile.reconnect.ui.map.viewmodel.HomeBottomViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class HomeBottomFragment: BaseFragment<FragmentHomeBottomBinding>(R.layout.fragment_home_bottom) {
 	private lateinit var adapter: MissingPersonsAdapter
 	private lateinit var persons: List<MissingPerson>

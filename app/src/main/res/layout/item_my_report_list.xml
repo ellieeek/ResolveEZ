@@ -4,11 +4,12 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <data>
+        <import type="com.mobile.reconnect.data.model.enumeration.Status" />
+
         <variable
             name="item"
             type="com.mobile.reconnect.data.model.MyReportList" />
     </data>
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -18,11 +19,11 @@
 
         <TextView
             style="@style/RegularFontKr.12"
-            android:id="@+id/date"
+            android:id="@+id/tv_date"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"
-            android:text="@{item.date}"
+            android:text="2024.01.01"
             android:textColor="@color/gray_600"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -33,29 +34,35 @@
             android:layout_height="57dp"
             android:layout_marginTop="5dp"
             android:src="@drawable/bg_gray_rectangle"
-            app:layout_constraintStart_toStartOf="@+id/date"
-            app:layout_constraintTop_toBottomOf="@+id/date" />
+            app:layout_constraintStart_toStartOf="@+id/tv_date"
+            app:layout_constraintTop_toBottomOf="@+id/tv_date" />
 
         <TextView
-            style="@style/SemiBoldFontKr.14"
             android:id="@+id/tv_name"
+            style="@style/SemiBoldFontKr.14"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@{item.name}"
-            android:textColor="@color/black"
             android:layout_marginStart="10dp"
+            android:text="홍길동"
+            android:textColor="@color/black"
+            android:drawablePadding="8dp"
+            app:drawableEndCompat="@drawable/ic_arrow_right"
+            app:layout_constraintBottom_toBottomOf="@+id/ig_profile"
             app:layout_constraintStart_toEndOf="@+id/ig_profile"
             app:layout_constraintTop_toTopOf="@+id/ig_profile" />
 
-        <com.google.android.material.chip.Chip
-            style="@style/MediumFontKr.13"
+        <TextView
+            android:id="@+id/tv_status"
+            style="@style/BoldFontKr.14"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
             android:text="수색 중"
-            android:textColor="@color/white"
-            app:chipBackgroundColor="@color/chip_selected_red_or_blue"
-            app:layout_constraintStart_toEndOf="@+id/tv_name"
-            app:layout_constraintTop_toBottomOf="@+id/tv_name" />
+            android:textColor="@{item.status.equals(Status.SEARCHING) ? @color/primary_red : @color/blue}"
+            app:layout_constraintBottom_toBottomOf="@+id/ig_profile"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_date" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

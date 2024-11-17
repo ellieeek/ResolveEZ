@@ -15,7 +15,7 @@
             android:padding="16dp">
 
             <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/appCompatImageView"
+                android:id="@+id/imv_person"
                 android:layout_width="70dp"
                 android:layout_height="0dp"
                 android:src="@drawable/bg_gray100_radius_8"
@@ -31,8 +31,8 @@
                 android:layout_marginStart="14dp"
                 android:text="이름"
                 android:textColor="@color/black"
-                app:layout_constraintStart_toEndOf="@+id/appCompatImageView"
-                app:layout_constraintTop_toTopOf="@+id/appCompatImageView" />
+                app:layout_constraintStart_toEndOf="@+id/imv_person"
+                app:layout_constraintTop_toTopOf="@+id/imv_person" />
 
             <TextView
                 android:id="@+id/tv_person_detail"

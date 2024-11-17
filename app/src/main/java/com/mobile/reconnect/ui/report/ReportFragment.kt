@@ -1,75 +1,86 @@
 package com.mobile.reconnect.ui.report
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.mobile.reconnect.R
 import com.mobile.reconnect.databinding.FragmentReportBinding
-import com.mobile.reconnect.ui.report.adapter.MissingPersonAdapter
-import com.mobile.reconnect.ui.report.viewmodel.ReportViewModel
 import com.mobile.reconnect.ui.common.BaseFragment
-import java.text.SimpleDateFormat
-import java.util.Date
-import java.util.Locale
+import com.mobile.reconnect.ui.report.adapter.MissingPersonAdapter
+import com.mobile.reconnect.ui.report.viewmodel.MissingPersonViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
-class ReportFragment: BaseFragment<FragmentReportBinding>(R.layout.fragment_report) {
-	private val viewModel: ReportViewModel by viewModels()
-
-	private lateinit var missingPersonAdapter: MissingPersonAdapter
+@AndroidEntryPoint
+class ReportFragment : BaseFragment<FragmentReportBinding>(R.layout.fragment_report) {
+	private val viewModel: MissingPersonViewModel by viewModels()
 
 	override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 		super.onViewCreated(view, savedInstanceState)
 
-		setCurrentTime()
+		// Data Binding 설정
+		binding.lifecycleOwner = viewLifecycleOwner
+		binding.viewModel = viewModel
 
 		// RecyclerView 설정
 		setupRecyclerView()
 
-		// ViewModel에서 실종자 목록을 관찰하고 UI에 반영
-		viewModel.missingPersonList.observe(viewLifecycleOwner) { missingPersons ->
-			missingPersonAdapter.submitList(missingPersons)
-		}
+		// ChipGroup 설정
+		setupChipGroup()
 
-		// 실종자 목록을 가져오는 로직 실행
-		viewModel.loadMissingPersons()
-//
-//		viewModel.text.observe(viewLifecycleOwner) {
-////			binding.textReport.text = it
-//		}
+		// 초기 데이터 로드: 거리순 정렬로 기본 설정
+		viewModel.fetchMissingPersons("DISTANCE", 37.5665, 126.9780)
+		binding.radiusGroup.check(R.id.radius_2km) // 기본 선택
 	}
 
-	private fun setCurrentTime() {
-		// 현재 시간 포맷
-		val currentTime = SimpleDateFormat("HH시", Locale.getDefault()).format(Date())
-		binding.nowTime.text = "$currentTime 실종자"
+	private fun setupChipGroup() {
+		binding.radiusGroup.setOnCheckedStateChangeListener { group, checkedIds ->
+			if (checkedIds.isNotEmpty()) {
+				when (checkedIds.first()) {
+					R.id.radius_2km -> {
+						viewModel.fetchMissingPersons("DISTANCE", 37.5665, 126.9780)
+					}
+					R.id.radius_3km -> {
+						viewModel.fetchMissingPersons("REGISTRATION", 37.5665, 126.9780)
+					}
+					R.id.radius_4km -> {
+						viewModel.fetchMissingPersons("REPORT_COUNT", 37.5665, 126.9780)
+					}
+				}
+			}
+		}
 	}
 
 	private fun setupRecyclerView() {
-		missingPersonAdapter = MissingPersonAdapter { missingPerson, view ->
+		val adapter = MissingPersonAdapter { missingPerson, view ->
+			val bundle = Bundle().apply {
+				putParcelable("missingPerson", missingPerson)
+			}
 			when (view.id) {
 				R.id.btnReport -> {
-					// ReportRegistrationFragment로 이동
-					val bundle = Bundle().apply {
-						putParcelable("missingPerson", missingPerson) // MissingPerson 객체 전달
-					}
+					// btnReport 클릭 시 ReportRegistrationFragment로 이동
 					findNavController().navigate(R.id.action_reportFragment_to_reportRegistrationFragment, bundle)
 				}
 				else -> {
-					// ReportDetailFragment로 이동
-					val bundle = Bundle().apply {
-						putParcelable("missingPerson", missingPerson) // MissingPerson 객체 전달
-					}
+					// 나머지 영역 클릭 시 ReportDetailFragment로 이동
 					findNavController().navigate(R.id.action_reportFragment_to_reportDetailFragment, bundle)
 				}
 			}
 		}
 
-		binding.recyclerViewReportList.apply {
-			layoutManager = LinearLayoutManager(context)
-			adapter = missingPersonAdapter
+		binding.recyclerViewReportList.adapter = adapter
+		binding.recyclerViewReportList.layoutManager = LinearLayoutManager(context)
+
+		// LiveData 관찰 및 데이터 갱신
+		viewModel.missingPersons.observe(viewLifecycleOwner) { missingPersons ->
+			adapter.submitList(missingPersons)
+			if (missingPersons.isNullOrEmpty()) {
+				Log.e("ReportFragment", "Missing persons list is empty")
+			} else {
+				Log.d("ReportFragment", "Loaded ${missingPersons.size} items")
+			}
 		}
 	}
-
 }

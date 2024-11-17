@@ -9,7 +9,10 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.mobile.reconnect.R
 import com.mobile.reconnect.databinding.FragmentSearchFilteringBinding
 import androidx.core.content.ContextCompat
+import dagger.hilt.EntryPoint
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SearchFilteringFragment : BottomSheetDialogFragment() {
 	private var _binding: FragmentSearchFilteringBinding? = null
 	private val binding get() = _binding!!
@@ -46,7 +49,6 @@ class SearchFilteringFragment : BottomSheetDialogFragment() {
 
 	private fun selectGender(selectedChip: Chip, unselectedChip: Chip) {
 		val selectedColor = ContextCompat.getColor(requireContext(), R.color.primary_red)
-		val unselectedColor = ContextCompat.getColor(requireContext(), R.color.gray_300)
 
 		val currentStrokeColor = selectedChip.chipStrokeColor?.defaultColor
 

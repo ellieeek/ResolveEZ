@@ -12,15 +12,21 @@ import com.mobile.reconnect.R
 import com.mobile.reconnect.data.model.MissingPerson
 import com.mobile.reconnect.databinding.FragmentReportRegistrationBinding
 import android.widget.RadioButton
+import android.widget.Toast
+import androidx.fragment.app.viewModels
+import com.mobile.reconnect.data.model.AgeGroup
+import com.mobile.reconnect.data.model.ReportGender
+import com.mobile.reconnect.data.model.ReportRequest
+import com.mobile.reconnect.data.model.ReportSpecialFeature
+import com.mobile.reconnect.ui.report.viewmodel.ReportRegistrationViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ReportRegistrationFragment : Fragment() {
 
+    private val viewModel: ReportRegistrationViewModel by viewModels()
     private var _binding: FragmentReportRegistrationBinding? = null
     private val binding get() = _binding!!
-
-    companion object {
-        private const val CAMERA_REQUEST_CODE = 1001
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,60 +39,83 @@ class ReportRegistrationFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        // 전달받은 MissingPerson 객체를 가져와서 UI에 설정
-        val missingPerson: MissingPerson? = arguments?.getParcelable("missingPerson")
-        missingPerson?.let { person ->
-            binding.missingPerson = person // 데이터 바인딩에 설정
-        }
+        // 전달받은 MissingPerson ID
+        val missingPersonId = arguments?.getLong("missingPersonId") ?: return
 
-        // 라디오 버튼 그룹 설정
-        setupRadioGroups()
-
-        // 카메라 호출 기능 설정
-        binding.frameLayout3.setOnClickListener {
-            openCamera()
-        }
-        binding.frameLayout5.setOnClickListener {
-            openCamera()
-        }
-
-        // backButton 클릭 시 이전 화면으로 이동
-        binding.backButton.setOnClickListener {
-            findNavController().navigateUp()
-        }
-
-        // reportbtn 클릭 시 MyReportFragment로 이동
-        binding.reportbtn.setOnClickListener {
-            findNavController().navigate(R.id.action_reportRegistrationFragment_to_myReportFragment)
-        }
-    }
-
-    private fun setupRadioGroups() {
-        // 그룹 1: 남자, 여자
-        val genderRadioButtons = listOf(binding.radioButton, binding.radioButton2)
-        setRadioButtonGroup(genderRadioButtons)
-
-        // 그룹 2: 해당없음, 장애 (지적, 자폐성, 정신), 치매
-        val specialConditionRadioButtons = listOf(binding.radioButton13, binding.radioButton14, binding.radioButton15)
-        setRadioButtonGroup(specialConditionRadioButtons)
-    }
-
-    private fun setRadioButtonGroup(radioButtons: List<RadioButton>) {
-        for (radioButton in radioButtons) {
-            radioButton.setOnClickListener {
-                // 클릭된 버튼 이외의 버튼들 선택 해제
-                radioButtons.forEach { btn ->
-                    if (btn != radioButton) {
-                        btn.isChecked = false
+        // RadioGroup 성별 선택 시 이벤트 처리
+        binding.genderRadioGroup.setOnCheckedChangeListener { _, checkedId ->
+            val selectedGender: ReportGender? = when (checkedId) {
+                R.id.radioButtonMale -> ReportGender.MALE
+                R.id.radioButtonFemale -> ReportGender.FEMALE
+                else -> null
+            }
+            selectedGender?.let { gender ->
+                viewModel.updateGender(
+                    missingPersonId = missingPersonId,
+                    gender = gender,
+                    onSuccess = {
+                        Toast.makeText(context, "성별이 성공적으로 업데이트되었습니다.", Toast.LENGTH_SHORT).show()
+                    },
+                    onError = { errorMessage ->
+                        Toast.makeText(context, errorMessage, Toast.LENGTH_SHORT).show()
                     }
-                }
+                )
+            }
+        }
+
+        // 제출 버튼 클릭
+        binding.reportbtn.setOnClickListener {
+            val reportRequest = collectReportData(missingPersonId)
+            if (reportRequest != null) {
+                viewModel.submitReport(reportRequest, ::onReportSuccess, ::onReportError)
+            } else {
+                Toast.makeText(context, "모든 필수 항목을 입력해주세요.", Toast.LENGTH_SHORT).show()
             }
         }
     }
 
-    private fun openCamera() {
-        val cameraIntent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
-        startActivityForResult(cameraIntent, CAMERA_REQUEST_CODE)
+    private fun collectReportData(missingPersonId: Long): ReportRequest? {
+        val gender = when (binding.genderRadioGroup.checkedRadioButtonId) {
+            R.id.radioButtonMale -> ReportGender.MALE
+            R.id.radioButtonFemale -> ReportGender.FEMALE
+            else -> null
+        }
+        val locationFound = binding.editTextText.text.toString()
+        val foundLatitude = 37.5665 // GPS에서 가져오기
+        val foundLongitude = 126.9780 // GPS에서 가져오기
+        val additionalDescription = binding.editTextText5.text.toString()
+
+        return if (gender != null && locationFound.isNotEmpty()) {
+            ReportRequest(
+                missingPersonId = missingPersonId,
+                gender = gender,
+                ageGroup = null, // 연령대 처리 로직 필요시 추가
+                specialFeature = null, // 특이사항 처리 로직 필요시 추가
+                tops = false,
+                bottoms = false,
+                shoes = false,
+                accessories = false,
+                hair = false,
+                foundImageUrls = null,
+                locationFound = locationFound,
+                foundLatitude = foundLatitude,
+                foundLongitude = foundLongitude,
+                additionalDescription = additionalDescription,
+                surroundingImageUrls = null,
+                additionalReport = null
+            )
+        } else {
+            null
+        }
+    }
+
+    private fun onReportSuccess() {
+        Toast.makeText(context, "제보가 성공적으로 등록되었습니다.", Toast.LENGTH_SHORT).show()
+        findNavController().navigateUp()
+    }
+
+    private fun onReportError(errorMessage: String) {
+        Toast.makeText(context, errorMessage, Toast.LENGTH_SHORT).show()
     }
 
     override fun onDestroyView() {

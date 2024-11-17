@@ -44,7 +44,7 @@
                 app:rippleColor="@android:color/transparent"/>
 
             <com.google.android.material.chip.Chip
-                android:id="@+id/btn_gender"
+                android:id="@+id/filtering_chip_gender"
                 style="@style/RegularFontKr.14"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -56,7 +56,7 @@
                 app:rippleColor="@android:color/transparent" />
 
             <com.google.android.material.chip.Chip
-                android:id="@+id/btn_age"
+                android:id="@+id/filtering_chip_age"
                 style="@style/RegularFontKr.14"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -68,7 +68,7 @@
                 app:rippleColor="@android:color/transparent" />
 
             <com.google.android.material.chip.Chip
-                android:id="@+id/btn_defail"
+                android:id="@+id/filtering_chip_feature"
                 style="@style/RegularFontKr.14"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -85,11 +85,13 @@
             android:id="@+id/recyclerView"
             android:layout_width="0dp"
             android:layout_height="0dp"
+            android:layout_marginStart="12dp"
             android:layout_marginTop="12dp"
+            android:layout_marginEnd="12dp"
             android:paddingBottom="17dp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/chipGroup"
-            app:layout_constraintStart_toStartOf="@+id/chipGroup"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/chipGroup"
             tools:listitem="@layout/item_missing_person" />
     </androidx.constraintlayout.widget.ConstraintLayout>
