@@ -6,7 +6,7 @@
     <data>
         <variable
             name="missingPerson"
-            type="com.mobile.reconnect.data.model.MissingPerson" />
+            type="com.mobile.reconnect.data.model.report.MissingPersonDetailResponse" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -65,7 +65,7 @@
                         android:layout_width="80dp"
                         android:layout_height="80dp"
                         android:paddingRight="5dp"
-                        app:imageResource="@{missingPerson.imageResId}"
+                        app:imageUrl="@{missingPerson.imageURL}"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -94,7 +94,7 @@
                         android:layout_marginBottom="64dp"
                         android:ellipsize="end"
                         android:maxLines="1"
-                        android:text='@{" (" + missingPerson.gender.label + ", " + missingPerson.age + "세, " + missingPerson.height + "cm, " + missingPerson.weight + "kg, " + missingPerson.specialFeature.label + ")"}'
+                        android:text='@{" (" + missingPerson.genderLabel + ", " + missingPerson.age + "세, " + missingPerson.height + "cm, " + missingPerson.weight + "kg, " + missingPerson.specialFeatureLabel + ")"}'
                         android:textColor="@color/gray_700"
                         android:textSize="13sp"
                         app:layout_constraintBottom_toBottomOf="parent"
@@ -116,7 +116,6 @@
                         app:layout_constraintHorizontal_bias="0.0"
                         app:layout_constraintStart_toEndOf="@id/imageViewPerson"
                         app:layout_constraintTop_toBottomOf="@+id/tvPersonInfo" />
-
                 </androidx.constraintlayout.widget.ConstraintLayout>
 
                 <!-- 두 번째 ConstraintLayout -->
@@ -154,24 +153,27 @@
                         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
 
-                    <RadioButton
-                        android:id="@+id/radioButton"
-                        style="@style/SemiBoldFontKr.16"
+                    <RadioGroup
+                        android:id="@+id/genderRadioGroup"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="14dp"
-                        android:text="남자"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/textView8" />
+                        app:layout_constraintTop_toBottomOf="@id/textView8">
 
-                    <RadioButton
-                        android:id="@+id/radioButton2"
-                        style="@style/SemiBoldFontKr.16"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="여자"
-                        app:layout_constraintStart_toStartOf="@+id/radioButton"
-                        app:layout_constraintTop_toBottomOf="@+id/radioButton" />
+                        <RadioButton
+                            android:id="@+id/radioButtonMale"
+                            style="@style/SemiBoldFontKr.16"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="남자" />
+
+                        <RadioButton
+                            android:id="@+id/radioButtonFemale"
+                            style="@style/SemiBoldFontKr.16"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="여자" />
+                    </RadioGroup>
 
                     <CheckBox
                         android:id="@+id/checkBox3"
@@ -403,15 +405,13 @@
                         style="@style/SemiBoldFontKr.16"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="48dp"
-                        android:layout_marginBottom="14dp"
+                        android:layout_marginTop="16dp"
                         android:text="2. 나이"
                         android:textColor="@color/gray_800"
                         android:textSize="18sp"
                         android:textStyle="bold"
-                        app:layout_constraintBottom_toTopOf="@+id/textView38"
                         app:layout_constraintStart_toStartOf="parent"
-                        app:layout_constraintTop_toBottomOf="@+id/radioButton2" />
+                        app:layout_constraintTop_toBottomOf="@id/genderRadioGroup" />
 
                     <TextView
                         android:id="@+id/textView42"
